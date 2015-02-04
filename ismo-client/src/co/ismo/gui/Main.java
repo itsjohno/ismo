@@ -1,4 +1,4 @@
-package sample;
+package co.ismo.gui;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;

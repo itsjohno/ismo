@@ -1,4 +1,5 @@
-package sample;
+package co.ismo.gui;
 
 public class Controller {
+
 }
