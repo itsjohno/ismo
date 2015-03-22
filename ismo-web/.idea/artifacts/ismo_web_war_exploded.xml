@@ -1,0 +1,13 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="ismo-web:war exploded">
+    <output-path>$PROJECT_DIR$/out/artifacts/ismo_web_war_exploded</output-path>
+    <root id="root">
+      <element id="javaee-facet-resources" facet="ismo-web/web/Web" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="ismo-web" />
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>

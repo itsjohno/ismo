@@ -1,7 +1,5 @@
 package co.ismo.objects;
 
-/**
- * Created by Johnathan on 04/02/2015.
- */
-public class Store {
+public class Store extends Business {
+    public String id;
 }
