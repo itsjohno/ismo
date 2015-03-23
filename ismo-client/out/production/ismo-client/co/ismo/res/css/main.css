@@ -9,6 +9,7 @@
 
 .loginBox {
     -fx-font-family: "Museo Sans", "Verdana", "Arial", Sans-Serif;
-    -fx-font-size: 24px;
+    -fx-font-size: 48px;
     -fx-prompt-text-fill: derive(-fx-control-inner-background, -30%);
+    -fx-padding: 0;
 }

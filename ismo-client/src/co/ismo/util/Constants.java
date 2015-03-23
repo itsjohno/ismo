@@ -5,6 +5,7 @@ public abstract class Constants {
     public static final boolean DEVELOPER_MODE = true;
 
     /* User Constants */
+    public static final boolean SINGLE_USER_TERMINAL = false;
     public static final int USER_TIMEOUT = 120000;
     public static final int TAN_LENGTH = 5;
 
