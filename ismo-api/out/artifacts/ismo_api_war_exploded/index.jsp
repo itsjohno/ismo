@@ -4,6 +4,6 @@
     <title>ismo</title>
   </head>
   <body>
-    ismo.
+    ismo API
   </body>
 </html>

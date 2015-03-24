@@ -30,7 +30,7 @@ public class Main extends Application {
         stage.setFullScreenExitHint(""); // Disables full screen exit hint
 
         Application.setUserAgentStylesheet(null);
-        StyleManager.getInstance().addUserAgentStylesheet("/co/ismo/res/css/main.css");
+        StyleManager.getInstance().addUserAgentStylesheet("/co/ismo/res/css/main.css"); // Attaches this stylesheet to all scenes
 
         stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
             @Override
