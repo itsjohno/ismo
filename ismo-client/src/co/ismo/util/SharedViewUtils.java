@@ -13,7 +13,7 @@ public class SharedViewUtils {
         Group group = new Group();
 
         Rectangle backgroundRect = new Rectangle(stage.getWidth(), stage.getHeight());
-        backgroundRect.getStyleClass().add("backgroundRect");
+        backgroundRect.getStyleClass().add("displayBackground");
 
         group.getChildren().add(backgroundRect);
 

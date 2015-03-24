@@ -14,6 +14,7 @@ public abstract class Constants {
     public static final int DECIMAL_PLACES = 2;
 
     /* Transaction Constants */
+    /* All monetary values stored as integers, as pennies */
     public static final int MAX_TRANSACTION_VALUE = 250000;
     public static final int MIN_TRANSACTION_VALUE = 0;
 }

@@ -1,8 +1,5 @@
 package co.ismo.util;
 
-/**
- * Created by Johnathan on 23/03/2015.
- */
 public class Enumerations {
     public static enum UserLevel {
         Operator,
