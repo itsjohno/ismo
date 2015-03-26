@@ -1,77 +1,96 @@
 package co.ismo.gui.views;
 
 import co.ismo.gui.controllers.LoginController;
+import co.ismo.objects.Operator;
 import co.ismo.util.Constants;
 import co.ismo.util.Enumerations;
 import co.ismo.util.SharedViewUtils;
 import javafx.event.ActionEvent;
-import javafx.event.Event;
-import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Color;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.scene.Group;
+import javafx.stage.StageStyle;
+import javafx.stage.WindowEvent;
 
 public class LoginView {
 
-    public static void getLoginDialog(Stage stage, Enumerations.UserLevel levelRequired) {
-        Group loginViewGroup = SharedViewUtils.getDefaultStyledGroup(stage);
-        Scene scene = new Scene(loginViewGroup);
-        stage.setScene(scene);
+    private static final double SCALE_FACTOR = 0.4;
 
-        Group loginDialog = createDialog(levelRequired, stage.getWidth(), stage.getHeight());
-        loginViewGroup.getChildren().add(loginDialog);
+    public static void showLoginView(Stage parentStage, Enumerations.UserLevel requiredUserLevel, boolean closeable) {
 
-        SharedViewUtils.fadeNode(loginDialog, 1000, 0, 1);
-        stage.show();
+        Stage loginDialogStage = new Stage();
+        loginDialogStage.initOwner(parentStage);
+
+        if (!closeable) {
+            loginDialogStage.setOnCloseRequest((WindowEvent event) -> SharedViewUtils.consumeEvent(event, "loginDialogStage"));
+        }
+
+        setStyling(loginDialogStage, parentStage.getHeight(), parentStage.getWidth());
+        setScene(parentStage, loginDialogStage, requiredUserLevel);
+        loginDialogStage.show();
     }
 
-    private static Group createDialog(Enumerations.UserLevel levelRequired, double width, double height) {
-        Group loginDialogGroup = new Group();
+    private static void setStyling(Stage dialogStage, double parentHeight, double parentWidth) {
 
-        double dialogWidth = (width * 0.4);
-        double dialogHeight = (height * 0.4);
+        dialogStage.initStyle(StageStyle.TRANSPARENT);
+        dialogStage.initModality(Modality.APPLICATION_MODAL);
+        dialogStage.setTitle("Login Required");
+
+        double dialogWidth = parentWidth * SCALE_FACTOR;
+        double dialogHeight = parentHeight * SCALE_FACTOR;
+
+        dialogStage.setWidth(dialogWidth);
+        dialogStage.setHeight(dialogHeight);
+        dialogStage.setX(parentWidth / 2 - dialogWidth / 2);
+        dialogStage.setY(parentHeight / 2 - dialogHeight / 2);
+
+        dialogStage.setResizable(false);
+        dialogStage.setAlwaysOnTop(true);
+    }
+
+    private static void setScene(Stage parentStage, Stage dialogStage, Enumerations.UserLevel requiredUserLevel) {
+
+        Group loginGroup = new Group();
+        Scene loginScene = new Scene(loginGroup, Color.TRANSPARENT);
 
         GridPane loginGrid = new GridPane();
-        loginGrid.setMinWidth(dialogWidth);
-        loginGrid.setMinHeight(dialogHeight);
-        loginGrid.setLayoutX(width / 2 - dialogWidth / 2);
-        loginGrid.setLayoutY(height / 2 - dialogHeight / 2);
-        loginGrid.setPadding(new Insets(dialogHeight * 0.05, dialogWidth * 0.05, dialogHeight * 0.05, dialogWidth * 0.05));
+        loginGrid.setMinWidth(dialogStage.getWidth());
+        loginGrid.setMinHeight(dialogStage.getHeight());
         loginGrid.setAlignment(Pos.CENTER);
-        loginGrid.getStyleClass().add("loginRect");
+        loginGrid.getStyleClass().add("backgroundRect");
 
         PasswordField loginPasswordField = new PasswordField();
 
-        Label tanLabel = new Label("Please enter TAN at " + levelRequired + " level or higher");
+        Label tanLabel = new Label("Please enter TAN at " + requiredUserLevel + " level or higher");
         tanLabel.setAlignment(Pos.CENTER);
+        tanLabel.getStyleClass().add("loginLabel");
         tanLabel.setLabelFor(loginPasswordField);
         loginGrid.add(tanLabel, 0, 0);
 
-        loginPasswordField.setPromptText("TAN (Teller Authorisation Number)");
-        loginPasswordField.setMinWidth(dialogWidth * 0.9);
+        loginPasswordField.setPromptText("TAN");
+        loginPasswordField.setMinWidth(loginScene.getWidth());
         loginPasswordField.setAlignment(Pos.CENTER);
         loginPasswordField.getStyleClass().add("loginBox");
-        loginPasswordField.setOnKeyPressed((KeyEvent kE) -> {
-            if (loginPasswordField.getLength() + 1 > Constants.TAN_LENGTH) {
-                loginPasswordField.setText(loginPasswordField.getText().substring(0, Constants.TAN_LENGTH));
-                loginPasswordField.positionCaret(Constants.TAN_LENGTH);
+        SharedViewUtils.addTextLimiter(loginPasswordField, Constants.TAN_LENGTH);
+
+        loginPasswordField.setOnAction((ActionEvent aE) -> {
+            if (LoginController.attemptLogin(loginPasswordField.getText())) {
+                dialogStage.close();
+                TillView.showTillView(parentStage, new Operator());
             }
         });
 
-        loginPasswordField.setOnAction((ActionEvent aE) -> { LoginController.attemptLogin(loginPasswordField.getText()); });
-
         loginGrid.add(loginPasswordField, 0, 1);
 
-        loginDialogGroup.getChildren().add(loginGrid);
+        loginGroup.getChildren().add(loginGrid);
+        dialogStage.setScene(loginScene);
 
-        return loginDialogGroup;
+        SharedViewUtils.fadeNode(loginGrid, 1000, 0, 1);
     }
-
-
 }
