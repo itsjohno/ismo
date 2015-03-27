@@ -5,8 +5,6 @@
 .backgroundRect {
     -fx-background-color: rgba(255, 255, 255, 1);
     -fx-background-radius: 15px;
-    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
-    -fx-background-insets: 15;
 }
 
 .loginLabel {

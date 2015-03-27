@@ -51,13 +51,14 @@ public class LoginView {
         dialogStage.setY(parentHeight / 2 - dialogHeight / 2);
 
         dialogStage.setResizable(false);
-        dialogStage.setAlwaysOnTop(true);
+        //dialogStage.setAlwaysOnTop(true);
     }
 
     private static void setScene(Stage parentStage, Stage dialogStage, Enumerations.UserLevel requiredUserLevel) {
 
         Group loginGroup = new Group();
         Scene loginScene = new Scene(loginGroup, Color.TRANSPARENT);
+        // loginScene.getStylesheets().add("/co/ismo/res/css/main.css");
 
         GridPane loginGrid = new GridPane();
         loginGrid.setMinWidth(dialogStage.getWidth());

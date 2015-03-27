@@ -28,7 +28,6 @@ public class TillView {
     }
 
     private static void setStyling(Stage tillStage, double parentHeight, double parentWidth) {
-
         tillStage.initStyle(StageStyle.TRANSPARENT);
         tillStage.initModality(Modality.APPLICATION_MODAL);
         tillStage.setTitle("ismo EPOS - " + Constants.VERSION_NUMBER);
@@ -45,6 +44,7 @@ public class TillView {
 
         Group tillGroup = new Group();
         Scene tillScene = new Scene(tillGroup, Color.TRANSPARENT);
+        // tillScene.getStylesheets().add("/co/ismo/res/css/main.css");
 
         GridPane tillGrid = new GridPane();
         tillGrid.setMinWidth(tillStage.getWidth() * 0.95);
