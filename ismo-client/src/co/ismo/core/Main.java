@@ -32,12 +32,19 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
 
-        Rectangle2D primaryDisplay = Screen.getPrimary().getBounds();
+        //Rectangle2D primaryDisplay = Screen.getPrimary().getBounds();
+        Rectangle2D primaryDisplay = Screen.getPrimary().getVisualBounds();
+
         primaryStage.setX(primaryDisplay.getMinX());
         primaryStage.setY(primaryDisplay.getMinY());
         primaryStage.setHeight(primaryDisplay.getHeight());
         primaryStage.setWidth(primaryDisplay.getWidth());
         primaryStage.setOnCloseRequest((WindowEvent event) -> SharedViewUtils.consumeEvent(event, "primaryStage"));
+
+        System.out.println("X - " + primaryDisplay.getMinX());
+        System.out.println("Y - " + primaryDisplay.getMinY());
+        System.out.println("W - " + primaryDisplay.getHeight());
+        System.out.println("H - " + primaryDisplay.getWidth());
 
         setStyling(primaryStage);
         primaryStage.show();
