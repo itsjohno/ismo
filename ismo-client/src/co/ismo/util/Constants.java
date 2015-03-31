@@ -1,5 +1,10 @@
 package co.ismo.util;
 
+import co.ismo.objects.Operator;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public abstract class Constants {
     /* Development Constants */
     public static boolean DEVELOPER_MODE = false;
@@ -18,4 +23,7 @@ public abstract class Constants {
     /* All monetary values stored as integers, as pennies */
     public static int MAX_TRANSACTION_VALUE = 250000;
     public static int MIN_TRANSACTION_VALUE = 0;
+
+    /* Test Users */
+    public static List<Operator> operators = new ArrayList<Operator>();
 }

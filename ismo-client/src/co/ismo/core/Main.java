@@ -20,20 +20,26 @@ public class Main extends Application {
 
     public void setStyling(Stage primaryStage) {
         primaryStage.initStyle(StageStyle.UNDECORATED);
+        primaryStage.setTitle("ismo EPOS");
         primaryStage.setResizable(false);
 
-        Application.setUserAgentStylesheet(null);
-        StyleManager.getInstance().addUserAgentStylesheet("/co/ismo/res/css/main.css"); // Attaches this stylesheet to all scenes
-
-        Scene scene = new Scene(SharedViewUtils.getDefaultStyledGroup(primaryStage));
+        Scene scene = SharedViewUtils.getDefaultStyledScene(SharedViewUtils.getDefaultStyledGroup(primaryStage));
         primaryStage.setScene(scene);
+    }
+
+    public void setupTestUsers() {
+        Constants.operators.add(new Operator("James", "Smith", "12345", 12345));
+        Constants.operators.add(new Operator("John", "Smith", "11111", 11111));
+        Constants.operators.add(new Operator("Steven", "Smith", "22222", 22222));
+        Constants.operators.add(new Operator("Bob", "Smith", "33333", 333333));
+        Constants.operators.add(new Operator("Jacob", "Smith", "44444", 444444));
     }
 
     @Override
     public void start(Stage primaryStage) throws Exception {
 
-        //Rectangle2D primaryDisplay = Screen.getPrimary().getBounds();
-        Rectangle2D primaryDisplay = Screen.getPrimary().getVisualBounds();
+        Rectangle2D primaryDisplay = Screen.getPrimary().getBounds();
+        // Rectangle2D primaryDisplay = Screen.getPrimary().getVisualBounds();
 
         primaryStage.setX(primaryDisplay.getMinX());
         primaryStage.setY(primaryDisplay.getMinY());
@@ -48,13 +54,12 @@ public class Main extends Application {
 
         setStyling(primaryStage);
         primaryStage.show();
-
-        boolean loginCompleted = true;
+        setupTestUsers();
 
         if (!Constants.SINGLE_USER_TERMINAL) {
-            LoginView.showLoginView(primaryStage, Enumerations.UserLevel.Operator, false);
+            new LoginView(primaryStage, Enumerations.UserLevel.Operator, false);
         } else {
-            TillView.showTillView(primaryStage, new Operator());
+            new TillView(primaryStage, new Operator());
         }
     }
 

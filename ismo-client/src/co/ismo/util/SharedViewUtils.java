@@ -6,12 +6,20 @@ import javafx.beans.value.ObservableValue;
 import javafx.event.Event;
 import javafx.scene.Group;
 import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.TextField;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
 public class SharedViewUtils {
+
+    public static Scene getDefaultStyledScene(Group defaultGroup) {
+        Scene scene = new Scene(defaultGroup, Color.TRANSPARENT);
+        scene.getStylesheets().add("/co/ismo/res/css/main.css");
+        return scene;
+    }
 
     public static Group getDefaultStyledGroup(Stage stage) {
         Group group = new Group();

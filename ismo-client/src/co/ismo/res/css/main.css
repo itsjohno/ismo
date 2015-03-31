@@ -20,4 +20,27 @@
     -fx-padding: 0;
 }
 
-.text-input, .text-input:focused { -fx-prompt-text-fill: #A9A9A9; }
+.text-input, .text-input:focused  {
+    -fx-prompt-text-fill: #A9A9A9;
+}
+
+.text-input {
+    -fx-background-insets: 0, 2;
+    -fx-background-color:
+    #B2B2B2,
+    #FFFFFF;
+
+}
+
+.text-input:focused {
+    -fx-background-color:
+    #B2B2B2,
+    #FFFFFF;
+}
+
+.error_textField, .error_textField:focused {
+    -fx-prompt-text-fill: #b94a48;
+    -fx-background-color:
+    #b94a48,
+    #f2dede;
+}
