@@ -1,21 +1,6 @@
-.displayBackground {
-    -fx-fill: radial-gradient(center 50% 50%, radius 140%, #1e5799 0%,#7db9e8 100%);
-}
-
-.backgroundRect {
-    -fx-background-color: rgba(255, 255, 255, 1);
+.loginBackground {
+    -fx-background-color: #FFFFFF;
     -fx-background-radius: 15px;
-}
-
-.backgroundWhite {
-    -fx-fill: white;
-    -fx-background-color: yellow;
-}
-
-.borderRect {
-    -fx-border-width: 2px;
-    -fx-border-color: red;
-    -fx-border-style: solid;
 }
 
 .loginLabel {
@@ -24,18 +9,13 @@
     -fx-padding: 0 0 10px 0;
 }
 
-.loginBox {
+.password-field, .password-field:focused  {
     -fx-font-family: "Museo Sans", "Verdana", "Arial", Sans-Serif;
-    -fx-font-size: 48px;
-    -fx-prompt-text-fill: derive(-fx-control-inner-background, -30%);
-    -fx-padding: 0;
-}
-
-.text-input, .text-input:focused  {
+    -fx-font-size: 32px;
     -fx-prompt-text-fill: #A9A9A9;
 }
 
-.text-input {
+.password-field {
     -fx-background-insets: 0, 2;
     -fx-background-color:
     #B2B2B2,
@@ -43,7 +23,7 @@
 
 }
 
-.text-input:focused {
+.password-field:focused {
     -fx-background-color:
     #B2B2B2,
     #FFFFFF;

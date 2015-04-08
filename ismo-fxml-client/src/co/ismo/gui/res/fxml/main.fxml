@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane prefHeight="Infinity" prefWidth="Infinity" styleClass="paneBackground" xmlns="http://javafx.com/javafx/8"
+      xmlns:fx="http://javafx.com/fxml/1" fx:id="mainPane" fx:controller="co.ismo.gui.controller.RootController">
+    <children>
+        <Rectangle fx:id="backgroundRectangle" styleClass="backgroundRectangle" height="100.0" width="100.0"/>
+    </children>
+</Pane>

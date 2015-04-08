@@ -32,7 +32,7 @@ public class TillController {
             System.out.println();
         }
 
-        Double temp = (double)basketCost()/100;
+        Double temp = (double) basketCost() / 100;
         System.out.println("End of Items - Total Cost: " + temp);
         System.out.println();
 

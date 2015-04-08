@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox fx:id="loginVBox" alignment="CENTER" spacing="20.0" styleClass="loginBackground" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.ismo.gui.controller.LoginController">
+   <children>
+      <ImageView preserveRatio="true">
+         <image>
+            <Image url="@../img/logo.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="tanBoxLabel" text="Enter TAN at level #SPEC_LEVEL or above" />
+      <PasswordField fx:id="tanBox" alignment="CENTER" onAction="#tanBoxOnAction" styleClass="tanBox" />
+   </children>
+   <padding>
+      <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
+   </padding>
+</VBox>

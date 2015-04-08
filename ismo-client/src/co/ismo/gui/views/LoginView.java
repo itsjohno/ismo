@@ -22,7 +22,7 @@ import javafx.stage.WindowEvent;
 
 public class LoginView {
 
-    private final double SCALE_FACTOR = 0.4;
+    private final double SCALE_FACTOR = 0.5;
 
     public LoginView(Stage parentStage, Enumerations.UserLevel requiredUserLevel, boolean closeable) {
         Stage loginDialogStage = new Stage();

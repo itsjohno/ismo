@@ -5,7 +5,13 @@ import co.ismo.objects.Operator;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class Constants {
+/**
+ * Created by Johnathan
+ * Package: co.ismo.util
+ * Date: 06/04/2015
+ * Project: ismo-fxml-client
+ */
+public class Constant {
     /* Development Constants */
     public static boolean DEVELOPER_MODE = false;
     public static String VERSION_NUMBER = "V0.0.1";
@@ -17,7 +23,6 @@ public abstract class Constants {
 
     /* Currency Constants */
     public static String CURRENCY_CODE = "GBP";
-    public static String CURRENCY_PREFIX = "£";
     public static int DECIMAL_PLACES = 2;
 
     /* Transaction Constants */

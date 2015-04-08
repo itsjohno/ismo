@@ -1,18 +1,18 @@
 package co.ismo.gui.views;
 
-import co.ismo.gui.controllers.LoginController;
 import co.ismo.gui.controllers.TillController;
 import co.ismo.objects.Operator;
 import co.ismo.util.Constants;
 import co.ismo.util.Enumerations;
 import co.ismo.util.SharedViewUtils;
-import javafx.event.ActionEvent;
-import javafx.geometry.Pos;
+import javafx.geometry.Insets;
 import javafx.scene.Group;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.RowConstraints;
+import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -61,28 +61,56 @@ public class TillView {
         tillGrid.setMinHeight(tillStage.getHeight() * 0.95);
         tillGrid.setLayoutX(tillStage.getWidth() * 0.025);
         tillGrid.setLayoutY(tillStage.getHeight() * 0.025);
-        tillGrid.setAlignment(Pos.CENTER);
-        tillGrid.getStyleClass().add("backgroundRect");
+        tillGrid.getStyleClass().add("borderRect");
 
-        TextField skuField = new TextField();
+        tillGrid.setHgap(10);
+        tillGrid.setVgap(10);
 
-        Label tanLabel = new Label("Enter SKU/Product ID");
-        tanLabel.getStyleClass().add("skuFieldLabel");
-        tanLabel.setLabelFor(skuField);
-        tillGrid.add(tanLabel, 0, 0);
+        ColumnConstraints leftColumnConstraint = new ColumnConstraints();
+        leftColumnConstraint.setPercentWidth(70);
+        ColumnConstraints rightColumnConstraint = new ColumnConstraints();
+        rightColumnConstraint.setPercentWidth(30);
+        tillGrid.getColumnConstraints().addAll(leftColumnConstraint, rightColumnConstraint);
 
-        skuField.setPromptText("SKU/Product ID");
-        skuField.setMinWidth(tillStage.getWidth() * 0.9);
-        skuField.setAlignment(Pos.CENTER);
-        skuField.getStyleClass().add("skuField");
+        RowConstraints row1 = new RowConstraints();
+        row1.setPercentHeight(10);
+        RowConstraints row2 = new RowConstraints();
+        row2.setPercentHeight(80);
+        RowConstraints row3 = new RowConstraints();
+        row3.setPercentHeight(10);
+        tillGrid.getRowConstraints().addAll(row1,row2,row3);
 
-        skuField.setOnAction((ActionEvent aE) -> {
-            tillController.addItem(skuField.getText());
-            skuField.setText("");
-        });
+        HBox hbox00 = new HBox();
+        hbox00.getChildren().addAll(new Text("0,0"));
+        hbox00.getStyleClass().add("backgroundWhite");
+        tillGrid.add(hbox00, 0, 0);
 
-        tillGrid.add(skuField, 0, 1);
+        HBox hbox10 = new HBox();
+        hbox10.getChildren().addAll(new Text("1,0"));
+        hbox10.getStyleClass().add("backgroundWhite");
+        tillGrid.add(hbox10, 1, 0);
 
+        HBox hbox01 = new HBox();
+        hbox01.getChildren().addAll(new Text("0,1"));
+        hbox01.getStyleClass().add("backgroundWhite");
+        tillGrid.add(hbox01, 0, 1);
+
+        HBox hbox11 = new HBox();
+        hbox11.getChildren().addAll(new Text("1,1"));
+        hbox11.getStyleClass().add("backgroundWhite");
+        tillGrid.add(hbox11, 1, 1);
+
+        HBox hbox02 = new HBox();
+        hbox02.getChildren().addAll(new Text("0,2"));
+        hbox02.getStyleClass().add("backgroundWhite");
+        tillGrid.add(hbox02, 0, 2);
+
+        HBox hbox12 = new HBox();
+        hbox12.getChildren().addAll(new Text("1,2"));
+        hbox12.getStyleClass().add("backgroundWhite");
+        tillGrid.add(hbox12, 1, 2);
+
+        tillGrid.setGridLinesVisible(true);
         tillGroup.getChildren().add(tillGrid);
         tillStage.setScene(tillScene);
 

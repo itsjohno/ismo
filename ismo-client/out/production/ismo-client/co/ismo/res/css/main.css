@@ -7,6 +7,17 @@
     -fx-background-radius: 15px;
 }
 
+.backgroundWhite {
+    -fx-fill: white;
+    -fx-background-color: yellow;
+}
+
+.borderRect {
+    -fx-border-width: 2px;
+    -fx-border-color: red;
+    -fx-border-style: solid;
+}
+
 .loginLabel {
     -fx-font-family: "Museo Sans", "Verdana", "Arial", Sans-Serif;
     -fx-font-size: 14px;
