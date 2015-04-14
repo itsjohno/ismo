@@ -8,10 +8,7 @@ import co.ismo.util.SharedViewUtils;
 import javafx.geometry.Insets;
 import javafx.scene.Group;
 import javafx.scene.Scene;
-import javafx.scene.layout.ColumnConstraints;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.RowConstraints;
+import javafx.scene.layout.*;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -80,10 +77,10 @@ public class TillView {
         row3.setPercentHeight(10);
         tillGrid.getRowConstraints().addAll(row1,row2,row3);
 
-        HBox hbox00 = new HBox();
-        hbox00.getChildren().addAll(new Text("0,0"));
-        hbox00.getStyleClass().add("backgroundWhite");
-        tillGrid.add(hbox00, 0, 0);
+        Pane p = new Pane();
+        p.getChildren().addAll(new Text("0,0"));
+        //hbox00.getStyleClass().add("backgroundWhite");
+        tillGrid.add(p, 0, 0);
 
         HBox hbox10 = new HBox();
         hbox10.getChildren().addAll(new Text("1,0"));
@@ -114,7 +111,7 @@ public class TillView {
         tillGroup.getChildren().add(tillGrid);
         tillStage.setScene(tillScene);
 
-        SharedViewUtils.fadeNode(tillGrid, 500, 0, 1);
+        //SharedViewUtils.fadeNode(tillGrid, 500, 0, 1);
     }
 
 }

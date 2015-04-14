@@ -1,23 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<Pane id="windowPane" fx:id="windowPane" prefHeight="108.0" prefWidth="192.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<GridPane fx:id="tillGrid" styleClass="gridStyle" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.ismo.gui.controller.TillController">
+    <columnConstraints>
+        <ColumnConstraints hgrow="SOMETIMES" />
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints percentHeight="6.0" vgrow="SOMETIMES" />
+        <RowConstraints percentHeight="91.0" vgrow="ALWAYS" />
+        <RowConstraints percentHeight="3.0" vgrow="SOMETIMES" />
+    </rowConstraints>
     <children>
-        <GridPane fx:id="gridPane" prefHeight="108.0" prefWidth="192.0">
-            <columnConstraints>
-                <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
-                <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
-            </columnConstraints>
-            <rowConstraints>
-                <RowConstraints percentHeight="5.0"/>
-                <RowConstraints percentHeight="90.0"/>
-                <RowConstraints percentHeight="5.0"/>
-            </rowConstraints>
+        <HBox alignment="CENTER_LEFT" nodeOrientation="LEFT_TO_RIGHT" styleClass="topBar" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER">
             <children>
-                <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: red;" GridPane.columnSpan="2" />
-                <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: red;" GridPane.columnSpan="2" GridPane.rowIndex="2" />
+                <Text fx:id="tillTitle" styleClass="tillTitle" text="ismo" />
+                <Pane HBox.hgrow="ALWAYS" />
+                <Button fx:id="logoutBtn" alignment="CENTER_RIGHT" focusTraversable="false" onAction="#logoutUser" text="Log Out (Esc)" />
             </children>
-        </GridPane>
+            <padding>
+                <Insets left="20.0" right="20.0" />
+            </padding>
+        </HBox>
+        <AnchorPane fx:id="middlePane" styleClass="middlePane" GridPane.hgrow="NEVER" GridPane.rowIndex="1" GridPane.vgrow="NEVER" />
+        <HBox alignment="CENTER_LEFT" styleClass="bottomBar" GridPane.rowIndex="2">
+            <children>
+                <Text fx:id="userDetails" styleClass="bottomBarTxt" />
+                <Pane HBox.hgrow="ALWAYS" />
+                <Text fx:id="transactionNumber" styleClass="bottomBarTxt" text="STORECODE-TILLNUM-ORDERNUMBER" />
+                <Pane HBox.hgrow="ALWAYS" />
+                <Text fx:id="dateTime" styleClass="bottomBarTxt" />
+            </children>
+            <padding>
+                <Insets left="20.0" right="20.0" />
+            </padding>
+        </HBox>
     </children>
-</Pane>
+</GridPane>

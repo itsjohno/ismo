@@ -14,6 +14,7 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -30,6 +31,10 @@ import java.net.URL;
  */
 
 public class Main extends Application {
+
+    static {
+        Font.loadFont(Main.class.getResource("../gui/res/font/fontawesome-webfont.ttf").toExternalForm(), 10);
+    }
 
     @Override
     public void start(Stage primaryStage) throws Exception {

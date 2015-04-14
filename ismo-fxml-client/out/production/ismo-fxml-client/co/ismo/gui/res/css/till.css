@@ -1,0 +1,167 @@
+.gridStyle {
+    -fx-background-color: transparent;
+}
+
+.awesome {
+    -fx-font-family: FontAwesome;
+}
+
+.topBar, .bottomBar {
+    -fx-background-color: #1E5799;
+}
+
+.middlePane {
+    /* -fx-background-color: #7db9e8; */
+    -fx-background-color: transparent;
+}
+
+.tillTitle {
+    -fx-fill: #FFFFFF;
+    -fx-font-size: 200%;
+    -fx-font-weight: bold;
+}
+
+.bottomBarTxt {
+    -fx-fill: #FFFFFF;
+    -fx-font-weight: bold;
+}
+
+.stdTillBtn {
+    -fx-background-color: #d2d2d2;
+    -fx-background-insets: 0,1,2,3;
+    -fx-background-radius: 10,10,10,10;
+    -fx-padding: 10 25 10 25;
+}
+
+.stdTillBtn:pressed {
+    -fx-background-color: #e6e6e6;
+    -fx-background-insets: 0,1,2,3;
+    -fx-background-radius: 10,10,10,10;
+    -fx-padding: 10 25 10 25;
+}
+
+.altTillBtn {
+    -fx-background-color: #79d277;
+    -fx-background-insets: 0,1,2,3;
+    -fx-background-radius: 10,10,10,10;
+    -fx-padding: 10 25 10 25;
+}
+
+.altTillBtn:pressed {
+    -fx-background-color: #99e698;
+    -fx-background-insets: 0,1,2,3;
+    -fx-background-radius: 10,10,10,10;
+    -fx-padding: 10 25 10 25;
+}
+
+.stdTillBtnTxt {
+    -fx-text-fill: black;
+    -fx-font-size: 16px;
+}
+
+.stdTillBtnKey {
+    -fx-text-fill: black;
+    -fx-font-size: 14px;
+    -fx-font-style: italic;
+}
+
+.logoutBtnTxt {
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+}
+
+#logoutBtn {
+    -fx-background-color:
+    #000000,
+    linear-gradient(#ea4d49, #8f1212),
+    linear-gradient(#b72823, #75150f),
+    linear-gradient(#ab281c, #681c13);
+    -fx-background-insets: 0,1,2,3;
+    -fx-background-radius: 3,2,2,2;
+    -fx-padding: 10 25 10 25;
+    -fx-text-fill: white;
+}
+
+#logoutBtn:pressed {
+    -fx-background-color:
+    #000000,
+    linear-gradient(#ea4d49, #8f1212),
+    linear-gradient(#b72823, #75150f),
+    linear-gradient(#ea4d49, #AB281C);
+}
+
+#logoutBtn Text {
+    -fx-effect: dropshadow( one-pass-box , rgba(0,0,0,0.8) , 0, 0.0 , 0 , 1);
+}
+
+.tillContentBar {
+    -fx-background-color: #CCCCCC;
+}
+
+.headerTxt {
+    -fx-fill: #000000;
+    -fx-font-size: 200%;
+    -fx-font-weight: bold;
+}
+
+.redHeaderTxt {
+    -fx-fill: #FF0000;
+    -fx-font-size: 200%;
+    -fx-font-weight: bold;
+}
+
+.qtyCount {
+    -fx-fill: #000000;
+    -fx-font-size: 200%;
+    -fx-font-weight: bold;
+}
+
+.tenderBtn {
+    -fx-background-color:
+    #000000,
+    linear-gradient(#90ea5e, #518f39),
+    linear-gradient(#72b74e, #527537),
+    linear-gradient(#29ab13, #296813);
+    -fx-background-insets: 0,1,2,3;
+    -fx-background-radius: 3,2,2,2;
+    -fx-padding: 10 25 10 25;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+}
+
+.tenderBtn:pressed {
+    -fx-background-color:
+    #000000,
+    linear-gradient(#70ea24, #388f14),
+    linear-gradient(#50b725, #287515),
+    linear-gradient(#43ea28, #3cab1c);
+}
+
+.text-field, .text-field:focused  {
+    -fx-font-family: "Museo Sans", "Verdana", "Arial", Sans-Serif;
+    -fx-font-size: 200%;
+    -fx-prompt-text-fill: #A9A9A9;
+}
+
+.text-field {
+    -fx-background-insets: 0, 2;
+    -fx-background-color:
+    #B2B2B2,
+    #FFFFFF;
+
+}
+
+.text-field:focused {
+    -fx-background-color:
+    #B2B2B2,
+    #FFFFFF;
+}
+
+.error_textField, .error_textField:focused {
+    -fx-prompt-text-fill: #b94a48;
+    -fx-background-color:
+    #b94a48,
+    #f2dede;
+}

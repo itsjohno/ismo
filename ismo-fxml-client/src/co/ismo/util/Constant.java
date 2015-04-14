@@ -13,7 +13,7 @@ import java.util.List;
  */
 public class Constant {
     /* Development Constants */
-    public static boolean DEVELOPER_MODE = false;
+    public static boolean DEVELOPER_MODE = true;
     public static String VERSION_NUMBER = "V0.0.1";
 
     /* User Constants */

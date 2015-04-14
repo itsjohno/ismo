@@ -30,6 +30,8 @@ public class LoginView {
         setScene(loginStage, requiredUserLevel);
         setStyling(loginStage, stage.getWidth(), closable);
         loginStage.show();
+
+        // SharedViewUtils.fadeRoot(loginStage, 500, 0, 1);
     }
 
     private void setStyling(Stage loginStage, double parentWidth, boolean closable) {

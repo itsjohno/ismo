@@ -1,19 +1,25 @@
 package co.ismo.gui.view;
 
+import co.ismo.gui.controller.LoginController;
+import co.ismo.gui.controller.TillController;
 import co.ismo.objects.Operator;
 import co.ismo.util.Enumeration;
 import co.ismo.util.SharedViewUtils;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.RowConstraints;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.stage.WindowEvent;
+
+import java.io.IOException;
 
 /**
  * Created by Johnathan
@@ -27,17 +33,22 @@ public class TillView {
 
         Stage tillStage = new Stage();
         tillStage.initOwner(parentStage);
-        tillStage.setOnCloseRequest((WindowEvent event) -> new LoginView(parentStage, Enumeration.UserLevel.Operator, false));
+        tillStage.setOnCloseRequest((WindowEvent event) -> {
+            tillStage.close();
+            System.out.println("tillStage recieved Close Request");
+            new LoginView(parentStage, Enumeration.UserLevel.Operator, false);
+        });
 
         setStyling(tillStage, parentStage.getHeight(), parentStage.getWidth());
-        setScene(parentStage, tillStage);
+        setScene(tillStage, currentOperator);
         tillStage.show();
+
+        // SharedViewUtils.fadeRoot(tillStage, 500, 0, 1);
     }
 
     private void setStyling(Stage tillStage, double parentHeight, double parentWidth) {
         tillStage.initStyle(StageStyle.TRANSPARENT);
         tillStage.initModality(Modality.APPLICATION_MODAL);
-        //tillStage.setTitle("ismo EPOS - " + Constants.VERSION_NUMBER);
 
         tillStage.setWidth(parentWidth);
         tillStage.setHeight(parentHeight);
@@ -47,8 +58,20 @@ public class TillView {
         tillStage.setResizable(false);
     }
 
-    private void setScene(Stage parentStage, Stage tillStage) {
+    private void setScene(Stage tillStage, Operator currentOperator) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../res/fxml/till.fxml"));
+            Scene scene = new Scene(loader.load(), Color.TRANSPARENT);
 
+            TillController tillController = loader.getController();
+            tillController.setCurrentOperator(currentOperator);
+
+            scene.getStylesheets().add("/co/ismo/gui/res/css/till.css");
+            tillStage.setScene(scene);
+        } catch (IOException ioe) {
+            System.out.println("An IO Exception occured. Printing Stack Trace!");
+            ioe.printStackTrace();
+        }
     }
 
 }

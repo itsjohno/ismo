@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<GridPane fx:id="tillGrid" styleClass="gridStyle" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.ismo.gui.controller.TillController">
+    <columnConstraints>
+        <ColumnConstraints hgrow="SOMETIMES" />
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints percentHeight="6.0" vgrow="SOMETIMES" />
+        <RowConstraints percentHeight="91.0" vgrow="ALWAYS" />
+        <RowConstraints percentHeight="3.0" vgrow="SOMETIMES" />
+    </rowConstraints>
+    <children>
+        <HBox alignment="CENTER_LEFT" nodeOrientation="LEFT_TO_RIGHT" styleClass="topBar" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER">
+            <children>
+                <Text fx:id="tillTitle" styleClass="tillTitle" text="ismo" />
+                <Pane HBox.hgrow="ALWAYS" />
+                <Button fx:id="logoutBtn" alignment="CENTER_RIGHT" focusTraversable="false" onAction="#logoutUser" text="Log Out (Esc)" />
+            </children>
+            <padding>
+                <Insets left="20.0" right="20.0" />
+            </padding>
+        </HBox>
+        <AnchorPane fx:id="middlePane" styleClass="middlePane" GridPane.hgrow="NEVER" GridPane.rowIndex="1" GridPane.vgrow="NEVER" />
+        <HBox alignment="CENTER_LEFT" styleClass="bottomBar" GridPane.rowIndex="2">
+            <children>
+                <Text fx:id="userDetails" styleClass="bottomBarTxt" />
+                <Pane HBox.hgrow="ALWAYS" />
+                <Text fx:id="transactionNumber" styleClass="bottomBarTxt" text="STORECODE-TILLNUM-ORDERNUMBER" />
+                <Pane HBox.hgrow="ALWAYS" />
+                <Text fx:id="dateTime" styleClass="bottomBarTxt" />
+            </children>
+            <padding>
+                <Insets left="20.0" right="20.0" />
+            </padding>
+        </HBox>
+    </children>
+</GridPane>
