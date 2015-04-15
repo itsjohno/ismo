@@ -16,12 +16,14 @@
 }
 
 .tillTitle {
+    -fx-font-family: "Museo Sans", "Verdana", "Arial", Sans-Serif;
     -fx-fill: #FFFFFF;
     -fx-font-size: 200%;
     -fx-font-weight: bold;
 }
 
 .bottomBarTxt {
+    -fx-font-family: "Museo Sans", "Verdana", "Arial", Sans-Serif;
     -fx-fill: #FFFFFF;
     -fx-font-weight: bold;
 }
@@ -55,17 +57,20 @@
 }
 
 .stdTillBtnTxt {
+    -fx-font-family: "Museo Sans", "Verdana", "Arial", Sans-Serif;
     -fx-text-fill: black;
     -fx-font-size: 16px;
 }
 
 .stdTillBtnKey {
+    -fx-font-family: "Museo Sans", "Verdana", "Arial", Sans-Serif;
     -fx-text-fill: black;
     -fx-font-size: 14px;
     -fx-font-style: italic;
 }
 
 .logoutBtnTxt {
+    -fx-font-family: "Museo Sans", "Verdana", "Arial", Sans-Serif;
     -fx-text-fill: white;
     -fx-font-weight: bold;
     -fx-font-size: 14px;
@@ -164,4 +169,37 @@
     -fx-background-color:
     #b94a48,
     #f2dede;
+}
+
+.customerTxt {
+    -fx-font-family: "Museo Sans", "Verdana", "Arial", Sans-Serif;
+    -fx-font-size: 16px;
+}
+
+.customerTxtBold {
+    -fx-font-family: "Museo Sans", "Verdana", "Arial", Sans-Serif;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+}
+
+.loyaltyBtn {
+    -fx-background-color: #d2d2d2;
+    -fx-background-insets: 0,1,2,3;
+    -fx-background-radius: 10,10,10,10;
+    -fx-padding: 10 10 10 10;
+}
+
+.loyaltyBtn:pressed {
+    -fx-background-color: #e6e6e6;
+    -fx-background-insets: 0,1,2,3;
+    -fx-background-radius: 10,10,10,10;
+    -fx-padding: 10 10 10 10;
+}
+
+#basketContainer:focused {
+    -fx-focus-color: transparent;
+}
+
+.highlightItem {
+    -fx-background-color: #f0ffff;
 }

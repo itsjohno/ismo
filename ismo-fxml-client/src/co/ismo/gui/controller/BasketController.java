@@ -1,18 +1,23 @@
 package co.ismo.gui.controller;
 
+import co.ismo.gui.view.ItemView;
 import co.ismo.objects.Item;
 import co.ismo.util.SharedViewUtils;
-import javafx.beans.value.ObservableValue;
+import javafx.animation.AnimationTimer;
+import javafx.beans.InvalidationListener;
+import javafx.beans.Observable;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
 import java.net.URL;
@@ -35,7 +40,16 @@ public class BasketController implements Initializable {
     private Pane btnPane;
 
     @FXML
+    private Pane customerPane;
+
+    @FXML
     private TextField skuField;
+
+    @FXML
+    private ScrollPane basketContainer;
+
+    @FXML
+    private VBox basketContents;
 
     @FXML
     private Text itemCount;
@@ -43,15 +57,18 @@ public class BasketController implements Initializable {
     @FXML
     private Text basketCost;
 
-    @FXML
-    private Pane customerPane;
-
     // Hotswappable Button Controllers
     private Parent defaultBtn;
     private Parent alternateBtn;
 
     // Parent Controller
     private TillController tillController;
+
+    // Item Template
+    private Parent itemTemplate;
+
+    private List<Item> basket;
+    private int selectedItem;
 
     public void setupParentController(TillController tillController) {
         this.tillController = tillController;
@@ -66,10 +83,12 @@ public class BasketController implements Initializable {
                     tillController.logoutUser(keyEvent);
                     break;
                 case UP:
-                    System.out.println("UP Pressed");
+                    selectedItem--;
+                    System.out.println("UP - SEL: " + selectedItem);
                     break;
                 case DOWN:
-                    System.out.println("DOWN Pressed");
+                    selectedItem++;
+                    System.out.println("DOWN - SEL: " + selectedItem);
                     break;
                 case F11:
                     System.out.println("F11 Pressed");
@@ -160,23 +179,88 @@ public class BasketController implements Initializable {
         });
 
         skuField.setOnAction((ActionEvent ae) -> {
-            //TODO: Adds an item to the basket of this transaction.
+            addItem(skuField.getText());
+            skuField.setText("");
             skuField.requestFocus();
         });
+
+        basketContainer.setOnMouseClicked((e) -> {
+            // Hack-y way of preventing the scrollPane from getting focus.
+            skuField.requestFocus();
+        });
+
+        basketContents.getChildrenUnmodifiable().addListener((Observable observable) -> {
+            // http://stackoverflow.com/questions/13156896/javafx-auto-scroll-down-scrollpane
+
+            AnimationTimer timer = new AnimationTimer() {
+                long lng = 0;
+                @Override
+                public void handle(long l) {
+                    if (lng == 0) {
+                        lng = l;
+                    }
+                    if (l > lng + 100000) {
+                        basketContainer.setVvalue(1.0);
+                        this.stop();
+                    }
+                }
+            };
+            timer.start();
+        });
+    }
+
+    private void moveSelection() {
+
+    }
+
+    private void ensureSelectionVisible(Node node) {
+        // http://stackoverflow.com/questions/12837592/how-to-scroll-to-make-a-node-within-the-content-of-a-scrollpane-visible
+        double height = basketContainer.getContent().getBoundsInLocal().getHeight();
+        double y = node.getBoundsInParent().getMaxY();
+        basketContainer.setVvalue(y/height);
+    }
+
+    private void loadCustomerPane() {
+        customerPane.getChildren().add(SharedViewUtils.loadContent(getClass().getResource("../res/fxml/basket_customerPane.fxml")));
+    }
+
+    private void addItem(String skuFieldText) {
+        ItemView itemView = new ItemView();
+        Item item = new Item(skuFieldText);
+        itemView.setupItemDisplay(item, 1);
+
+        if (basket.size() > 0) {
+            if (selectedItem == basketContents.getChildrenUnmodifiable().size() - 1) {
+                ((ItemView) basketContents.getChildren().get(selectedItem)).toggleHighlight();
+                itemView.toggleHighlight();
+                selectedItem++;
+            }
+        } else {
+            itemView.toggleHighlight();
+            selectedItem = 0;
+        }
+
+        basket.add(item);
+        basketContents.getChildren().add(itemView);
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         assert basketGrid != null : "fx:id=\"basketGrid\" was not injected: check your FXML file 'till_basket.fxml'.";
         assert btnPane != null : "fx:id=\"btnPane\" was not injected: check your FXML file 'till_basket.fxml'.";
+        assert customerPane != null : "fx:id=\"customerPane\" was not injected: check your FXML file 'till_basket.fxml'.";
         assert skuField != null : "fx:id=\"skuField\" was not injected: check your FXML file 'till_basket.fxml'.";
+        assert basketContainer != null : "fx:id=\"basketContainer\" was not injected: check your FXML file 'till_basket.fxml'.";
+        assert basketContents != null : "fx:id=\"basketContents\" was not injected: check your FXML file 'till_basket.fxml'.";
         assert itemCount != null : "fx:id=\"itemCount\" was not injected: check your FXML file 'till_basket.fxml'.";
         assert basketCost != null : "fx:id=\"basketCost\" was not injected: check your FXML file 'till_basket.fxml'.";
 
+        setupEventListeners();
+        loadCustomerPane();
+
+        basket = new ArrayList<Item>();
         defaultBtn = SharedViewUtils.loadContent(getClass().getResource("../res/fxml/basket_btnPane_default.fxml"));
         alternateBtn = SharedViewUtils.loadContent(getClass().getResource("../res/fxml/basket_btnPane_alternate.fxml"));
         btnPane.getChildren().add(defaultBtn);
-
-        setupEventListeners();
     }
 }

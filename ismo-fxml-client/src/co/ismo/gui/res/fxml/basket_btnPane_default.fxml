@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.text.Text?>
+<?import javafx.scene.text.*?>
 <GridPane hgap="15.0" vgap="15.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
           AnchorPane.topAnchor="0.0" fx:controller="co.ismo.gui.controller.ButtonController" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8">
     <columnConstraints>
@@ -20,7 +18,7 @@
     </rowConstraints>
     <children>
         <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="stdTillBtn"
-                wrapText="true" GridPane.columnIndex="0" GridPane.rowIndex="0" focusTraversable="false">
+                wrapText="true" GridPane.columnIndex="0" GridPane.rowIndex="0" focusTraversable="false" onAction="#notImplemented">
             <graphic>
                 <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                     <children>
@@ -31,7 +29,7 @@
             </graphic>
         </Button>
         <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="stdTillBtn"
-                GridPane.columnIndex="1" GridPane.rowIndex="0" focusTraversable="false">
+                GridPane.columnIndex="1" GridPane.rowIndex="0" focusTraversable="false" onAction="#notImplemented">
             <graphic>
                 <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                     <children>
@@ -42,7 +40,7 @@
             </graphic>
         </Button>
         <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="stdTillBtn"
-                GridPane.columnIndex="0" GridPane.rowIndex="1" focusTraversable="false">
+                GridPane.columnIndex="0" GridPane.rowIndex="1" focusTraversable="false" onAction="#notImplemented">
             <graphic>
                 <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                     <children>
@@ -53,7 +51,7 @@
             </graphic>
         </Button>
         <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="stdTillBtn"
-                GridPane.columnIndex="1" GridPane.rowIndex="1" focusTraversable="false">
+                GridPane.columnIndex="1" GridPane.rowIndex="1" focusTraversable="false" onAction="#notImplemented">
             <graphic>
                 <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                     <children>
@@ -64,7 +62,7 @@
             </graphic>
         </Button>
         <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="stdTillBtn"
-                GridPane.columnIndex="0" GridPane.rowIndex="2" focusTraversable="false">
+                GridPane.columnIndex="0" GridPane.rowIndex="2" focusTraversable="false" onAction="#notImplemented">
             <graphic>
                 <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                     <children>
@@ -75,7 +73,7 @@
             </graphic>
         </Button>
         <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="stdTillBtn"
-                GridPane.columnIndex="1" GridPane.rowIndex="2" focusTraversable="false">
+                GridPane.columnIndex="1" GridPane.rowIndex="2" focusTraversable="false" onAction="#notImplemented">
             <graphic>
                 <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                     <children>
@@ -86,7 +84,7 @@
             </graphic>
         </Button>
         <Button maxHeight="1.7976931348623157E308" maxWidth="2.7976931348623157E308" styleClass="stdTillBtn"
-                GridPane.columnIndex="0" GridPane.rowIndex="3" focusTraversable="false">
+                GridPane.columnIndex="0" GridPane.rowIndex="3" focusTraversable="false" onAction="#notImplemented">
             <graphic>
                 <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                     <children>
@@ -97,7 +95,7 @@
             </graphic>
         </Button>
         <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="stdTillBtn"
-                GridPane.columnIndex="1" GridPane.rowIndex="3" focusTraversable="false">
+                GridPane.columnIndex="1" GridPane.rowIndex="3" focusTraversable="false" onAction="#notImplemented">
             <graphic>
                 <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                     <children>
@@ -108,7 +106,7 @@
             </graphic>
         </Button>
         <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="stdTillBtn"
-                GridPane.columnIndex="0" GridPane.rowIndex="4" focusTraversable="false">
+                GridPane.columnIndex="0" GridPane.rowIndex="4" focusTraversable="false" onAction="#notImplemented">
             <graphic>
                 <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                     <children>
@@ -119,7 +117,7 @@
             </graphic>
         </Button>
         <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="stdTillBtn"
-                GridPane.columnIndex="1" GridPane.rowIndex="4" focusTraversable="false">
+                GridPane.columnIndex="1" GridPane.rowIndex="4" focusTraversable="false" onAction="#notImplemented">
             <graphic>
                 <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                     <children>

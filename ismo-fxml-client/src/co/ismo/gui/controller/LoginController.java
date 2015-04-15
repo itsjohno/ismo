@@ -1,8 +1,5 @@
 package co.ismo.gui.controller;
 
-import java.net.URL;
-import java.util.ResourceBundle;
-
 import co.ismo.gui.view.TillView;
 import co.ismo.objects.Operator;
 import co.ismo.util.Constant;
@@ -15,6 +12,9 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+
+import java.net.URL;
+import java.util.ResourceBundle;
 
 /**
  * Created by Johnathan

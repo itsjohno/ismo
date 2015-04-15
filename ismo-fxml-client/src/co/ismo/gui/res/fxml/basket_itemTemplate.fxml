@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<fx:root fx:id="rootBox" focusTraversable="false" maxHeight="50.0" type="javafx.scene.layout.VBox" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+        <GridPane focusTraversable="false">
+            <columnConstraints>
+                <ColumnConstraints percentWidth="75.0" />
+                <ColumnConstraints percentWidth="5.0" />
+                <ColumnConstraints percentWidth="10.0" />
+                <ColumnConstraints percentWidth="10.0" />
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints percentHeight="50.0" vgrow="NEVER" />
+                <RowConstraints percentHeight="50.0" vgrow="SOMETIMES" />
+            </rowConstraints>
+            <children>
+                <Text fx:id="qty" strokeType="OUTSIDE" strokeWidth="0.0" text="2x" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowSpan="2" GridPane.valignment="CENTER">
+                    <font>
+                        <Font name="System Bold Italic" size="16.0" />
+                    </font>
+                </Text>
+                <Text fx:id="value" strokeType="OUTSIDE" strokeWidth="0.0" text="£100.50" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowSpan="2" GridPane.valignment="CENTER">
+                    <font>
+                        <Font size="16.0" />
+                    </font>
+                </Text>
+                <Text fx:id="qtyValue" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="£201.00" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowSpan="2" GridPane.valignment="CENTER">
+                    <font>
+                        <Font name="System Bold" size="18.0" />
+                    </font>
+                </Text>
+                <Separator orientation="VERTICAL" GridPane.columnIndex="3" GridPane.rowSpan="2" />
+                <HBox alignment="CENTER_LEFT" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                    <children>
+                        <Text fx:id="barcode" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="5054402420930">
+                            <HBox.margin>
+                                <Insets right="10.0" />
+                            </HBox.margin>
+                        </Text>
+                        <Text fx:id="productName" strokeType="OUTSIDE" strokeWidth="0.0" text="Adventure Time - Volume Six" />
+                    </children>
+                    <padding>
+                        <Insets left="10.0" />
+                    </padding>
+                </HBox>
+                <HBox alignment="CENTER_LEFT" focusTraversable="false" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="1">
+                    <children>
+                        <Text fx:id="supercat" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="Books">
+                            <HBox.margin>
+                                <Insets right="5.0" />
+                            </HBox.margin>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="/">
+                            <HBox.margin>
+                                <Insets right="5.0" />
+                            </HBox.margin>
+                        </Text>
+                        <Text fx:id="subcat" strokeType="OUTSIDE" strokeWidth="0.0" text="Graphic Novels &amp; Comics" />
+                    </children>
+                    <GridPane.margin>
+                        <Insets />
+                    </GridPane.margin>
+                    <padding>
+                        <Insets left="10.0" />
+                    </padding>
+                </HBox>
+
+            </children>
+        </GridPane>
+      <Separator prefWidth="200.0">
+         <padding>
+            <Insets top="10.0" />
+         </padding></Separator>
+    </children>
+   <padding>
+      <Insets top="10.0" />
+   </padding>
+</fx:root>

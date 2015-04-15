@@ -1,19 +1,11 @@
 package co.ismo.gui.view;
 
-import co.ismo.gui.controller.LoginController;
 import co.ismo.gui.controller.TillController;
 import co.ismo.objects.Operator;
 import co.ismo.util.Enumeration;
-import co.ismo.util.SharedViewUtils;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Group;
 import javafx.scene.Scene;
-import javafx.scene.layout.ColumnConstraints;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.RowConstraints;
 import javafx.scene.paint.Color;
-import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;

@@ -6,7 +6,6 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.VBox?>
-
 <VBox fx:id="loginVBox" alignment="CENTER" spacing="20.0" styleClass="loginBackground" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.ismo.gui.controller.LoginController">
    <children>
       <ImageView preserveRatio="true">

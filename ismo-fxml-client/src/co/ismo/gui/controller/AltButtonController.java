@@ -13,7 +13,7 @@ import java.util.ResourceBundle;
  * Date: 13/04/2015
  * Project: ismo-fxml-client
  */
-public class ButtonController implements Initializable {
+public class AltButtonController implements Initializable {
 
     @FXML
     private void notImplemented() {
@@ -27,6 +27,6 @@ public class ButtonController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        System.out.println("BtnController");
+        System.out.println("AltBtnController");
     }
 }

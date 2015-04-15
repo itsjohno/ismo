@@ -1,38 +1,25 @@
 package co.ismo.gui.controller;
 
-import co.ismo.gui.view.TillView;
+import co.ismo.gui.view.BasketView;
 import co.ismo.objects.Operator;
 import co.ismo.util.Enumeration;
-import co.ismo.util.SharedViewUtils;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.beans.InvalidationListener;
-import javafx.beans.property.StringProperty;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import javafx.util.Duration;
 
-import java.io.IOException;
 import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -66,6 +53,8 @@ public class TillController implements Initializable {
     @FXML
     private Button logoutBtn;
 
+    private BasketView basketView;
+
     @FXML
     public void logoutUser(Event e) {
         currentOperator = null;
@@ -94,17 +83,11 @@ public class TillController implements Initializable {
     }
 
     private void loadBasketView() {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("../res/fxml/till_basket.fxml"));
-            middlePane.getChildren().add(loader.load());
-            //TODO: Might need to persist this content, as if the new content (i.e. web browser) is lost into the entire middlePane, we'll lose the data to garbage collection.
-
-            BasketController basketController = loader.getController();
-            basketController.setupParentController(this);
-
-        } catch (IOException ioe) {
-            System.out.println("An IO Exception occured. Printing Stack Trace!");
-            ioe.printStackTrace();
+        Parent basketContent = basketView.loadBasketView(this);
+        if (basketContent != null) {
+            middlePane.getChildren().add(basketContent);
+        } else {
+            System.out.println("An error occurred while trying to load the BasketView");
         }
     }
 
@@ -117,6 +100,7 @@ public class TillController implements Initializable {
         assert dateTime != null : "fx:id=\"dateTime\" was not injected: check your FXML file 'till.fxml'.";
         assert userDetails != null : "fx:id=\"userDetails\" was not injected: check your FXML file 'till.fxml'.";
 
+        basketView = new BasketView();
         loadBasketView();
         bindDateTime();
     }

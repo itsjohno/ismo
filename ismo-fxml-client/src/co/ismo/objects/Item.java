@@ -17,14 +17,18 @@ public class Item {
     private String sku;
     private String name;
     private String description;
+    private String supercat;
+    private String subcat;
     private int cost;
     private Enumeration.AgeRating ageRating;
 
     public Item(String sku) {
-        barcode = "000000000000";
+        //barcode = "000000000000";
         this.sku = sku;
         name = "Unidentified Product";
         description = "An unidentified product";
+        supercat = "Female Clothing";
+        subcat = "Shoes";
         cost = 999;
         ageRating = Enumeration.AgeRating.BBFC_Fifteen;
     }
@@ -59,6 +63,22 @@ public class Item {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getSupercat() {
+        return supercat;
+    }
+
+    public void setSupercat(String supercat) {
+        this.supercat = supercat;
+    }
+
+    public String getSubcat() {
+        return subcat;
+    }
+
+    public void setSubcat(String subcat) {
+        this.subcat = subcat;
     }
 
     public int getCost() {
