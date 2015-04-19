@@ -4,8 +4,11 @@ import co.ismo.gui.controller.RootController;
 import co.ismo.gui.view.LoginView;
 import co.ismo.gui.view.TillView;
 import co.ismo.object.type.Operator;
+import co.ismo.object.util.AgeRatingUtility;
+import co.ismo.object.util.CategoryUtility;
+import co.ismo.object.util.OtherUtility;
 import co.ismo.util.Constant;
-import co.ismo.util.Enumeration;
+import co.ismo.util.DynamicHashMap;
 import co.ismo.util.SharedViewUtils;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -35,6 +38,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+        setHashMaps();
         setStyling(primaryStage);
         setScene(primaryStage);
         primaryStage.show();
@@ -42,7 +46,7 @@ public class Main extends Application {
         if (Constant.SINGLE_USER_TERMINAL) {
             new TillView(primaryStage, new Operator());
         } else {
-            new LoginView(primaryStage, Enumeration.UserLevel.Operator, false);
+            new LoginView(primaryStage, 1, false);
         }
     }
 
@@ -72,12 +76,14 @@ public class Main extends Application {
         primaryStage.setScene(scene);
     }
 
-    public void setupTestUsers() {
-        Constant.operators.add(new Operator("James", "Smith", "12345", "12345", 0));
-        Constant.operators.add(new Operator("John", "Smith", "11111", "11111", 1));
-        Constant.operators.add(new Operator("Steven", "Smith", "22222", "22222", 2));
-        Constant.operators.add(new Operator("Bob", "Smith", "33333", "333333", 3));
-        Constant.operators.add(new Operator("Jacob", "Smith", "44444", "444444", 4));
+    private void setHashMaps() {
+        DynamicHashMap.setAgeRatings(new AgeRatingUtility().getAgeRatings());
+        DynamicHashMap.setSubCategories(new CategoryUtility().getCategories());
+
+        OtherUtility ou = new OtherUtility();
+        DynamicHashMap.setSuperCategories(ou.getSuperCategories());
+        DynamicHashMap.setUserLevels(ou.getUserLevels());
+        ou = null;
     }
 
     @Override

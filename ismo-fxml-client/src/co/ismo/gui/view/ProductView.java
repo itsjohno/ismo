@@ -1,6 +1,7 @@
 package co.ismo.gui.view;
 
 import co.ismo.object.type.Product;
+import co.ismo.util.DynamicHashMap;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -43,6 +44,9 @@ public class ProductView extends VBox implements Initializable {
     @FXML
     private Text subcat;
 
+    @FXML
+    private Text ageRating;
+
     public ProductView() {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../res/fxml/basket_productTemplate.fxml"));
 
@@ -62,10 +66,9 @@ public class ProductView extends VBox implements Initializable {
         qtyValue.setText("£" + String.format("%.2f", (float)(product.getPrice() * quantity)/100));
         sku.setText(product.getSku());
         productName.setText(product.getName());
-        //supercat.setText(product.getSupercat());
-        //subcat.setText(product.getSubcat());
-        supercat.setText(Integer.toString(product.getCategoryID()));
-        subcat.setText(Integer.toString(product.getCategoryID()));
+        subcat.setText(DynamicHashMap.getSubCategories().get(product.getCategoryID()).getName());
+        supercat.setText(DynamicHashMap.getSuperCategories().get(DynamicHashMap.getSubCategories().get(product.getCategoryID()).getSupercatID()));
+        ageRating.setText(DynamicHashMap.getAgeRatings().get(product.getAgeRating()).getName());
     }
 
     public void updateQty(int newQty, int unitCost) {
@@ -95,5 +98,6 @@ public class ProductView extends VBox implements Initializable {
         assert productName != null : "fx:id=\"productTitle\" was not injected: check your FXML file 'basket_productTemplate.fxml'.";
         assert supercat != null : "fx:id=\"supercat\" was not injected: check your FXML file 'basket_productTemplate.fxml'.";
         assert subcat != null : "fx:id=\"subcat\" was not injected: check your FXML file 'basket_productTemplate.fxml'.";
+        assert ageRating != null : "fx:id=\"ageRating\" was not injected: check your FXML file 'basket_productTemplate.fxml'.";
     }
 }

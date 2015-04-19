@@ -1,7 +1,6 @@
 package co.ismo.gui.view;
 
 import co.ismo.gui.controller.LoginController;
-import co.ismo.util.Enumeration;
 import co.ismo.util.SharedViewUtils;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -21,7 +20,7 @@ import java.io.IOException;
  */
 public class LoginView {
 
-    public LoginView(Stage stage, Enumeration.UserLevel requiredUserLevel, boolean closable) {
+    public LoginView(Stage stage, int requiredUserLevel, boolean closable) {
 
         Stage loginStage = new Stage();
         loginStage.initOwner(stage);
@@ -43,7 +42,7 @@ public class LoginView {
         loginStage.setResizable(false);
     }
 
-    private void setScene(Stage loginStage, Enumeration.UserLevel requiredUserLevel) {
+    private void setScene(Stage loginStage, int requiredUserLevel) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("../res/fxml/login.fxml"));
             Scene scene = new Scene(loader.load(), Color.TRANSPARENT);

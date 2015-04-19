@@ -2,14 +2,11 @@ package co.ismo.object.util;
 
 import co.ismo.core.DatabaseConnector;
 import co.ismo.object.type.Product;
-import co.ismo.util.Enumeration;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by Johnathan

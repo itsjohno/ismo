@@ -4,7 +4,10 @@ import co.ismo.core.CoreUtility;
 import co.ismo.core.DatabaseConnector;
 import co.ismo.object.type.Operator;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 /**
  * Created by Johnathan

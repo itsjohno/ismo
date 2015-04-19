@@ -1,12 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.scene.control.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
-
 <fx:root fx:id="rootBox" focusTraversable="false" maxHeight="50.0" type="javafx.scene.layout.VBox" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
     <children>
         <GridPane focusTraversable="false">
@@ -50,7 +47,17 @@
                                 <Insets right="5.0" />
                             </HBox.margin>
                         </Text>
-                        <Text fx:id="subcat" styleClass="subcatTxt" />
+                        <Text fx:id="subcat" styleClass="subcatTxt">
+                            <HBox.margin>
+                                <Insets right="5.0" />
+                            </HBox.margin>
+                        </Text>
+                        <Text text="/">
+                            <HBox.margin>
+                                <Insets right="5.0" />
+                            </HBox.margin>
+                        </Text>
+                        <Text fx:id="ageRating" styleClass="ageRatingTxt" />
                     </children>
                     <padding>
                         <Insets left="10.0" />

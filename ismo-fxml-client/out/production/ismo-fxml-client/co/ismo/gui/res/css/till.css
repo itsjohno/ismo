@@ -233,6 +233,11 @@
 
 }
 
+.ageRatingTxt {
+    -fx-font-weight: bold;
+    -fx-font-style: italic;
+}
+
 .highlightItem {
     -fx-background-color: #f0ffff;
 }

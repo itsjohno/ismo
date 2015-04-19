@@ -1,7 +1,5 @@
 package co.ismo.object.type;
 
-import co.ismo.util.Enumeration;
-
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;

@@ -2,7 +2,6 @@ package co.ismo.gui.view;
 
 import co.ismo.gui.controller.TillController;
 import co.ismo.object.type.Operator;
-import co.ismo.util.Enumeration;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.paint.Color;
@@ -28,7 +27,7 @@ public class TillView {
         tillStage.setOnCloseRequest((WindowEvent event) -> {
             tillStage.close();
             System.out.println("tillStage recieved Close Request");
-            new LoginView(parentStage, Enumeration.UserLevel.Operator, false);
+            new LoginView(parentStage, 1, false);
         });
 
         setStyling(tillStage, parentStage.getHeight(), parentStage.getWidth());

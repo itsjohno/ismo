@@ -1,10 +1,10 @@
 package co.ismo.gui.controller;
 
-import co.ismo.object.util.OperatorUtility;
 import co.ismo.gui.view.TillView;
 import co.ismo.object.type.Operator;
+import co.ismo.object.util.OperatorUtility;
 import co.ismo.util.Constant;
-import co.ismo.util.Enumeration;
+import co.ismo.util.DynamicHashMap;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -34,14 +34,14 @@ public class LoginController implements Initializable {
     @FXML
     private Label tanBoxLabel;
 
-    private Enumeration.UserLevel requiredUserLevel;
+    private int requiredUserLevel;
 
     @FXML
     private void tanBoxOnAction(ActionEvent e) {
         Operator loggedInOperator = new OperatorUtility().getOperatorByTAN(tanBox.getText());
 
         if (loggedInOperator != null) {
-            if (loggedInOperator.getUserLevel() >= requiredUserLevel.getValue()) {
+            if (loggedInOperator.getUserLevel() >= requiredUserLevel) {
                 Node s = (Node) e.getSource();
                 Stage currentStage = (Stage) s.getScene().getWindow();
                 Stage parentStage = (Stage) currentStage.getOwner();
@@ -70,9 +70,9 @@ public class LoginController implements Initializable {
         return null;
     }
 
-    public void setRequiredUserLevel(Enumeration.UserLevel requiredUserLevel) {
+    public void setRequiredUserLevel(int requiredUserLevel) {
         this.requiredUserLevel = requiredUserLevel;
-        this.tanBoxLabel.setText("Enter TAN at " + requiredUserLevel.toString().replace("_", " ") + " level or higher");
+        this.tanBoxLabel.setText("Enter TAN at " + DynamicHashMap.getUserLevels().get(requiredUserLevel) + " level or higher");
     }
 
     @Override

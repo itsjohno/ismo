@@ -2,7 +2,7 @@ package co.ismo.gui.controller;
 
 import co.ismo.gui.view.BasketView;
 import co.ismo.object.type.Operator;
-import co.ismo.util.Enumeration;
+import co.ismo.util.DynamicHashMap;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -66,7 +66,7 @@ public class TillController implements Initializable {
 
     public void setCurrentOperator(Operator operator) {
         this.currentOperator = operator;
-        userDetails.setText(currentOperator.getForename() + " " + currentOperator.getSurname() + " (" + Enumeration.UserLevel.values()[currentOperator.getUserLevel()].toString().replace("_", " ") + ")");
+        userDetails.setText(currentOperator.getForename() + " " + currentOperator.getSurname() + " (" + DynamicHashMap.getUserLevels().get(currentOperator.getUserLevel()) + ")");
     }
 
     private void bindDateTime() {
