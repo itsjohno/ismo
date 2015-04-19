@@ -22,6 +22,7 @@ public class BasketView {
     public Parent loadBasketView(TillController parentController) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("../res/fxml/till_basket.fxml"));
+            //FXMLLoader loader = new FXMLLoader(getClass().getResource("../res/fxml/till_productLookup.fxml"));
 
             Parent content = loader.load();
 

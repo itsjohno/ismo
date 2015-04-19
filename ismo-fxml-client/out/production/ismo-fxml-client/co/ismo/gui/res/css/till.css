@@ -200,6 +200,58 @@
     -fx-focus-color: transparent;
 }
 
+.qtyText {
+    -fx-font-weight: bold;
+    -fx-font-style: italic;
+    -fx-font-size: 16px;
+}
+
+.singleCostTxt {
+    -fx-font-size: 16px;
+}
+
+.totalCostTxt {
+    -fx-fill: #FF0000;
+    -fx-font-weight: bold;
+    -fx-font-size: 18px;
+}
+
+.skuTxt {
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+}
+
+.productNameTxt {
+    -fx-font-size: 14px;
+}
+
+.supercatTxt {
+    -fx-font-weight: bold;
+}
+
+.subcatTxt {
+
+}
+
 .highlightItem {
     -fx-background-color: #f0ffff;
+}
+
+.lookupField, .lookupField:focused  {
+    -fx-font-family: "Museo Sans", "Verdana", "Arial", Sans-Serif;
+    -fx-font-size: 14px;
+    -fx-prompt-text-fill: #A9A9A9;
+}
+
+.lookupField {
+    -fx-background-insets: 0, 2;
+    -fx-background-color:
+    #B2B2B2,
+    #FFFFFF;
+}
+
+.lookupField:focused {
+    -fx-background-color:
+    #B2B2B2,
+    #FFFFFF;
 }

@@ -1,7 +1,7 @@
 package co.ismo.gui.controller;
 
 import co.ismo.gui.view.BasketView;
-import co.ismo.objects.Operator;
+import co.ismo.object.type.Operator;
 import co.ismo.util.Enumeration;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;

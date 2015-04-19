@@ -1,27 +1,27 @@
-package co.ismo.objects;
+package co.ismo.object.type;
 
 /**
  * Created by Johnathan
- * Package: co.ismo.objects
+ * Package: co.ismo.object
  * Date: 06/04/2015
  * Project: ismo-fxml-client
  */
 
 public class Operator {
-    String forename;
-    String surname;
-    String encodedTAN;
-    int employeeID;
-    int userLevel;
+    private String operatorID;
+    private String forename;
+    private String surname;
+    private String encodedTAN;
+    private int userLevel;
 
     public Operator() {
     }
 
-    public Operator(String forename, String surname, String encodedTAN, int employeeID, int userLevel) {
+    public Operator(String forename, String surname, String encodedTAN, String operatorID, int userLevel) {
         this.forename = forename;
         this.surname = surname;
         this.encodedTAN = encodedTAN;
-        this.employeeID = employeeID;
+        this.operatorID = operatorID;
         this.userLevel = userLevel;
     }
 
@@ -49,12 +49,12 @@ public class Operator {
         this.encodedTAN = encodedTAN;
     }
 
-    public int getEmployeeID() {
-        return employeeID;
+    public String getOperatorID() {
+        return operatorID;
     }
 
-    public void setEmployeeID(int employeeID) {
-        this.employeeID = employeeID;
+    public void setOperatorID(String operatorID) {
+        this.operatorID = operatorID;
     }
 
     public int getUserLevel() { return userLevel; }

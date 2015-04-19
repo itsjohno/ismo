@@ -1,7 +1,7 @@
 package co.ismo.gui.view;
 
 import co.ismo.gui.controller.TillController;
-import co.ismo.objects.Operator;
+import co.ismo.object.type.Operator;
 import co.ismo.util.Enumeration;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;

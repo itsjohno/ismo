@@ -1,6 +1,6 @@
 package co.ismo.util;
 
-import co.ismo.objects.Operator;
+import co.ismo.object.type.Operator;
 
 import java.util.ArrayList;
 import java.util.List;

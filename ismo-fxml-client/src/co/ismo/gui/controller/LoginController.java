@@ -1,7 +1,8 @@
 package co.ismo.gui.controller;
 
+import co.ismo.object.util.OperatorUtility;
 import co.ismo.gui.view.TillView;
-import co.ismo.objects.Operator;
+import co.ismo.object.type.Operator;
 import co.ismo.util.Constant;
 import co.ismo.util.Enumeration;
 import javafx.event.ActionEvent;
@@ -37,7 +38,7 @@ public class LoginController implements Initializable {
 
     @FXML
     private void tanBoxOnAction(ActionEvent e) {
-        Operator loggedInOperator = attemptLogin(tanBox.getText());
+        Operator loggedInOperator = new OperatorUtility().getOperatorByTAN(tanBox.getText());
 
         if (loggedInOperator != null) {
             if (loggedInOperator.getUserLevel() >= requiredUserLevel.getValue()) {

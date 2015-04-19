@@ -7,5 +7,11 @@
       <schema-pattern>ismo.*</schema-pattern>
       <default-schemas>ismo.*</default-schemas>
     </data-source>
+    <data-source name="MySQL - ismo_new@localhost" uuid="88254a75-3215-4de2-b918-91040a67356e">
+      <secret-storage>master_key</secret-storage>
+      <user-name>ismo</user-name>
+      <schema-pattern>ismo_new.*</schema-pattern>
+      <default-schemas>ismo_new.*</default-schemas>
+    </data-source>
   </component>
 </project>

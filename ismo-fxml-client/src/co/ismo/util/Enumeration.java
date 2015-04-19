@@ -25,25 +25,4 @@ public class Enumeration {
             return value;
         }
     }
-
-    public static enum AgeRating {
-        BBFC_U(0),
-        BBFC_PG(0),
-        PEGI_Three(0),
-        PEGI_Seven(0),
-        BBFC_Twelve(12),
-        BBFC_Fifteen(15),
-        PEGI_Sixteen(16),
-        BBFC_Eighteen(18),
-        PEGI_Eighteen(18);
-
-        private final int value;
-        private AgeRating(int value) {
-            this.value = value;
-        }
-
-        public int getValue() {
-            return value;
-        }
-    }
 }

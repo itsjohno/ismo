@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 <GridPane hgap="15.0" vgap="15.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
-          AnchorPane.topAnchor="0.0" fx:controller="co.ismo.gui.controller.AltButtonController" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8">
+          AnchorPane.topAnchor="0.0" fx:controller="co.ismo.gui.controller.ButtonController" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8">
     <columnConstraints>
         <ColumnConstraints percentWidth="50.0"/>
         <ColumnConstraints percentWidth="50.0"/>

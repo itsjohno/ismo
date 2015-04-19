@@ -3,7 +3,7 @@ package co.ismo.core;
 import co.ismo.gui.controller.RootController;
 import co.ismo.gui.view.LoginView;
 import co.ismo.gui.view.TillView;
-import co.ismo.objects.Operator;
+import co.ismo.object.type.Operator;
 import co.ismo.util.Constant;
 import co.ismo.util.Enumeration;
 import co.ismo.util.SharedViewUtils;
@@ -39,8 +39,6 @@ public class Main extends Application {
         setScene(primaryStage);
         primaryStage.show();
 
-        setupTestUsers();
-
         if (Constant.SINGLE_USER_TERMINAL) {
             new TillView(primaryStage, new Operator());
         } else {
@@ -75,13 +73,12 @@ public class Main extends Application {
     }
 
     public void setupTestUsers() {
-        Constant.operators.add(new Operator("James", "Smith", "12345", 12345, 0));
-        Constant.operators.add(new Operator("John", "Smith", "11111", 11111, 1));
-        Constant.operators.add(new Operator("Steven", "Smith", "22222", 22222, 2));
-        Constant.operators.add(new Operator("Bob", "Smith", "33333", 333333, 3));
-        Constant.operators.add(new Operator("Jacob", "Smith", "44444", 444444, 4));
+        Constant.operators.add(new Operator("James", "Smith", "12345", "12345", 0));
+        Constant.operators.add(new Operator("John", "Smith", "11111", "11111", 1));
+        Constant.operators.add(new Operator("Steven", "Smith", "22222", "22222", 2));
+        Constant.operators.add(new Operator("Bob", "Smith", "33333", "333333", 3));
+        Constant.operators.add(new Operator("Jacob", "Smith", "44444", "444444", 4));
     }
-
 
     @Override
     public void stop() throws Exception {

@@ -7,14 +7,33 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ismo-fxml-client/src/co/ismo/gui/view/LoginView.java" afterPath="$PROJECT_DIR$/../ismo-fxml-client/src/co/ismo/gui/view/LoginView.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ismo-fxml-client/src/co/ismo/util/SharedViewUtils.java" afterPath="$PROJECT_DIR$/../ismo-fxml-client/src/co/ismo/util/SharedViewUtils.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/co/ismo/gui/views/TillView.java" afterPath="$PROJECT_DIR$/src/co/ismo/gui/views/TillView.java" />
+      <change type="DELETED" beforePath="F:\Documents\GitHub\ismo\ismo-fxml-client\src\co\ismo\gui\controller\AltButtonController.java" afterPath="" />
+      <change type="DELETED" beforePath="F:\Documents\GitHub\ismo\ismo-fxml-client\src\co\ismo\objects\Basket.java" afterPath="" />
+      <change type="DELETED" beforePath="F:\Documents\GitHub\ismo\ismo-fxml-client\src\co\ismo\objects\Item.java" afterPath="" />
+      <change type="DELETED" beforePath="F:\Documents\GitHub\ismo\ismo-fxml-client\src\co\ismo\objects\Operator.java" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ismo-fxml-client/.idea/dataSources.ids" afterPath="$PROJECT_DIR$/../ismo-fxml-client/.idea/dataSources.ids" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ismo-fxml-client/src/co/ismo/gui/controller/BasketController.java" afterPath="$PROJECT_DIR$/../ismo-fxml-client/src/co/ismo/gui/controller/BasketController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ismo-fxml-client/src/co/ismo/gui/view/BasketView.java" afterPath="$PROJECT_DIR$/../ismo-fxml-client/src/co/ismo/gui/view/BasketView.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ismo-fxml-client/src/co/ismo/gui/controller/ButtonController.java" afterPath="$PROJECT_DIR$/../ismo-fxml-client/src/co/ismo/gui/controller/ButtonController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ismo-fxml-client/src/co/ismo/util/Constant.java" afterPath="$PROJECT_DIR$/../ismo-fxml-client/src/co/ismo/util/Constant.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ismo-fxml-client/src/co/ismo/core/DatabaseConnector.java" afterPath="$PROJECT_DIR$/../ismo-fxml-client/src/co/ismo/core/DatabaseConnector.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ismo-fxml-client/src/co/ismo/util/Enumeration.java" afterPath="$PROJECT_DIR$/../ismo-fxml-client/src/co/ismo/util/Enumeration.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ismo-fxml-client/src/co/ismo/gui/view/ItemView.java" afterPath="$PROJECT_DIR$/../ismo-fxml-client/src/co/ismo/gui/view/ItemView.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ismo-fxml-client/src/co/ismo/gui/controller/LoginController.java" afterPath="$PROJECT_DIR$/../ismo-fxml-client/src/co/ismo/gui/controller/LoginController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ismo-fxml-client/src/co/ismo/core/Main.java" afterPath="$PROJECT_DIR$/../ismo-fxml-client/src/co/ismo/core/Main.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ismo-fxml-client/src/co/ismo/gui/controller/TillController.java" afterPath="$PROJECT_DIR$/../ismo-fxml-client/src/co/ismo/gui/controller/TillController.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ismo-fxml-client/src/co/ismo/gui/view/TillView.java" afterPath="$PROJECT_DIR$/../ismo-fxml-client/src/co/ismo/gui/view/TillView.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/ismo-client/co/ismo/res/css/main.css" afterPath="$PROJECT_DIR$/out/production/ismo-client/co/ismo/res/css/main.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/co/ismo/res/css/main.css" afterPath="$PROJECT_DIR$/src/co/ismo/res/css/main.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ismo-fxml-client/out/production/ismo-fxml-client/co/ismo/gui/res/fxml/till.fxml" afterPath="$PROJECT_DIR$/../ismo-fxml-client/out/production/ismo-fxml-client/co/ismo/gui/res/fxml/till.fxml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ismo-fxml-client/src/co/ismo/gui/res/fxml/till.fxml" afterPath="$PROJECT_DIR$/../ismo-fxml-client/src/co/ismo/gui/res/fxml/till.fxml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ismo-fxml-client/out/production/ismo-fxml-client/co/ismo/gui/res/fxml/basket_btnPane_alternate.fxml" afterPath="$PROJECT_DIR$/../ismo-fxml-client/out/production/ismo-fxml-client/co/ismo/gui/res/fxml/basket_btnPane_alternate.fxml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ismo-fxml-client/src/co/ismo/gui/res/fxml/basket_btnPane_alternate.fxml" afterPath="$PROJECT_DIR$/../ismo-fxml-client/src/co/ismo/gui/res/fxml/basket_btnPane_alternate.fxml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ismo-fxml-client/out/production/ismo-fxml-client/co/ismo/gui/res/fxml/basket_itemTemplate.fxml" afterPath="$PROJECT_DIR$/../ismo-fxml-client/out/production/ismo-fxml-client/co/ismo/gui/res/fxml/basket_itemTemplate.fxml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ismo-fxml-client/src/co/ismo/gui/res/fxml/basket_itemTemplate.fxml" afterPath="$PROJECT_DIR$/../ismo-fxml-client/src/co/ismo/gui/res/fxml/basket_itemTemplate.fxml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ismo-fxml-client/.idea/dataSources.local.xml" afterPath="$PROJECT_DIR$/../ismo-fxml-client/.idea/dataSources.local.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ismo-fxml-client/.idea/dataSources.xml" afterPath="$PROJECT_DIR$/../ismo-fxml-client/.idea/dataSources.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ismo-fxml-client/ismo-fxml-client.iml" afterPath="$PROJECT_DIR$/../ismo-fxml-client/ismo-fxml-client.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ismo-fxml-client/out/production/ismo-fxml-client/co/ismo/gui/res/css/till.css" afterPath="$PROJECT_DIR$/../ismo-fxml-client/out/production/ismo-fxml-client/co/ismo/gui/res/css/till.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ismo-fxml-client/src/co/ismo/gui/res/css/till.css" afterPath="$PROJECT_DIR$/../ismo-fxml-client/src/co/ismo/gui/res/css/till.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ismo-fxml-client/out/production/ismo-fxml-client/co/ismo/gui/res/fxml/till_productLookup.fxml" afterPath="$PROJECT_DIR$/../ismo-fxml-client/out/production/ismo-fxml-client/co/ismo/gui/res/fxml/till_productLookup.fxml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ismo-fxml-client/src/co/ismo/gui/res/fxml/till_productLookup.fxml" afterPath="$PROJECT_DIR$/../ismo-fxml-client/src/co/ismo/gui/res/fxml/till_productLookup.fxml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ismo-fxml-client/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../ismo-fxml-client/.idea/workspace.xml" />
     </list>
@@ -103,11 +122,9 @@
       <file leaf-file-name="TillController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/co/ismo/gui/controllers/TillController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="38" max-vertical-offset="935">
+            <state vertical-scroll-proportion="0.0" vertical-offset="459" max-vertical-offset="884">
               <caret line="32" column="9" selection-start-line="32" selection-start-column="9" selection-end-line="32" selection-end-column="9" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -115,11 +132,9 @@
       <file leaf-file-name="Constants.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/co/ismo/util/Constants.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="340" max-vertical-offset="612">
+            <state vertical-scroll-proportion="0.0" vertical-offset="289" max-vertical-offset="561">
               <caret line="20" column="41" selection-start-line="20" selection-start-column="41" selection-end-line="20" selection-end-column="41" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -137,8 +152,28 @@
       <file leaf-file-name="SharedViewUtils.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/co/ismo/util/SharedViewUtils.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="327" max-vertical-offset="1224">
+            <state vertical-scroll-proportion="0.0" vertical-offset="391" max-vertical-offset="1037">
               <caret line="34" column="0" selection-start-line="34" selection-start-column="0" selection-end-line="41" selection-end-column="5" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/co/ismo/core/Main.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="169" max-vertical-offset="1088">
+              <caret line="38" column="60" selection-start-line="38" selection-start-column="60" selection-end-line="38" selection-end-column="60" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Customer.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/co/ismo/objects/Customer.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="527">
+              <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -146,20 +181,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/co/ismo/core/Main.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.2419175" vertical-offset="191" max-vertical-offset="1088">
-              <caret line="38" column="60" selection-start-line="38" selection-start-column="60" selection-end-line="38" selection-end-column="60" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Item.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Item.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/co/ismo/objects/Item.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="220" max-vertical-offset="1139">
+            <state vertical-scroll-proportion="0.8717949" vertical-offset="0" max-vertical-offset="1139">
               <caret line="72" column="4" selection-start-line="72" selection-start-column="4" selection-end-line="85" selection-end-column="5" />
               <folding />
             </state>
@@ -169,11 +194,9 @@
       <file leaf-file-name="LoginController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/co/ismo/gui/controllers/LoginController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="408">
+            <state vertical-scroll-proportion="0.0" vertical-offset="238" max-vertical-offset="391">
               <caret line="15" column="20" selection-start-line="8" selection-start-column="8" selection-end-line="15" selection-end-column="20" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -229,8 +252,8 @@
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds">
-    <option name="x" value="-8" />
-    <option name="y" value="-8" />
+    <option name="x" value="142" />
+    <option name="y" value="87" />
     <option name="width" value="1936" />
     <option name="height" value="1056" />
   </component>
@@ -871,11 +894,13 @@
       <workItem from="1428523373916" duration="125000" />
       <workItem from="1428523535513" duration="8000" />
       <workItem from="1428523597830" duration="17000" />
+      <workItem from="1429267558297" duration="603000" />
+      <workItem from="1429382206003" duration="41000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="102428000" />
+    <option name="totallyTimeSpent" value="103072000" />
   </component>
   <component name="TodoView" selected-index="0">
     <todo-panel id="selected-file">
@@ -898,7 +923,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <frame x="142" y="87" width="1936" height="1056" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32972974" sideWeight="0.5" order="15" side_tool="false" content_ui="tabs" />
@@ -967,9 +992,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="255" max-vertical-offset="408">
           <caret line="15" column="20" selection-start-line="8" selection-start-column="8" selection-end-line="15" selection-end-column="20" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -977,7 +1000,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1547">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1000,9 +1022,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="136" max-vertical-offset="442">
           <caret line="8" column="60" selection-start-line="8" selection-start-column="60" selection-end-line="8" selection-end-column="60" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1010,7 +1030,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1547">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1033,9 +1052,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="136" max-vertical-offset="442">
           <caret line="8" column="60" selection-start-line="8" selection-start-column="60" selection-end-line="8" selection-end-column="60" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1050,7 +1067,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2040">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1058,9 +1074,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="136" max-vertical-offset="408">
           <caret line="8" column="43" selection-start-line="8" selection-start-column="43" selection-end-line="8" selection-end-column="43" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1096,7 +1110,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1105">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1104,9 +1117,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="51" max-vertical-offset="187">
           <caret line="3" column="4" selection-start-line="3" selection-start-column="4" selection-end-line="3" selection-end-column="4" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1128,7 +1139,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1139">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1136,9 +1146,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="51" max-vertical-offset="187">
           <caret line="3" column="53" selection-start-line="3" selection-start-column="53" selection-end-line="3" selection-end-column="53" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1153,7 +1161,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="68" max-vertical-offset="391">
           <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1168,7 +1175,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="68" max-vertical-offset="391">
           <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1204,13 +1210,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.09476031" vertical-offset="0" max-vertical-offset="897">
           <caret line="5" column="24" selection-start-line="5" selection-start-column="24" selection-end-line="5" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/co/ismo/objects/Customer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.08600337" vertical-offset="0" max-vertical-offset="593">
-          <caret line="3" column="18" selection-start-line="3" selection-start-column="17" selection-end-line="3" selection-end-column="21" />
         </state>
       </provider>
     </entry>
@@ -1281,9 +1280,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="38" max-vertical-offset="935">
           <caret line="32" column="9" selection-start-line="32" selection-start-column="9" selection-end-line="32" selection-end-column="9" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1291,9 +1288,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="612">
           <caret line="20" column="41" selection-start-line="20" selection-start-column="41" selection-end-line="20" selection-end-column="41" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1309,9 +1304,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="327" max-vertical-offset="1224">
           <caret line="34" column="0" selection-start-line="34" selection-start-column="0" selection-end-line="41" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1319,7 +1312,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.92865103" vertical-offset="663" max-vertical-offset="1649">
           <caret line="106" column="8" selection-start-line="106" selection-start-column="0" selection-end-line="107" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1343,6 +1335,22 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="408">
           <caret line="15" column="20" selection-start-line="8" selection-start-column="8" selection-end-line="15" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/co/ismo/core/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="169" max-vertical-offset="1088">
+          <caret line="38" column="60" selection-start-line="38" selection-start-column="60" selection-end-line="38" selection-end-column="60" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/co/ismo/objects/Customer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="527">
+          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1351,16 +1359,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/co/ismo/objects/Item.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="220" max-vertical-offset="1139">
+        <state vertical-scroll-proportion="0.8717949" vertical-offset="0" max-vertical-offset="1139">
           <caret line="72" column="4" selection-start-line="72" selection-start-column="4" selection-end-line="85" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/co/ismo/core/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.2419175" vertical-offset="191" max-vertical-offset="1088">
-          <caret line="38" column="60" selection-start-line="38" selection-start-column="60" selection-end-line="38" selection-end-column="60" />
           <folding />
         </state>
       </provider>

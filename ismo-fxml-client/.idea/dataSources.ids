@@ -40,4 +40,133 @@
       <primary-key name="PRIMARY" columns="id"/>
     </table>
   </data-source>
+  <data-source name="MySQL - ismo_new@localhost" uuid="88254a75-3215-4de2-b918-91040a67356e">
+    <database-info product="MySQL" version="5.6.22-log" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.34 ( Revision: jess.balint@oracle.com-20141014163213-wqbwpf1ok2kvo1om )">
+      <extra-name-characters>#@</extra-name-characters>
+      <identifier-quote-string>`</identifier-quote-string>
+    </database-info>
+    <case-sensitivity plain-identifiers="lower" quoted-identifiers="lower"/>
+    <schema name="" catalog="ismo_new"/>
+    <table name="address" schema="" catalog="ismo_new" type="TABLE">
+      <column name="addressID" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="lineOne" sqlType="VARCHAR" precision="45" scale="0" nullable="false" jdbcType="12"/>
+      <column name="lineTwo" sqlType="VARCHAR" precision="45" scale="0" nullable="true" jdbcType="12"/>
+      <column name="town" sqlType="VARCHAR" precision="45" scale="0" nullable="false" jdbcType="12"/>
+      <column name="country" sqlType="VARCHAR" precision="45" scale="0" nullable="false" jdbcType="12"/>
+      <column name="postcode" sqlType="VARCHAR" precision="45" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="addressID"/>
+      <exported-key name="customer_ibfk_3" table="customer" schema="" catalog="ismo_new" columns="address"/>
+      <exported-key name="operator_ibfk_1" table="operator" schema="" catalog="ismo_new" columns="address"/>
+    </table>
+    <table name="category" schema="" catalog="ismo_new" type="TABLE">
+      <column name="categoryID" sqlType="SMALLINT UNSIGNED" precision="5" scale="0" nullable="false" jdbcType="5"/>
+      <column name="name" sqlType="VARCHAR" precision="45" scale="0" nullable="false" jdbcType="12"/>
+      <column name="supercatID" sqlType="TINYINT UNSIGNED" precision="3" scale="0" nullable="false" jdbcType="-6"/>
+      <primary-key name="PRIMARY" columns="categoryID"/>
+      <foreign-key name="category_ibfk_1" columns="supercatID" ref-table="super_category" ref-schema="" ref-catalog="ismo_new" ref-columns="supercatID" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="categoryID_category_FK" table="product" schema="" catalog="ismo_new" columns="categoryID"/>
+      <index name="supercatID_FK" unique="false" columns="supercatID"/>
+    </table>
+    <table name="customer" schema="" catalog="ismo_new" type="TABLE">
+      <column name="customerID" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="title" sqlType="VARCHAR" precision="10" scale="0" nullable="false" jdbcType="12"/>
+      <column name="forename" sqlType="VARCHAR" precision="35" scale="0" nullable="false" jdbcType="12"/>
+      <column name="surname" sqlType="VARCHAR" precision="35" scale="0" nullable="false" jdbcType="12"/>
+      <column name="mobileTelephone" sqlType="VARCHAR" precision="15" scale="0" nullable="true" jdbcType="12"/>
+      <column name="homeTelephone" sqlType="VARCHAR" precision="15" scale="0" nullable="true" jdbcType="12"/>
+      <column name="email" sqlType="VARCHAR" precision="100" scale="0" nullable="true" jdbcType="12"/>
+      <column name="address" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="loyaltyNumber" sqlType="VARCHAR" precision="15" scale="0" nullable="false" jdbcType="12"/>
+      <column name="points" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="signupDate" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <column name="lastVisit" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <column name="status" sqlType="TINYINT" precision="3" scale="0" nullable="false" jdbcType="-6"/>
+      <column name="createdBy" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="lastEditedBy" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="notes" sqlType="TEXT" precision="65535" scale="0" nullable="true" jdbcType="-1"/>
+      <primary-key name="PRIMARY" columns="customerID"/>
+      <foreign-key name="customer_ibfk_1" columns="createdBy" ref-table="operator" ref-schema="" ref-catalog="ismo_new" ref-columns="operatorID" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="customer_ibfk_2" columns="lastEditedBy" ref-table="operator" ref-schema="" ref-catalog="ismo_new" ref-columns="operatorID" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="customer_ibfk_3" columns="address" ref-table="address" ref-schema="" ref-catalog="ismo_new" ref-columns="addressID" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="transaction_ibfk_2" table="transaction" schema="" catalog="ismo_new" columns="customerID"/>
+      <index name="createdBy_operator_FK" unique="false" columns="createdBy"/>
+      <index name="customer_address_FK" unique="false" columns="address"/>
+      <index name="lastedEditedBy_operator_FK" unique="false" columns="lastEditedBy"/>
+    </table>
+    <table name="operator" schema="" catalog="ismo_new" type="TABLE">
+      <column name="operatorID" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="forename" sqlType="VARCHAR" precision="35" scale="0" nullable="false" jdbcType="12"/>
+      <column name="surname" sqlType="VARCHAR" precision="35" scale="0" nullable="false" jdbcType="12"/>
+      <column name="encodedTAN" sqlType="CHAR" precision="40" scale="0" nullable="false" jdbcType="1"/>
+      <column name="userLevel" sqlType="TINYINT UNSIGNED" precision="3" scale="0" nullable="false" jdbcType="-6"/>
+      <column name="address" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="operatorID"/>
+      <foreign-key name="operator_ibfk_1" columns="address" ref-table="address" ref-schema="" ref-catalog="ismo_new" ref-columns="addressID" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="customer_ibfk_1" table="customer" schema="" catalog="ismo_new" columns="createdBy"/>
+      <exported-key name="customer_ibfk_2" table="customer" schema="" catalog="ismo_new" columns="lastEditedBy"/>
+      <exported-key name="transaction_ibfk_1" table="transaction" schema="" catalog="ismo_new" columns="operatorID"/>
+      <index name="encodedTAN_UNIQUE" unique="true" columns="encodedTAN"/>
+      <index name="operator_address_FK" unique="false" columns="address"/>
+    </table>
+    <table name="product" schema="" catalog="ismo_new" type="TABLE">
+      <column name="sku" sqlType="VARCHAR" precision="20" scale="0" nullable="false" jdbcType="12"/>
+      <column name="name" sqlType="VARCHAR" precision="45" scale="0" nullable="false" jdbcType="12"/>
+      <column name="stock" sqlType="SMALLINT" precision="5" scale="0" nullable="false" jdbcType="5"/>
+      <column name="categoryID" sqlType="SMALLINT UNSIGNED" precision="5" scale="0" nullable="false" jdbcType="5"/>
+      <column name="ageRating" sqlType="TINYINT UNSIGNED" precision="3" scale="0" nullable="false" jdbcType="-6"/>
+      <primary-key name="PRIMARY" columns="sku"/>
+      <foreign-key name="categoryID_category_FK" columns="categoryID" ref-table="category" ref-schema="" ref-catalog="ismo_new" ref-columns="categoryID" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="product_barcode_ibfk_1" table="product_barcode" schema="" catalog="ismo_new" columns="sku"/>
+      <exported-key name="product_price_ibfk_1" table="product_price" schema="" catalog="ismo_new" columns="sku"/>
+      <exported-key name="transaction_product_ibfk_2" table="transaction_product" schema="" catalog="ismo_new" columns="sku"/>
+      <index name="categoryID_category_FK_idx" unique="false" columns="categoryID"/>
+    </table>
+    <table name="product_barcode" schema="" catalog="ismo_new" type="TABLE">
+      <column name="barcode" sqlType="VARCHAR" precision="25" scale="0" nullable="false" jdbcType="12"/>
+      <column name="sku" sqlType="VARCHAR" precision="20" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="sku,barcode"/>
+      <foreign-key name="product_barcode_ibfk_1" columns="sku" ref-table="product" ref-schema="" ref-catalog="ismo_new" ref-columns="sku" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="barcodeUNIQUE" unique="true" columns="barcode"/>
+    </table>
+    <table name="product_price" schema="" catalog="ismo_new" type="TABLE">
+      <column name="currentPrice" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="previousPrice" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="addedDateTime" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <column name="liveDateTime" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <column name="sku" sqlType="VARCHAR" precision="20" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="sku,addedDateTime"/>
+      <foreign-key name="product_price_ibfk_1" columns="sku" ref-table="product" ref-schema="" ref-catalog="ismo_new" ref-columns="sku" update-rule="3" delete-rule="3" deferrability="2"/>
+    </table>
+    <table name="super_category" schema="" catalog="ismo_new" type="TABLE">
+      <column name="supercatID" sqlType="TINYINT UNSIGNED" precision="3" scale="0" nullable="false" jdbcType="-6"/>
+      <column name="name" sqlType="VARCHAR" precision="45" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="supercatID"/>
+      <exported-key name="category_ibfk_1" table="category" schema="" catalog="ismo_new" columns="supercatID"/>
+    </table>
+    <table name="transaction" schema="" catalog="ismo_new" type="TABLE">
+      <column name="transactionID" sqlType="VARCHAR" precision="25" scale="0" nullable="false" jdbcType="12"/>
+      <column name="operatorID" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="customerID" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="totalCost" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="datetime" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <column name="suspended" sqlType="BIT" precision="1" scale="0" nullable="false" jdbcType="-7"/>
+      <column name="cancelled" sqlType="BIT" precision="1" scale="0" nullable="false" jdbcType="-7"/>
+      <primary-key name="PRIMARY" columns="transactionID"/>
+      <foreign-key name="transaction_ibfk_1" columns="operatorID" ref-table="operator" ref-schema="" ref-catalog="ismo_new" ref-columns="operatorID" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="transaction_ibfk_2" columns="customerID" ref-table="customer" ref-schema="" ref-catalog="ismo_new" ref-columns="customerID" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="transaction_product_ibfk_1" table="transaction_product" schema="" catalog="ismo_new" columns="transactionID"/>
+      <index name="operator_FK" unique="false" columns="operatorID"/>
+      <index name="transaction_ibfk_2" unique="false" columns="customerID"/>
+    </table>
+    <table name="transaction_product" schema="" catalog="ismo_new" type="TABLE">
+      <column name="transactionID" sqlType="VARCHAR" precision="25" scale="0" nullable="false" jdbcType="12"/>
+      <column name="sku" sqlType="VARCHAR" precision="20" scale="0" nullable="false" jdbcType="12"/>
+      <column name="quantity" sqlType="SMALLINT UNSIGNED" precision="5" scale="0" nullable="false" jdbcType="5"/>
+      <column name="unitPrice" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="transactionID,sku"/>
+      <foreign-key name="transaction_product_ibfk_1" columns="transactionID" ref-table="transaction" ref-schema="" ref-catalog="ismo_new" ref-columns="transactionID" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="transaction_product_ibfk_2" columns="sku" ref-table="product" ref-schema="" ref-catalog="ismo_new" ref-columns="sku" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="sku_product_FK" unique="false" columns="sku"/>
+    </table>
+  </data-source>
 </component>

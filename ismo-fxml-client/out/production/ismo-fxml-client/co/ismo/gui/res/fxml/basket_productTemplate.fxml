@@ -21,30 +21,18 @@
                 <RowConstraints percentHeight="50.0" vgrow="SOMETIMES" />
             </rowConstraints>
             <children>
-                <Text fx:id="qty" strokeType="OUTSIDE" strokeWidth="0.0" text="2x" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowSpan="2" GridPane.valignment="CENTER">
-                    <font>
-                        <Font name="System Bold Italic" size="16.0" />
-                    </font>
-                </Text>
-                <Text fx:id="value" strokeType="OUTSIDE" strokeWidth="0.0" text="£100.50" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowSpan="2" GridPane.valignment="CENTER">
-                    <font>
-                        <Font size="16.0" />
-                    </font>
-                </Text>
-                <Text fx:id="qtyValue" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="£201.00" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowSpan="2" GridPane.valignment="CENTER">
-                    <font>
-                        <Font name="System Bold" size="18.0" />
-                    </font>
-                </Text>
+                <Text fx:id="qty" GridPane.columnIndex="1" styleClass="qtyText" GridPane.halignment="CENTER" GridPane.rowSpan="2" GridPane.valignment="CENTER"/>
+                <Text fx:id="value" GridPane.columnIndex="2" styleClass="singleCostTxt" GridPane.halignment="CENTER" GridPane.rowSpan="2" GridPane.valignment="CENTER"/>
+                <Text fx:id="qtyValue" styleClass="totalCostTxt" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowSpan="2" GridPane.valignment="CENTER"/>
                 <Separator orientation="VERTICAL" GridPane.columnIndex="3" GridPane.rowSpan="2" />
                 <HBox alignment="CENTER_LEFT" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                     <children>
-                        <Text fx:id="barcode" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="5054402420930">
+                        <Text fx:id="sku" styleClass="skuTxt">
                             <HBox.margin>
                                 <Insets right="10.0" />
                             </HBox.margin>
                         </Text>
-                        <Text fx:id="productName" strokeType="OUTSIDE" strokeWidth="0.0" text="Adventure Time - Volume Six" />
+                        <Text fx:id="productName" styleClass="productNameTxt" />
                     </children>
                     <padding>
                         <Insets left="10.0" />
@@ -52,21 +40,18 @@
                 </HBox>
                 <HBox alignment="CENTER_LEFT" focusTraversable="false" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="1">
                     <children>
-                        <Text fx:id="supercat" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="Books">
+                        <Text fx:id="supercat" styleClass="supercatTxt">
                             <HBox.margin>
                                 <Insets right="5.0" />
                             </HBox.margin>
                         </Text>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="/">
+                        <Text text="/">
                             <HBox.margin>
                                 <Insets right="5.0" />
                             </HBox.margin>
                         </Text>
-                        <Text fx:id="subcat" strokeType="OUTSIDE" strokeWidth="0.0" text="Graphic Novels &amp; Comics" />
+                        <Text fx:id="subcat" styleClass="subcatTxt" />
                     </children>
-                    <GridPane.margin>
-                        <Insets />
-                    </GridPane.margin>
                     <padding>
                         <Insets left="10.0" />
                     </padding>
