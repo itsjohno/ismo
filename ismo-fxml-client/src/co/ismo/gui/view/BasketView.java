@@ -15,27 +15,33 @@ import java.io.IOException;
  */
 public class BasketView {
 
-    public BasketView() {
+    private Parent basketView;
+    private BasketController basketController;
 
+    public BasketView() {
+        basketView = null;
+        basketController = null;
     }
 
-    public Parent loadBasketView(TillController parentController) {
+    public void loadBasketView(TillController parentController) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("../res/fxml/till_basket.fxml"));
-            //FXMLLoader loader = new FXMLLoader(getClass().getResource("../res/fxml/till_productLookup.fxml"));
 
-            Parent content = loader.load();
-
-            BasketController basketController = loader.getController();
+            basketView = loader.load();
+            basketController = loader.getController();
             basketController.setupParentController(parentController);
-
-            return content;
 
         } catch (IOException ioe) {
             System.out.println("An IO Exception occured. Printing Stack Trace!");
             ioe.printStackTrace();
         }
+    }
 
-        return null;
+    public Parent getBasketView() {
+        return basketView;
+    }
+
+    public BasketController getBasketController() {
+        return basketController;
     }
 }

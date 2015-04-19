@@ -1,5 +1,6 @@
 package co.ismo.gui.controller;
 
+import co.ismo.gui.view.ButtonView;
 import co.ismo.gui.view.ProductView;
 import co.ismo.object.type.Product;
 import co.ismo.object.util.ProductUtility;
@@ -77,6 +78,7 @@ public class BasketController implements Initializable {
 
     public void setupParentController(TillController tillController) {
         this.tillController = tillController;
+        setupButtons();
     }
 
     private void setupEventListeners() {
@@ -384,6 +386,20 @@ public class BasketController implements Initializable {
         return true;
     }
 
+    private void setupButtons() {
+        defaultBtn = new ButtonView().loadButtonView(tillController);
+        btnPane.getChildren().add(defaultBtn);
+    }
+
+    private void setupBasket() {
+        basket = FXCollections.observableHashMap();
+        basketCountProperty = new SimpleIntegerProperty(0);
+        basketCount.textProperty().bind(basketCountProperty.asString());
+
+        basketCostProperty = new SimpleStringProperty("£0.00");
+        basketCost.textProperty().bind(basketCostProperty);
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         assert basketGrid != null : "fx:id=\"basketGrid\" was not injected: check your FXML file 'till_basket.fxml'.";
@@ -395,17 +411,7 @@ public class BasketController implements Initializable {
         assert basketCount != null : "fx:id=\"basketCount\" was not injected: check your FXML file 'till_basket.fxml'.";
         assert basketCost != null : "fx:id=\"basketCost\" was not injected: check your FXML file 'till_basket.fxml'.";
 
-        basket = FXCollections.observableHashMap();
-        defaultBtn = SharedViewUtils.loadContent(getClass().getResource("../res/fxml/basket_btnPane_default.fxml"));
-        //alternateBtn = SharedViewUtils.loadContent(getClass().getResource("../res/fxml/basket_btnPane_alternate.fxml"));
-        btnPane.getChildren().add(defaultBtn);
-
-        basketCountProperty = new SimpleIntegerProperty(0);
-        basketCount.textProperty().bind(basketCountProperty.asString());
-
-        basketCostProperty = new SimpleStringProperty("£0.00");
-        basketCost.textProperty().bind(basketCostProperty);
-
+        setupBasket();
         setupEventListeners();
         loadCustomerPane();
     }

@@ -1,6 +1,7 @@
 package co.ismo.gui.controller;
 
 import co.ismo.gui.view.BasketView;
+import co.ismo.gui.view.ProductLookupView;
 import co.ismo.object.type.Operator;
 import co.ismo.util.DynamicHashMap;
 import javafx.animation.Animation;
@@ -13,6 +14,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
@@ -51,7 +53,7 @@ public class TillController implements Initializable {
     private Text userDetails;
 
     @FXML
-    private Button logoutBtn;
+    private Button goBackBtn;
 
     private BasketView basketView;
 
@@ -62,6 +64,14 @@ public class TillController implements Initializable {
         Node s = (Node) e.getSource();
         Stage currentStage = (Stage) s.getScene().getWindow();
         currentStage.fireEvent(new WindowEvent(currentStage, WindowEvent.WINDOW_CLOSE_REQUEST));
+    }
+
+    public void goBackButton(Event e) {
+        middlePane.getChildren().clear();
+        middlePane.getChildren().add(basketView.getBasketView());
+
+        goBackBtn.setText("Log Out (Esc)");
+        goBackBtn.setOnMouseClicked((event) -> logoutUser(event));
     }
 
     public void setCurrentOperator(Operator operator) {
@@ -83,11 +93,23 @@ public class TillController implements Initializable {
     }
 
     private void loadBasketView() {
-        Parent basketContent = basketView.loadBasketView(this);
-        if (basketContent != null) {
-            middlePane.getChildren().add(basketContent);
+        basketView = new BasketView();
+        basketView.loadBasketView(this);
+
+        if (basketView != null) {
+            middlePane.getChildren().add(basketView.getBasketView());
         } else {
             System.out.println("An error occurred while trying to load the BasketView");
+        }
+    }
+
+    public void loadProductLookupView() {
+        if (middlePane.getChildren().contains(basketView.getBasketView())) {
+            middlePane.getChildren().clear();
+            middlePane.getChildren().add(new ProductLookupView().getProductLookupView(basketView.getBasketController()));
+
+            goBackBtn.setText("Go Back (Esc)");
+            goBackBtn.setOnMouseClicked((event) -> goBackButton(event));
         }
     }
 
@@ -96,12 +118,12 @@ public class TillController implements Initializable {
         assert tillGrid != null : "fx:id=\"tillGrid\" was not injected: check your FXML file 'till.fxml'.";
         assert middlePane != null : "fx:id=\"middlePane\" was not injected: check your FXML file 'till.fxml'.";
         assert tillTitle != null : "fx:id=\"tillTitle\" was not injected: check your FXML file 'till.fxml'.";
-        assert logoutBtn != null : "fx:id=\"logoutBtn\" was not injected: check your FXML file 'till.fxml'.";
+        assert goBackBtn != null : "fx:id=\"goBackBtn\" was not injected: check your FXML file 'till.fxml'.";
         assert dateTime != null : "fx:id=\"dateTime\" was not injected: check your FXML file 'till.fxml'.";
         assert userDetails != null : "fx:id=\"userDetails\" was not injected: check your FXML file 'till.fxml'.";
 
-        basketView = new BasketView();
         loadBasketView();
         bindDateTime();
+        goBackBtn.setOnMouseClicked((event) -> logoutUser(event));
     }
 }

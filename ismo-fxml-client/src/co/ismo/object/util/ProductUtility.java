@@ -32,21 +32,27 @@ public class ProductUtility {
         Product foundProduct = null;
         DatabaseConnector dbConnector = new DatabaseConnector();
 
-        String query =  "SELECT * FROM productLookup WHERE `sku` = ? OR `barcode` = ?";
+        String queryBarcode = "SELECT sku FROM product_barcode WHERE `barcode` = ?";
+        String query = "SELECT * FROM productLookup WHERE `sku` = ?";
 
         try (Connection connection = dbConnector.getConnection();
+             PreparedStatement barcodePreparedStatement = connection.prepareStatement(queryBarcode);
              PreparedStatement preparedStatement = connection.prepareStatement(query);) {
 
-            preparedStatement.setString(1, lookupString);
-            preparedStatement.setString(2, lookupString);
+            barcodePreparedStatement.setString(1, lookupString);
 
-            try (ResultSet results = preparedStatement.executeQuery()) {
-                while (results.next()) {
-                    if (foundProduct == null) {
-                        foundProduct = createItem(results);
-                    }
-                    else {
-                        foundProduct.getBarcodes().add(results.getString("barcode"));
+            try (ResultSet skuResults = barcodePreparedStatement.executeQuery()) {
+                if (skuResults.next()) {
+                    preparedStatement.setString(1, skuResults.getString("sku"));
+
+                    try (ResultSet results = preparedStatement.executeQuery()) {
+                        while (results.next()) {
+                            if (foundProduct == null) {
+                                foundProduct = createItem(results);
+                            } else {
+                                foundProduct.getBarcodes().add(results.getString("barcode"));
+                            }
+                        }
                     }
                 }
             }

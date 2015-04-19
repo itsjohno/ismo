@@ -76,7 +76,7 @@
     -fx-font-size: 14px;
 }
 
-#logoutBtn {
+#goBackBtn {
     -fx-background-color:
     #000000,
     linear-gradient(#ea4d49, #8f1212),
@@ -88,7 +88,7 @@
     -fx-text-fill: white;
 }
 
-#logoutBtn:pressed {
+#goBackBtn:pressed {
     -fx-background-color:
     #000000,
     linear-gradient(#ea4d49, #8f1212),
@@ -96,7 +96,7 @@
     linear-gradient(#ea4d49, #AB281C);
 }
 
-#logoutBtn Text {
+#goBackBtn Text {
     -fx-effect: dropshadow( one-pass-box , rgba(0,0,0,0.8) , 0, 0.0 , 0 , 1);
 }
 
