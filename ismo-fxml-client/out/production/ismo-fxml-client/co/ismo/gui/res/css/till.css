@@ -260,3 +260,17 @@
     #B2B2B2,
     #FFFFFF;
 }
+
+
+.searchBtn {
+    -fx-background-color: #bbbbbb;
+    -fx-background-insets: 0,1,2,3;
+    -fx-background-radius: 10;
+    -fx-padding: 15;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+}
+
+.searchBtn:pressed {
+    -fx-background-color: #CCCCCC;
+}

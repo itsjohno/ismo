@@ -1,6 +1,7 @@
 package co.ismo.gui.controller;
 
 import co.ismo.gui.view.ButtonView;
+import co.ismo.gui.view.LoyaltyView;
 import co.ismo.gui.view.ProductView;
 import co.ismo.object.type.Product;
 import co.ismo.object.util.ProductUtility;
@@ -81,145 +82,29 @@ public class BasketController implements Initializable {
         setupButtons();
     }
 
+    public void keyListener(KeyEvent keyEvent) {
+        switch (keyEvent.getCode()) {
+            case ESCAPE: tillController.logoutUser(keyEvent); break;
+            case UP: moveSelection(true); break;
+            case DOWN: moveSelection(false); break;
+
+            case F1: tillController.loadProductLookupView(); break;
+            case F2: System.out.println("F2 Pressed"); break;
+            case F3: System.out.println("F3 Pressed"); break;
+            case F4: System.out.println("F4 Pressed"); break;
+            case F5: System.out.println("F5 Pressed"); break;
+            case F6: System.out.println("F6 Pressed"); break;
+            case F7: System.out.println("F7 Pressed"); break;
+            case F8: System.out.println("F8 Pressed"); break;
+            case F9: System.out.println("F9 Pressed"); break;
+            case F10: System.out.println("F2 Pressed"); break;
+            case F11: System.out.println("F11 Pressed"); break;
+            case F12: System.out.println("F12 Pressed"); break;
+        }
+    }
+
     private void setupEventListeners() {
-        skuField.setOnKeyPressed((KeyEvent keyEvent) -> {
-            KeyCode kC = keyEvent.getCode();
-
-            switch (kC) {
-                case ESCAPE:
-                    tillController.logoutUser(keyEvent);
-                    break;
-                case UP:
-                    moveSelection(true);
-                    break;
-                case DOWN:
-                    moveSelection(false);
-                    break;
-
-                case F1:
-                    System.out.println("F1 Pressed");
-                    break;
-                case F2:
-                    System.out.println("F2 Pressed");
-                    break;
-                case F3:
-                    System.out.println("F3 Pressed");
-                    break;
-                case F4:
-                    System.out.println("F4 Pressed");
-                    break;
-                case F5:
-                    System.out.println("F5 Pressed");
-                    break;
-                case F6:
-                    System.out.println("F6 Pressed");
-                    break;
-                case F7:
-                    System.out.println("F7 Pressed");
-                    break;
-                case F8:
-                    System.out.println("F8 Pressed");
-                    break;
-                case F9:
-                    System.out.println("F9 Pressed");
-                    break;
-                case F10:
-                    System.out.println("F10 Pressed");
-                    break;
-                case F11:
-                    System.out.println("F11 Pressed");
-                    break;
-                case F12:
-                    System.out.println("F12 Pressed");
-                    break;
-            }
-
-            // <editor-fold desc="CTRL BTN MENU">
-            /*
-            if (keyEvent.isControlDown()) {
-                btnPane.getChildren().clear();
-                btnPane.getChildren().add(alternateBtn);
-
-                switch (kC) {
-                    case F1:
-                        System.out.println("Control + F1 Pressed");
-                        break;
-                    case F2:
-                        System.out.println("Control + F2 Pressed");
-                        break;
-                    case F3:
-                        System.out.println("Control + F3 Pressed");
-                        break;
-                    case F4:
-                        System.out.println("Control + F4 Pressed");
-                        break;
-                    case F5:
-                        System.out.println("Control + F5 Pressed");
-                        break;
-                    case F6:
-                        System.out.println("Control + F6 Pressed");
-                        break;
-                    case F7:
-                        System.out.println("Control + F7 Pressed");
-                        break;
-                    case F8:
-                        System.out.println("Control + F8 Pressed");
-                        break;
-                    case F9:
-                        System.out.println("Control + F9 Pressed");
-                        break;
-                    case F10:
-                        System.out.println("Control + F10 Pressed");
-                        break;
-                }
-            } else {
-                switch (kC) {
-                    case F1:
-                        System.out.println("F1 Pressed");
-                        break;
-                    case F2:
-                        System.out.println("F2 Pressed");
-                        break;
-                    case F3:
-                        System.out.println("F3 Pressed");
-                        break;
-                    case F4:
-                        System.out.println("F4 Pressed");
-                        break;
-                    case F5:
-                        System.out.println("F5 Pressed");
-                        break;
-                    case F6:
-                        System.out.println("F6 Pressed");
-                        break;
-                    case F7:
-                        System.out.println("F7 Pressed");
-                        break;
-                    case F8:
-                        System.out.println("F8 Pressed");
-                        break;
-                    case F9:
-                        System.out.println("F9 Pressed");
-                        break;
-                    case F10:
-                        System.out.println("F10 Pressed");
-                        break;
-                }
-            }
-            */
-            // </editor-fold>
-        });
-
-        // <editor-fold desc="CTRL BTN MENU">
-        /*
-        skuField.setOnKeyReleased((KeyEvent keyEvent) -> {
-            if (!keyEvent.isControlDown()) {
-                btnPane.getChildren().clear();
-                btnPane.getChildren().add(defaultBtn);
-            }
-        });
-        */
-        // </editor-fold>
+        skuField.setOnKeyPressed((KeyEvent keyEvent) -> keyListener(keyEvent));
 
         skuField.setOnAction((ActionEvent ae) -> {
             if (!addItem(skuField.getText(), 1)) {
@@ -308,7 +193,7 @@ public class BasketController implements Initializable {
     }
 
     private void loadCustomerPane() {
-        customerPane.getChildren().add(SharedViewUtils.loadContent(getClass().getResource("../res/fxml/basket_customerPane.fxml")));
+        customerPane.getChildren().add(new LoyaltyView().loadLoyaltyView(this));
     }
 
     private boolean addItem(String skuFieldText, int qty)

@@ -66,7 +66,7 @@ public class TillController implements Initializable {
         currentStage.fireEvent(new WindowEvent(currentStage, WindowEvent.WINDOW_CLOSE_REQUEST));
     }
 
-    public void goBackButton(Event e) {
+    public void goBack() {
         middlePane.getChildren().clear();
         middlePane.getChildren().add(basketView.getBasketView());
 
@@ -106,10 +106,10 @@ public class TillController implements Initializable {
     public void loadProductLookupView() {
         if (middlePane.getChildren().contains(basketView.getBasketView())) {
             middlePane.getChildren().clear();
-            middlePane.getChildren().add(new ProductLookupView().getProductLookupView(basketView.getBasketController()));
+            middlePane.getChildren().add(new ProductLookupView().getProductLookupView(this, basketView.getBasketController()));
 
             goBackBtn.setText("Go Back (Esc)");
-            goBackBtn.setOnMouseClicked((event) -> goBackButton(event));
+            goBackBtn.setOnMouseClicked((event) -> goBack());
         }
     }
 

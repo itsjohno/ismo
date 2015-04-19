@@ -2,6 +2,7 @@ package co.ismo.object.util;
 
 import co.ismo.core.DatabaseConnector;
 import co.ismo.object.type.AgeRating;
+import co.ismo.util.DynamicHashMap;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -46,5 +47,18 @@ public class AgeRatingUtility {
         }
 
         return ageRatings;
+    }
+
+    public int getAgeRatingIDFromName(String name) {
+        int ageRatingID = 0;
+
+        for (AgeRating c : DynamicHashMap.getAgeRatings().values()) {
+            if (c.getName().equalsIgnoreCase(name)) {
+                break;
+            }
+            ageRatingID++;
+        }
+
+        return ageRatingID;
     }
 }

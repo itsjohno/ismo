@@ -1,6 +1,7 @@
 package co.ismo.object.util;
 
 import co.ismo.core.DatabaseConnector;
+import co.ismo.util.DynamicHashMap;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -62,4 +63,16 @@ public class OtherUtility {
         return userLevels;
     }
 
+    public int getSuperCategoryIDFromName(String name) {
+        int catID = 0;
+
+        for (String s : DynamicHashMap.getSuperCategories().values()) {
+            if (s.equalsIgnoreCase(name)) {
+                break;
+            }
+            catID++;
+        }
+
+        return catID;
+    }
 }

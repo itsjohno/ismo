@@ -2,6 +2,7 @@ package co.ismo.object.util;
 
 import co.ismo.core.DatabaseConnector;
 import co.ismo.object.type.Category;
+import co.ismo.util.DynamicHashMap;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -45,5 +46,18 @@ public class CategoryUtility {
         }
 
         return categories;
+    }
+
+    public int getCategoryIDFromName(String name) {
+        int catID = 0;
+
+        for (Category c : DynamicHashMap.getSubCategories().values()) {
+            if (c.getName().equalsIgnoreCase(name)) {
+                break;
+            }
+            catID++;
+        }
+
+        return catID;
     }
 }

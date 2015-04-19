@@ -1,8 +1,7 @@
 package co.ismo.gui.view;
 
 import co.ismo.gui.controller.BasketController;
-import co.ismo.gui.controller.ProductLookupController;
-import co.ismo.gui.controller.TillController;
+import co.ismo.gui.controller.LoyaltyController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 
@@ -14,20 +13,20 @@ import java.io.IOException;
  * Date: 19/04/2015
  * Project: ismo-fxml-client
  */
-public class ProductLookupView {
+public class LoyaltyView {
 
-    public ProductLookupView() {
+    public LoyaltyView() {
 
     }
 
-    public Parent getProductLookupView(TillController tillController, BasketController basketController) {
+    public Parent loadLoyaltyView(BasketController parentController) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("../res/fxml/till_productLookup.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../res/fxml/basket_customerPane.fxml"));
 
             Parent content = loader.load();
 
-            ProductLookupController productLookupController = loader.getController();
-            productLookupController.setupControllers(tillController, basketController);
+            LoyaltyController loyaltyController = loader.getController();
+            loyaltyController.setupParentController(parentController);
 
             return content;
 
@@ -38,5 +37,4 @@ public class ProductLookupView {
 
         return null;
     }
-
 }
