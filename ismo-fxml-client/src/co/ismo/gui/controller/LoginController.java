@@ -5,6 +5,7 @@ import co.ismo.object.type.Operator;
 import co.ismo.object.util.OperatorUtility;
 import co.ismo.util.Constant;
 import co.ismo.util.DynamicHashMap;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -33,6 +34,8 @@ public class LoginController implements Initializable {
 
     @FXML
     private Label tanBoxLabel;
+
+    private SimpleStringProperty requiredLevelLabel;
 
     private int requiredUserLevel;
 
@@ -72,13 +75,16 @@ public class LoginController implements Initializable {
 
     public void setRequiredUserLevel(int requiredUserLevel) {
         this.requiredUserLevel = requiredUserLevel;
-        this.tanBoxLabel.setText("Enter TAN at " + DynamicHashMap.getUserLevels().get(requiredUserLevel) + " level or higher");
+        requiredLevelLabel.set("Enter TAN at " + DynamicHashMap.getUserLevels().get(requiredUserLevel) + " level or higher");
     }
 
     @Override
     public void initialize(URL fxmlFileLocation, ResourceBundle resources) {
         assert loginVBox != null : "fx:id=\"loginVBox\" was not injected: check your FXML file 'login.fxml'.";
         assert tanBox != null : "fx:id=\"tanBox\" was not injected: check your FXML file 'login.fxml'.";
+
+        requiredLevelLabel = new SimpleStringProperty();
+        tanBoxLabel.textProperty().bind(requiredLevelLabel);
 
         tanBox.textProperty().addListener((observable, oldValue, newValue) -> {
             int lastElement = tanBox.getStyleClass().size() - 1;

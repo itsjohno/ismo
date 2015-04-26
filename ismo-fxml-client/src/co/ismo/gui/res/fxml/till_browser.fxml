@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.web.WebView?>
+<VBox xmlns:fx="http://javafx.com/fxml/1" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+      AnchorPane.rightAnchor="0.0"
+      AnchorPane.topAnchor="0.0" xmlns="http://javafx.com/javafx/8"
+      fx:controller="co.ismo.gui.controller.BrowserController">
+    <children>
+        <VBox fx:id="headerBar" styleClass="tillContentBar">
+            <children>
+                <HBox VBox.vgrow="ALWAYS">
+                    <children>
+                        <TextField fx:id="urlField" text="http://www.google.co.uk" HBox.hgrow="ALWAYS"/>
+                    </children>
+                    <padding>
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+                    </padding>
+                </HBox>
+                <ProgressBar fx:id="progress" maxWidth="1.7976931348623157E308" progress="0.0">
+                    <VBox.margin>
+                        <Insets left="20.0" right="20.0" top="-20.0"/>
+                    </VBox.margin>
+                </ProgressBar>
+            </children>
+        </VBox>
+        <WebView fx:id="webView" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
+                 VBox.vgrow="ALWAYS"/>
+    </children>
+</VBox>

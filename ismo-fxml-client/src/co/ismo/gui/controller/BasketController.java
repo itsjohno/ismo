@@ -5,7 +5,6 @@ import co.ismo.gui.view.LoyaltyView;
 import co.ismo.gui.view.ProductView;
 import co.ismo.object.type.Product;
 import co.ismo.object.util.ProductUtility;
-import co.ismo.util.SharedViewUtils;
 import javafx.animation.AnimationTimer;
 import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
@@ -18,9 +17,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
-import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
@@ -28,6 +27,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
 import java.net.URL;
+import java.util.Map;
 import java.util.ResourceBundle;
 
 /**
@@ -62,6 +62,9 @@ public class BasketController implements Initializable {
     @FXML
     private Text basketCost;
 
+    @FXML
+    private Text itemQty;
+
     // Hotswappable Button Controllers
     private Parent defaultBtn;
     private Parent alternateBtn;
@@ -74,46 +77,118 @@ public class BasketController implements Initializable {
 
     private SimpleIntegerProperty basketCountProperty;
     private SimpleStringProperty basketCostProperty;
+    private SimpleStringProperty currentQtyProperty;
+
     private ObservableMap<Product, Integer> basket;
     private int selectedItem;
+    private int integerQty;
 
     public void setupParentController(TillController tillController) {
         this.tillController = tillController;
         setupButtons();
     }
 
-    public void keyListener(KeyEvent keyEvent) {
+    public void keyPressedListener(KeyEvent keyEvent) {
         switch (keyEvent.getCode()) {
-            case ESCAPE: tillController.logoutUser(keyEvent); break;
-            case UP: moveSelection(true); break;
-            case DOWN: moveSelection(false); break;
+            case ESCAPE:
+                tillController.logoutUser(keyEvent); // Logout
+                break;
+            case UP:
+                moveSelection(true);
+                break;
+            case DOWN:
+                moveSelection(false);
+                break;
 
-            case F1: tillController.loadProductLookupView(); break;
-            case F2: System.out.println("F2 Pressed"); break;
-            case F3: System.out.println("F3 Pressed"); break;
-            case F4: System.out.println("F4 Pressed"); break;
-            case F5: System.out.println("F5 Pressed"); break;
-            case F6: System.out.println("F6 Pressed"); break;
-            case F7: System.out.println("F7 Pressed"); break;
-            case F8: System.out.println("F8 Pressed"); break;
-            case F9: System.out.println("F9 Pressed"); break;
-            case F10: System.out.println("F2 Pressed"); break;
-            case F11: System.out.println("F11 Pressed"); break;
-            case F12: System.out.println("F12 Pressed"); break;
+            case F1:
+                tillController.loadProductLookupView();
+                break;
+            case F2:
+                notImplemented();
+                break;
+            case F3:
+                notImplemented();
+                break;
+            case F4:
+                if (!keyEvent.isAltDown()) {
+                    notImplemented();
+                }
+                break;
+            case F5:
+                System.out.println("F5 Pressed");
+                break;
+            case F6:
+                System.out.println("F6 Pressed");
+                break;
+            case F7:
+                voidItem();
+                break;
+            case F8:
+                notImplemented();
+                break;
+            case F9:
+                tillController.loadWebBrowserView();
+                break;
+            case F10:
+                notImplemented();
+                break;
+            case F11:
+                System.out.println("Reserved for Loyalty Lookup");
+                break;
+            case F12:
+                notImplemented();
+                break;
+        }
+    }
+
+    public void keyTypedListener(KeyEvent keyEvent) {
+        if (keyEvent.getCharacter().equalsIgnoreCase("*")) {
+            modifyQty();
+            keyEvent.consume();
+        }
+    }
+
+    public void notImplemented() {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Not Implemented");
+        alert.setHeaderText(null);
+        alert.setContentText("This button is not currently implemented!");
+
+        alert.showAndWait();
+    }
+
+    private void modifyQty() {
+        boolean valid = false;
+        if (skuField.getText().matches("[0-9]")) {
+            int i = Integer.parseInt(skuField.getText());
+            if (i > 0) {
+                valid = true;
+            }
+            integerQty = i;
+            currentQtyProperty.set(integerQty + "x");
+        }
+
+        skuField.setText("");
+
+        if (!valid) {
+            skuField.setPromptText("Invalid Quantity");
+            skuField.getStyleClass().add("error_textField");
         }
     }
 
     private void setupEventListeners() {
-        skuField.setOnKeyPressed((KeyEvent keyEvent) -> keyListener(keyEvent));
+        skuField.setOnKeyPressed((KeyEvent keyEvent) -> keyPressedListener(keyEvent));
+        skuField.setOnKeyTyped((KeyEvent keyEvent) -> keyTypedListener(keyEvent));
 
         skuField.setOnAction((ActionEvent ae) -> {
-            if (!addItem(skuField.getText(), 1)) {
+            if (addItem(skuField.getText(), integerQty)) {
+                skuField.setText("");
+                integerQty = 1;
+                currentQtyProperty.set(integerQty + "x");
+            } else {
                 skuField.setText("");
                 skuField.setPromptText("Unrecognised SKU/Barcode");
                 skuField.getStyleClass().add("error_textField");
-            }
-            else {
-                skuField.setText("");
             }
 
             skuField.requestFocus();
@@ -160,25 +235,46 @@ public class BasketController implements Initializable {
                 count += basket.get(i);
             }
 
-            basketCostProperty.set("£" + String.format("%.2f", (float)cost/100));
+            basketCostProperty.set("£" + String.format("%.2f", (float) cost / 100));
             basketCountProperty.set(count);
         });
     }
 
+    public void voidItem() {
+        if (basket.size() > 0 && selectedItem >= 0) {
+
+            String sku = ((ProductView) basketContents.getChildren().get(selectedItem)).getSku();
+
+            for (Map.Entry<Product, Integer> entry : basket.entrySet()) {
+                if (entry.getKey().getSku().equalsIgnoreCase(sku) && entry.getValue() > 0) {
+                    entry.setValue(0);
+                    basketContents.getChildren().remove(selectedItem);
+
+                    if (basketContents.getChildren().size() > 0) {
+                        ((ProductView) basketContents.getChildren().get(basketContents.getChildren().size() - 1)).toggleHighlight();
+                    }
+
+                    selectedItem = basketContents.getChildren().size() - 1;
+                    break;
+                }
+            }
+        }
+    }
+
     private void moveSelection(boolean moveUp) {
-        if (basket.size() > 0) {
+        if (basketContents.getChildren().size() > 0) {
             if (moveUp) {
                 if (selectedItem - 1 >= 0) {
-                    ((ProductView)basketContents.getChildren().get(selectedItem)).toggleHighlight();
-                    ((ProductView)basketContents.getChildren().get(selectedItem-1)).toggleHighlight();
-                    ensureSelectionVisible(basketContents.getChildren().get(selectedItem-1));
+                    ((ProductView) basketContents.getChildren().get(selectedItem)).toggleHighlight();
+                    ((ProductView) basketContents.getChildren().get(selectedItem - 1)).toggleHighlight();
+                    ensureSelectionVisible(basketContents.getChildren().get(selectedItem - 1));
                     selectedItem--;
                 }
             } else {
-                if (selectedItem + 1 <= basket.size() - 1) {
-                    ((ProductView)basketContents.getChildren().get(selectedItem)).toggleHighlight();
-                    ((ProductView)basketContents.getChildren().get(selectedItem+1)).toggleHighlight();
-                    ensureSelectionVisible(basketContents.getChildren().get(selectedItem+1));
+                if (selectedItem + 1 <= basketContents.getChildren().size() - 1) {
+                    ((ProductView) basketContents.getChildren().get(selectedItem)).toggleHighlight();
+                    ((ProductView) basketContents.getChildren().get(selectedItem + 1)).toggleHighlight();
+                    ensureSelectionVisible(basketContents.getChildren().get(selectedItem + 1));
                     selectedItem++;
                 }
             }
@@ -196,40 +292,14 @@ public class BasketController implements Initializable {
         customerPane.getChildren().add(new LoyaltyView().loadLoyaltyView(this));
     }
 
-    private boolean addItem(String skuFieldText, int qty)
-    {
-        Product originalProduct = null;
+    private boolean addItem(String skuFieldText, int qty) {
+        Product originalProduct = isProductInBasket(skuFieldText);
+        Product product;
 
-        for (Product i : basket.keySet())
-        {
-            boolean checkBarcodes = true;
-
-            if (skuFieldText.equalsIgnoreCase(i.getSku()))
-            {
-                checkBarcodes = false;
-                originalProduct = i;
-            }
-
-            if (i.getBarcodes() != null && checkBarcodes)
-            {
-                for (String barcode : i.getBarcodes())
-                {
-                    if (skuFieldText.equalsIgnoreCase(barcode))
-                    {
-                        originalProduct = i;
-                        break;
-                    }
-                }
-            }
-
-            if (originalProduct != null) { break; }
-        }
-
-        if (originalProduct != null)
-        {
+        if (originalProduct != null) {
             ProductView originalProductView = null;
             for (Node iv : basketContents.getChildren()) {
-                if (originalProduct.getSku().equalsIgnoreCase(((ProductView)iv).getSku())) {
+                if (originalProduct.getSku().equalsIgnoreCase(((ProductView) iv).getSku())) {
                     originalProductView = (ProductView) iv;
                 }
             }
@@ -237,42 +307,102 @@ public class BasketController implements Initializable {
             if (originalProductView != null) {
                 originalProductView.updateQty(basket.get(originalProduct) + qty, originalProduct.getPrice());
                 basket.put(originalProduct, basket.get(originalProduct) + qty);
+                return true;
+            } else {
+                product = originalProduct;
             }
-            else {
-                System.out.println("An error occurred!");
-            }
-        }
-        else
-        {
-            Product product = new ProductUtility().getItem(skuFieldText);
+        } else {
+            product = new ProductUtility().getItem(skuFieldText);
 
-            if (product != null) {
-                ProductView productView = new ProductView();
-                productView.setupItemDisplay(product, qty);
-
-                if (basket.size() > 0) {
-                    ((ProductView) basketContents.getChildren().get(selectedItem)).toggleHighlight();
-                    productView.toggleHighlight();
-                    selectedItem = basketContents.getChildrenUnmodifiable().size();
-                } else {
-                    productView.toggleHighlight();
-                    selectedItem = 0;
-                }
-
-                basket.put(product, qty);
-                basketContents.getChildren().add(productView);
-            }
-            else
-            {
+            if (product == null) {
                 return false;
             }
+        }
+
+        ProductView productView = new ProductView();
+        productView.setupItemDisplay(product, qty);
+
+        if (basket.size() > 0 && selectedItem >= 0) {
+            ((ProductView) basketContents.getChildren().get(selectedItem)).toggleHighlight();
+            productView.toggleHighlight();
+            selectedItem = basketContents.getChildrenUnmodifiable().size();
+        } else {
+            productView.toggleHighlight();
+            selectedItem = 0;
+        }
+
+        basket.put(product, qty);
+        basketContents.getChildren().add(productView);
+        return true;
+    }
+
+    public boolean addItem(Product product) {
+        Product originalProduct = isProductInBasket(product.getSku());
+
+        if (originalProduct != null) {
+            ProductView originalProductView = null;
+            for (Node iv : basketContents.getChildren()) {
+                if (originalProduct.getSku().equalsIgnoreCase(((ProductView) iv).getSku())) {
+                    originalProductView = (ProductView) iv;
+                }
+            }
+
+            if (originalProductView != null) {
+                originalProductView.updateQty(basket.get(originalProduct) + 1, originalProduct.getPrice());
+                basket.put(originalProduct, basket.get(originalProduct) + 1);
+            } else {
+                System.out.println("An error occurred!");
+            }
+        } else {
+            ProductView productView = new ProductView();
+            productView.setupItemDisplay(product, 1);
+
+            if (basketContents.getChildren().size() > 0) {
+                ((ProductView) basketContents.getChildren().get(selectedItem)).toggleHighlight();
+                productView.toggleHighlight();
+                selectedItem = basketContents.getChildrenUnmodifiable().size();
+            } else {
+                productView.toggleHighlight();
+                selectedItem = 0;
+            }
+
+            basket.put(product, 1);
+            basketContents.getChildren().add(productView);
         }
 
         return true;
     }
 
+    private Product isProductInBasket(String skuFieldText) {
+        Product originalProduct = null;
+
+        for (Product i : basket.keySet()) {
+            boolean checkBarcodes = true;
+
+            if (skuFieldText.equalsIgnoreCase(i.getSku())) {
+                checkBarcodes = false;
+                originalProduct = i;
+            }
+
+            if (i.getBarcodes() != null && checkBarcodes) {
+                for (String barcode : i.getBarcodes()) {
+                    if (skuFieldText.equalsIgnoreCase(barcode)) {
+                        originalProduct = i;
+                        break;
+                    }
+                }
+            }
+
+            if (originalProduct != null) {
+                break;
+            }
+        }
+
+        return originalProduct;
+    }
+
     private void setupButtons() {
-        defaultBtn = new ButtonView().loadButtonView(tillController);
+        defaultBtn = new ButtonView().loadButtonView(tillController, this);
         btnPane.getChildren().add(defaultBtn);
     }
 
@@ -283,6 +413,10 @@ public class BasketController implements Initializable {
 
         basketCostProperty = new SimpleStringProperty("£0.00");
         basketCost.textProperty().bind(basketCostProperty);
+
+        currentQtyProperty = new SimpleStringProperty("1x");
+        itemQty.textProperty().bind(currentQtyProperty);
+        integerQty = 1;
     }
 
     @Override

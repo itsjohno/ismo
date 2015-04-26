@@ -1,5 +1,6 @@
 package co.ismo.gui.view;
 
+import co.ismo.gui.controller.BasketController;
 import co.ismo.gui.controller.ButtonController;
 import co.ismo.gui.controller.TillController;
 import javafx.fxml.FXMLLoader;
@@ -19,14 +20,14 @@ public class ButtonView {
 
     }
 
-    public Parent loadButtonView(TillController parentController) {
+    public Parent loadButtonView(TillController tillController, BasketController basketController) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("../res/fxml/basket_btnPane_default.fxml"));
 
             Parent content = loader.load();
 
             ButtonController buttonController = loader.getController();
-            buttonController.setupParentController(parentController);
+            buttonController.setupParentControllers(tillController, basketController);
 
             return content;
 

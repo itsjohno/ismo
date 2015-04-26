@@ -26,7 +26,7 @@ public class LoyaltyController implements Initializable {
     }
 
     private void setupEventListeners() {
-        cardNumber.setOnKeyPressed((KeyEvent keyEvent) -> basketController.keyListener(keyEvent));
+        cardNumber.setOnKeyPressed((KeyEvent keyEvent) -> basketController.keyPressedListener(keyEvent));
     }
 
     @Override

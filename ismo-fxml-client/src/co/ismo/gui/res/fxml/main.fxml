@@ -2,8 +2,8 @@
 
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.shape.Rectangle?>
-<Pane prefHeight="Infinity" prefWidth="Infinity" styleClass="paneBackground" xmlns="http://javafx.com/javafx/8"
-      xmlns:fx="http://javafx.com/fxml/1" fx:id="mainPane" fx:controller="co.ismo.gui.controller.RootController">
+<Pane xmlns:fx="http://javafx.com/fxml/1" prefHeight="Infinity" prefWidth="Infinity" styleClass="paneBackground"
+      xmlns="http://javafx.com/javafx/8" fx:id="mainPane" fx:controller="co.ismo.gui.controller.RootController">
     <children>
         <Rectangle fx:id="backgroundRectangle" styleClass="backgroundRectangle" height="100.0" width="100.0"/>
     </children>

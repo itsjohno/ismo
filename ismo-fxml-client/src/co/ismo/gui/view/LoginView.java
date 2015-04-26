@@ -36,7 +36,11 @@ public class LoginView {
     private void setStyling(Stage loginStage, double parentWidth, boolean closable) {
         loginStage.initStyle(StageStyle.TRANSPARENT);
         loginStage.initModality(Modality.APPLICATION_MODAL);
-        loginStage.setOnCloseRequest((WindowEvent event) -> { if (!closable) { SharedViewUtils.consumeEvent(event, "LoginView"); } });
+        loginStage.setOnCloseRequest((WindowEvent event) -> {
+            if (!closable) {
+                SharedViewUtils.consumeEvent(event, "LoginView");
+            }
+        });
 
         loginStage.setWidth(parentWidth * 0.4);
         loginStage.setResizable(false);

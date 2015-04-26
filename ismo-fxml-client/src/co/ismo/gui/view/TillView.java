@@ -26,7 +26,6 @@ public class TillView {
         tillStage.initOwner(parentStage);
         tillStage.setOnCloseRequest((WindowEvent event) -> {
             tillStage.close();
-            System.out.println("tillStage recieved Close Request");
             new LoginView(parentStage, 1, false);
         });
 
@@ -64,5 +63,4 @@ public class TillView {
             ioe.printStackTrace();
         }
     }
-
 }

@@ -57,7 +57,11 @@ public class Operator {
         this.operatorID = operatorID;
     }
 
-    public int getUserLevel() { return userLevel; }
+    public int getUserLevel() {
+        return userLevel;
+    }
 
-    public void setUserLevel(int userLevel) { this.userLevel = userLevel; }
+    public void setUserLevel(int userLevel) {
+        this.userLevel = userLevel;
+    }
 }

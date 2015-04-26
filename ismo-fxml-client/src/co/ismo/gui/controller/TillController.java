@@ -1,20 +1,22 @@
 package co.ismo.gui.controller;
 
 import co.ismo.gui.view.BasketView;
+import co.ismo.gui.view.BrowserView;
 import co.ismo.gui.view.ProductLookupView;
 import co.ismo.object.type.Operator;
+import co.ismo.object.type.Transaction;
+import co.ismo.object.util.TransactionUtility;
 import co.ismo.util.DynamicHashMap;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.control.Button;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
@@ -53,14 +55,18 @@ public class TillController implements Initializable {
     private Text userDetails;
 
     @FXML
+    private Text transactionNumber;
+
+    @FXML
     private Button goBackBtn;
 
+    private SimpleStringProperty transactionIDProperty;
+
+    private Transaction transaction;
     private BasketView basketView;
 
     @FXML
     public void logoutUser(Event e) {
-        currentOperator = null;
-
         Node s = (Node) e.getSource();
         Stage currentStage = (Stage) s.getScene().getWindow();
         currentStage.fireEvent(new WindowEvent(currentStage, WindowEvent.WINDOW_CLOSE_REQUEST));
@@ -113,6 +119,39 @@ public class TillController implements Initializable {
         }
     }
 
+    public void loadWebBrowserView() {
+        if (middlePane.getChildren().contains(basketView.getBasketView())) {
+            BrowserView browserView = new BrowserView();
+
+            middlePane.getChildren().clear();
+            middlePane.getChildren().add(browserView.getBrowserView(this));
+
+            goBackBtn.setText("Go Back (Esc)");
+            goBackBtn.setOnMouseClicked((event) -> {
+                browserView.getController().closeBrowserEngine();
+                goBack();
+            });
+        }
+    }
+
+    private void setTransaction() {
+        transaction = new TransactionUtility().getNextTransaction();
+
+        String storeID = transaction.getStoreID();
+        String tillID = transaction.getTillID();
+        String transactionID = transaction.getTransactionID();
+
+        if (transactionID.length() < 5) {
+            transactionID = String.format("%5s", transactionID).replace(' ', '0');
+        }
+        transactionIDProperty = new SimpleStringProperty(storeID + tillID + "-" + transactionID);
+        transactionNumber.textProperty().bind(transactionIDProperty);
+    }
+
+    private Transaction getTransaction() {
+        return this.transaction;
+    }
+
     @Override
     public void initialize(URL fxmlFileLocation, ResourceBundle resources) {
         assert tillGrid != null : "fx:id=\"tillGrid\" was not injected: check your FXML file 'till.fxml'.";
@@ -121,9 +160,11 @@ public class TillController implements Initializable {
         assert goBackBtn != null : "fx:id=\"goBackBtn\" was not injected: check your FXML file 'till.fxml'.";
         assert dateTime != null : "fx:id=\"dateTime\" was not injected: check your FXML file 'till.fxml'.";
         assert userDetails != null : "fx:id=\"userDetails\" was not injected: check your FXML file 'till.fxml'.";
+        assert transactionNumber != null : "fx:id=\"transactionNumber\" was not injected: check your FXML file 'till.fxml'.";
 
         loadBasketView();
         bindDateTime();
+        setTransaction();
         goBackBtn.setOnMouseClicked((event) -> logoutUser(event));
     }
 }

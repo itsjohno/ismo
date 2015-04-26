@@ -3,8 +3,10 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
-<GridPane hgap="15.0" vgap="15.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
-          AnchorPane.topAnchor="0.0" fx:controller="co.ismo.gui.controller.ButtonController" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8">
+<GridPane xmlns:fx="http://javafx.com/fxml/1" hgap="15.0" vgap="15.0" AnchorPane.bottomAnchor="0.0"
+          AnchorPane.leftAnchor="0.0"
+          AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0"
+          fx:controller="co.ismo.gui.controller.ButtonController" xmlns="http://javafx.com/javafx/8">
     <columnConstraints>
         <ColumnConstraints percentWidth="50.0"/>
         <ColumnConstraints percentWidth="50.0"/>
@@ -18,7 +20,8 @@
     </rowConstraints>
     <children>
         <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="altTillBtn"
-                wrapText="true" GridPane.columnIndex="0" GridPane.rowIndex="0" focusTraversable="false" onAction="#notImplemented">
+                wrapText="true" GridPane.columnIndex="0" GridPane.rowIndex="0" focusTraversable="false"
+                onAction="#notImplemented">
             <graphic>
                 <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                     <children>

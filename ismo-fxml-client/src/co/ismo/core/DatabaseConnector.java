@@ -33,8 +33,7 @@ public class DatabaseConnector {
 
         try {
             connection = DriverManager.getConnection(dbURL, dbUser, dbPassword);
-        }
-        catch (SQLException ex) {
+        } catch (SQLException ex) {
             System.out.println("SQLException: " + ex.getMessage());
             System.out.println("SQLState: " + ex.getSQLState());
             System.out.println("VendorError: " + ex.getErrorCode());

@@ -4,74 +4,80 @@
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
-<fx:root fx:id="rootBox" focusTraversable="false" maxHeight="50.0" type="javafx.scene.layout.VBox" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root xmlns:fx="http://javafx.com/fxml/1" fx:id="rootBox" focusTraversable="false" maxHeight="50.0"
+         type="javafx.scene.layout.VBox" xmlns="http://javafx.com/javafx/8">
     <children>
         <GridPane focusTraversable="false">
             <columnConstraints>
-                <ColumnConstraints percentWidth="75.0" />
-                <ColumnConstraints percentWidth="5.0" />
-                <ColumnConstraints percentWidth="10.0" />
-                <ColumnConstraints percentWidth="10.0" />
+                <ColumnConstraints percentWidth="75.0"/>
+                <ColumnConstraints percentWidth="5.0"/>
+                <ColumnConstraints percentWidth="10.0"/>
+                <ColumnConstraints percentWidth="10.0"/>
             </columnConstraints>
             <rowConstraints>
-                <RowConstraints percentHeight="50.0" vgrow="NEVER" />
-                <RowConstraints percentHeight="50.0" vgrow="SOMETIMES" />
+                <RowConstraints percentHeight="50.0" vgrow="NEVER"/>
+                <RowConstraints percentHeight="50.0" vgrow="SOMETIMES"/>
             </rowConstraints>
             <children>
-                <Text fx:id="qty" GridPane.columnIndex="1" styleClass="qtyText" GridPane.halignment="CENTER" GridPane.rowSpan="2" GridPane.valignment="CENTER"/>
-                <Text fx:id="value" GridPane.columnIndex="2" styleClass="singleCostTxt" GridPane.halignment="CENTER" GridPane.rowSpan="2" GridPane.valignment="CENTER"/>
-                <Text fx:id="qtyValue" styleClass="totalCostTxt" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowSpan="2" GridPane.valignment="CENTER"/>
-                <Separator orientation="VERTICAL" GridPane.columnIndex="3" GridPane.rowSpan="2" />
+                <Text fx:id="qty" GridPane.columnIndex="1" styleClass="qtyText" GridPane.halignment="CENTER"
+                      GridPane.rowSpan="2" GridPane.valignment="CENTER"/>
+                <Text fx:id="value" GridPane.columnIndex="2" styleClass="singleCostTxt" GridPane.halignment="CENTER"
+                      GridPane.rowSpan="2" GridPane.valignment="CENTER"/>
+                <Text fx:id="qtyValue" styleClass="totalCostTxt" GridPane.columnIndex="3" GridPane.halignment="CENTER"
+                      GridPane.rowSpan="2" GridPane.valignment="CENTER"/>
+                <Separator orientation="VERTICAL" GridPane.columnIndex="3" GridPane.rowSpan="2"/>
                 <HBox alignment="CENTER_LEFT" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                     <children>
                         <Text fx:id="sku" styleClass="skuTxt">
                             <HBox.margin>
-                                <Insets right="10.0" />
+                                <Insets right="10.0"/>
                             </HBox.margin>
                         </Text>
-                        <Text fx:id="productName" styleClass="productNameTxt" />
+                        <Text fx:id="productName" styleClass="productNameTxt"/>
                     </children>
                     <padding>
-                        <Insets left="10.0" />
+                        <Insets left="10.0"/>
                     </padding>
                 </HBox>
-                <HBox alignment="CENTER_LEFT" focusTraversable="false" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="1">
+                <HBox alignment="CENTER_LEFT" focusTraversable="false" prefHeight="100.0" prefWidth="200.0"
+                      GridPane.rowIndex="1">
                     <children>
                         <Text fx:id="supercat" styleClass="supercatTxt">
                             <HBox.margin>
-                                <Insets right="5.0" />
+                                <Insets right="5.0"/>
                             </HBox.margin>
                         </Text>
                         <Text text="/">
                             <HBox.margin>
-                                <Insets right="5.0" />
+                                <Insets right="5.0"/>
                             </HBox.margin>
                         </Text>
                         <Text fx:id="subcat" styleClass="subcatTxt">
                             <HBox.margin>
-                                <Insets right="5.0" />
+                                <Insets right="5.0"/>
                             </HBox.margin>
                         </Text>
                         <Text text="/">
                             <HBox.margin>
-                                <Insets right="5.0" />
+                                <Insets right="5.0"/>
                             </HBox.margin>
                         </Text>
-                        <Text fx:id="ageRating" styleClass="ageRatingTxt" />
+                        <Text fx:id="ageRating" styleClass="ageRatingTxt"/>
                     </children>
                     <padding>
-                        <Insets left="10.0" />
+                        <Insets left="10.0"/>
                     </padding>
                 </HBox>
 
             </children>
         </GridPane>
-      <Separator prefWidth="200.0">
-         <padding>
-            <Insets top="10.0" />
-         </padding></Separator>
+        <Separator prefWidth="200.0">
+            <padding>
+                <Insets top="10.0"/>
+            </padding>
+        </Separator>
     </children>
-   <padding>
-      <Insets top="10.0" />
-   </padding>
+    <padding>
+        <Insets top="10.0"/>
+    </padding>
 </fx:root>

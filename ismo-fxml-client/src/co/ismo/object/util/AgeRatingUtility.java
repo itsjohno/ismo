@@ -30,7 +30,7 @@ public class AgeRatingUtility {
         HashMap<Integer, AgeRating> ageRatings = new HashMap<Integer, AgeRating>();
         DatabaseConnector dbConnector = new DatabaseConnector();
 
-        String query =  "SELECT * FROM age_ratings";
+        String query = "SELECT * FROM age_ratings";
 
         try (Connection connection = dbConnector.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(query);) {

@@ -36,6 +36,10 @@ public class Main extends Application {
         Font.loadFont(Main.class.getResource("../gui/res/font/fontawesome-webfont.ttf").toExternalForm(), 10);
     }
 
+    public static void main(String[] args) {
+        launch(args);
+    }
+
     @Override
     public void start(Stage primaryStage) throws Exception {
         setHashMaps();
@@ -49,7 +53,6 @@ public class Main extends Application {
             new LoginView(primaryStage, 1, false);
         }
     }
-
 
     private void setStyling(Stage primaryStage) {
         Rectangle2D primaryDisplay = Screen.getPrimary().getBounds();
@@ -66,7 +69,7 @@ public class Main extends Application {
         primaryStage.setTitle("ismo EPOS");
         primaryStage.setResizable(false);
 
-        FXMLLoader loader =  new FXMLLoader(getClass().getResource("../gui/res/fxml/main.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../gui/res/fxml/main.fxml"));
         Scene scene = new Scene(loader.load(), Color.TRANSPARENT);
 
         RootController rootController = loader.getController();
@@ -89,9 +92,5 @@ public class Main extends Application {
     @Override
     public void stop() throws Exception {
         System.out.println("STOP called"); // This is where we'll need to ensure a flush of the cache to persistence.
-    }
-
-    public static void main(String[] args) {
-        launch(args);
     }
 }

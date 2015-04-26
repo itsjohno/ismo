@@ -5,9 +5,11 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
-<GridPane hgap="20.0" style="-fx-background-color: white; -fx-border-color: black; -fx-border-width: 1px;" vgap="20.0"
-          AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
-          AnchorPane.topAnchor="0.0" fx:controller="co.ismo.gui.controller.LoyaltyController" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<GridPane xmlns:fx="http://javafx.com/fxml/1" hgap="20.0"
+          style="-fx-background-color: white; -fx-border-color: black; -fx-border-width: 1px;"
+          vgap="20.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+          AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0"
+          fx:controller="co.ismo.gui.controller.LoyaltyController" xmlns="http://javafx.com/javafx/8">
     <columnConstraints>
         <ColumnConstraints hgrow="SOMETIMES" percentWidth="50.0"/>
         <ColumnConstraints hgrow="SOMETIMES" percentWidth="50.0"/>
@@ -39,11 +41,11 @@
                 <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="customerTxt" text="1000 points (£2.50)"/>
             </children>
         </TextFlow>
-        <TextField fx:id="cardNumber" promptText="Loyalty Card Number" GridPane.columnSpan="2" GridPane.rowIndex="3" />
+        <TextField fx:id="cardNumber" promptText="Loyalty Card Number" GridPane.columnSpan="2" GridPane.rowIndex="3"/>
         <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Transaction History"
-                GridPane.rowIndex="4" styleClass="loyaltyBtn" focusTraversable="false" />
+                GridPane.rowIndex="4" styleClass="loyaltyBtn" focusTraversable="false"/>
         <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Edit Details"
-                GridPane.columnIndex="1" GridPane.rowIndex="4" styleClass="loyaltyBtn" focusTraversable="false" />
+                GridPane.columnIndex="1" GridPane.rowIndex="4" styleClass="loyaltyBtn" focusTraversable="false"/>
     </children>
     <padding>
         <Insets bottom="25.0" left="25.0" right="25.0" top="25.0"/>

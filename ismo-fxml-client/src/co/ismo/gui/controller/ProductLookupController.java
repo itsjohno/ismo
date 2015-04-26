@@ -1,5 +1,6 @@
 package co.ismo.gui.controller;
 
+import co.ismo.gui.view.PTableColumn;
 import co.ismo.object.type.AgeRating;
 import co.ismo.object.type.Category;
 import co.ismo.object.type.Product;
@@ -9,24 +10,21 @@ import co.ismo.object.util.OtherUtility;
 import co.ismo.object.util.ProductUtility;
 import co.ismo.util.DynamicHashMap;
 import javafx.beans.InvalidationListener;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.VBox;
 
 import java.net.URL;
-import java.util.HashMap;
 import java.util.ResourceBundle;
-import java.util.Set;
 
 /**
  * Created by Johnathan
@@ -64,28 +62,28 @@ public class ProductLookupController implements Initializable {
     private TableView resultsTable;
 
     @FXML
-    private TableColumn skuColumn;
+    private PTableColumn<Product, String> skuColumn;
 
     @FXML
-    private TableColumn barcodeColumn;
+    private PTableColumn<Product, String> barcodeColumn;
 
     @FXML
-    private TableColumn nameColumn;
+    private PTableColumn<Product, String> nameColumn;
 
     @FXML
-    private TableColumn stockColumn;
+    private PTableColumn<Product, String> stockColumn;
 
     @FXML
-    private TableColumn priceColumn;
+    private PTableColumn<Product, String> priceColumn;
 
     @FXML
-    private TableColumn supercatColumn;
+    private PTableColumn<Product, String> supercatColumn;
 
     @FXML
-    private TableColumn subcatColumn;
+    private PTableColumn<Product, String> subcatColumn;
 
     @FXML
-    private TableColumn ageRatingColumn;
+    private PTableColumn<Product, String> ageRatingColumn;
 
     private TillController tillController;
     private BasketController basketController;
@@ -104,7 +102,7 @@ public class ProductLookupController implements Initializable {
         supercatField.valueProperty().addListener((InvalidationListener) (change) -> {
             int i = 0;
             for (String s : supercatList) {
-                if (s.equalsIgnoreCase((String)supercatField.getValue())) {
+                if (s.equalsIgnoreCase((String) supercatField.getValue())) {
                     setupCategoryCombo(i);
                     break;
                 }
@@ -122,7 +120,14 @@ public class ProductLookupController implements Initializable {
             }
         }
 
-        categoryList.add(0, "All Categories");
+        //categoryList.add(0, "All Categories");
+
+        if (supercatID != -1) {
+            categoryList.add(0, "All " + DynamicHashMap.getSuperCategories().get(supercatID) + " Categories");
+        } else {
+            categoryList.add(0, "All Categories");
+        }
+
         catField.setItems(categoryList);
         catField.setValue(categoryList.get(0));
     }
@@ -143,11 +148,21 @@ public class ProductLookupController implements Initializable {
     private void searchProducts() {
 
         int fromPrice = 0, toPrice = 0, subcatID = 0, supercatID = 0, ageRatingID = 0;
-        if (!((String)catField.getValue()).equalsIgnoreCase("All Categories")) { subcatID = new CategoryUtility().getCategoryIDFromName((String)catField.getValue()); }
-        if (!((String)supercatField.getValue()).equalsIgnoreCase("All Categories")) { supercatID = new OtherUtility().getSuperCategoryIDFromName((String)supercatField.getValue()); }
-        if (!((String)ageRatingField.getValue()).equalsIgnoreCase("All Age Ratings")) { ageRatingID = new AgeRatingUtility().getAgeRatingIDFromName((String)ageRatingField.getValue()); }
-        if (!priceFromField.getText().equalsIgnoreCase("")) { fromPrice = Integer.parseInt(priceFromField.getText()); }
-        if (!priceToField.getText().equalsIgnoreCase("")) { toPrice = Integer.parseInt(priceToField.getText()); }
+        if (!catField.getItems().get(0).toString().equalsIgnoreCase(catField.getValue().toString())) {
+            subcatID = new CategoryUtility().getCategoryIDFromName((String) catField.getValue());
+        }
+        if (!supercatField.getItems().get(0).toString().equalsIgnoreCase(supercatField.getValue().toString())) {
+            supercatID = new OtherUtility().getSuperCategoryIDFromName((String) supercatField.getValue());
+        }
+        if (!ageRatingField.getItems().get(0).toString().equalsIgnoreCase(ageRatingField.getValue().toString())) {
+            ageRatingID = new AgeRatingUtility().getAgeRatingIDFromName((String) ageRatingField.getValue());
+        }
+        if (!priceFromField.getText().equalsIgnoreCase("")) {
+            fromPrice = Integer.parseInt(priceFromField.getText());
+        }
+        if (!priceToField.getText().equalsIgnoreCase("")) {
+            toPrice = Integer.parseInt(priceToField.getText());
+        }
 
         ObservableList<Product> returnedProducts = new ProductUtility().lookupProducts(skuField.getText(), barcodeField.getText(), nameField.getText(), supercatID, subcatID, ageRatingID, fromPrice, toPrice);
         resultsTable.setItems(returnedProducts);
@@ -155,16 +170,22 @@ public class ProductLookupController implements Initializable {
 
     private void keyListener(KeyEvent keyEvent) {
         switch (keyEvent.getCode()) {
-            case ESCAPE: tillController.goBack(); break;
-            case ENTER: searchProducts(); break;
-            case F12: System.out.println("Reset to Defaults"); break;
+            case ESCAPE:
+                tillController.goBack();
+                break;
+            case ENTER:
+                searchProducts();
+                break;
+            case F12:
+                System.out.println("Reset to Defaults");
+                break;
         }
     }
 
     private EventHandler<KeyEvent> numberValidation() {
         return event -> {
             TextField txtField = (TextField) event.getSource();
-            if(!event.getCharacter().matches("[0-9]")){
+            if (!event.getCharacter().matches("[0-9]")) {
                 event.consume();
             }
         };
@@ -182,17 +203,75 @@ public class ProductLookupController implements Initializable {
         ageRatingField.setOnKeyPressed((KeyEvent e) -> keyListener(e));
         priceFromField.setOnKeyPressed((KeyEvent e) -> keyListener(e));
         priceToField.setOnKeyPressed((KeyEvent e) -> keyListener(e));
+
+        resultsTable.setRowFactory(tv -> {
+            TableRow<Product> row = new TableRow<>();
+            row.setOnMouseClicked(event -> {
+                if (event.getClickCount() == 2 && (!row.isEmpty())) {
+                    basketController.addItem(row.getItem());
+                    tillController.goBack();
+                }
+            });
+            return row;
+        });
     }
 
     private void setupResultsTable() {
-        skuColumn.setCellValueFactory(new PropertyValueFactory<Product, String>("sku"));
-        barcodeColumn.setCellValueFactory(new PropertyValueFactory<Product, String>("barcode"));
-        nameColumn.setCellValueFactory(new PropertyValueFactory<Product, String>("name"));
-        stockColumn.setCellValueFactory(new PropertyValueFactory<Product, String>("stock"));
-        priceColumn.setCellValueFactory(new PropertyValueFactory<Product, String>("price"));
-        //supercatColumn.setCellValueFactory(new PropertyValueFactory<Product, String>(""));
-        subcatColumn.setCellValueFactory(new PropertyValueFactory<Product, String>("categoryID"));
-        ageRatingColumn.setCellValueFactory(new PropertyValueFactory<Product, String>("ageRating"));
+        skuColumn.setCellValueFactory(new PropertyValueFactory<>("sku"));
+        nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
+        stockColumn.setCellValueFactory(new PropertyValueFactory<>("stock"));
+
+        barcodeColumn.setCellValueFactory(cellData -> {
+            SimpleStringProperty property = new SimpleStringProperty();
+
+            int i = 0;
+            for (String s : cellData.getValue().getBarcodes()) {
+                if (i == 0) {
+                    property.set(s);
+                } else {
+                    property.set(property.get() + "\n" + s);
+                }
+                i++;
+            }
+            ;
+
+            return property;
+        });
+
+        priceColumn.setCellValueFactory(cellData -> {
+            SimpleStringProperty property = new SimpleStringProperty();
+            property.setValue("£" + String.format("%.2f", (float) cellData.getValue().getPrice() / 100));
+            return property;
+        });
+
+        supercatColumn.setCellValueFactory(cellData -> {
+            return getCategoryNames(cellData.getValue().getCategoryID(), true);
+        });
+
+        subcatColumn.setCellValueFactory(cellData -> {
+            return getCategoryNames(cellData.getValue().getCategoryID(), false);
+        });
+
+        ageRatingColumn.setCellValueFactory(cellData -> {
+            SimpleStringProperty property = new SimpleStringProperty();
+            AgeRating ar = DynamicHashMap.getAgeRatings().get(cellData.getValue().getAgeRating());
+            property.set(ar.getName());
+            return property;
+        });
+    }
+
+    private SimpleStringProperty getCategoryNames(int categoryID, boolean supercat) {
+        SimpleStringProperty property = new SimpleStringProperty();
+
+        if (supercat) {
+            Category c = DynamicHashMap.getSubCategories().get(categoryID);
+            property.set(DynamicHashMap.getSuperCategories().get(c.getSupercatID()));
+        } else {
+            Category c = DynamicHashMap.getSubCategories().get(categoryID);
+            property.set(c.getName());
+        }
+
+        return property;
     }
 
     @Override

@@ -12,7 +12,8 @@ public class AgeRating {
     private boolean advisory;
     private String name;
 
-    public AgeRating() {}
+    public AgeRating() {
+    }
 
     public AgeRating(int ageRequired, boolean advisory, String name) {
         this.ageRequired = ageRequired;

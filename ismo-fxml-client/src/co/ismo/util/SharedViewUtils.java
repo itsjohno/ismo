@@ -19,10 +19,7 @@ import java.net.URL;
 public class SharedViewUtils {
     public static void consumeEvent(Event e, String caller) {
         if (!Constant.DEVELOPER_MODE) {
-            System.out.println("Consumed event of type " + e.getEventType() + " from " + caller);
             e.consume();
-        } else {
-            System.out.println("Event of type " + e.getEventType() + " from " + caller + " occurred");
         }
     }
 

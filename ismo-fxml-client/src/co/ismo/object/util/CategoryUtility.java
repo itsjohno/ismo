@@ -29,7 +29,7 @@ public class CategoryUtility {
         HashMap<Integer, Category> categories = new HashMap<Integer, Category>();
         DatabaseConnector dbConnector = new DatabaseConnector();
 
-        String query =  "SELECT * FROM category";
+        String query = "SELECT * FROM category";
 
         try (Connection connection = dbConnector.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(query);) {
@@ -49,7 +49,7 @@ public class CategoryUtility {
     }
 
     public int getCategoryIDFromName(String name) {
-        int catID = 0;
+        int catID = 1;
 
         for (Category c : DynamicHashMap.getSubCategories().values()) {
             if (c.getName().equalsIgnoreCase(name)) {

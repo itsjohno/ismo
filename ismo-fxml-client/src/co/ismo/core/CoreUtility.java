@@ -17,8 +17,7 @@ public class CoreUtility {
         try {
             MessageDigest md = MessageDigest.getInstance("SHA1");
             hashed = byteArrayToHexString(md.digest(unhashed.getBytes()));
-        }
-        catch (NoSuchAlgorithmException nsae) {
+        } catch (NoSuchAlgorithmException nsae) {
             System.out.println("An exception occurred! Specified algorithm does not exist");
         }
 
@@ -28,9 +27,9 @@ public class CoreUtility {
     // http://rgagnon.com/javadetails/java-0596.html
     public static String byteArrayToHexString(byte[] b) {
         String result = "";
-        for (int i=0; i < b.length; i++) {
+        for (int i = 0; i < b.length; i++) {
             result +=
-                    Integer.toString( ( b[i] & 0xff ) + 0x100, 16).substring( 1 );
+                    Integer.toString((b[i] & 0xff) + 0x100, 16).substring(1);
         }
         return result;
     }

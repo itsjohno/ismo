@@ -75,17 +75,32 @@ public class ProductUtility {
 
     public ObservableList<Product> lookupProducts(String sku, String barcode, String name, int supercat, int category, int ageRating, int fromPrice, int toPrice) {
         int paramsSet = 0;
-        String subcatFromSupercat = "(";
         List<Product> productList = new ArrayList<Product>();
         DatabaseConnector dbConnector = new DatabaseConnector();
 
+        if (!StringUtils.isNullOrEmpty(barcode)) {
+            String queryBarcode = "SELECT * FROM product_barcode WHERE `barcode` = ?";
+
+            try (Connection connection = dbConnector.getConnection();
+                 PreparedStatement barcodePreparedStatement = connection.prepareStatement(queryBarcode);) {
+
+                barcodePreparedStatement.setString(1, barcode);
+
+                try (ResultSet skuResults = barcodePreparedStatement.executeQuery()) {
+                    if (skuResults.next()) {
+                        sku = skuResults.getString("sku");
+                    }
+                }
+            } catch (SQLException ex) {
+                System.out.println("SQLException: " + ex.getMessage());
+                System.out.println("SQLState: " + ex.getSQLState());
+                System.out.println("VendorError: " + ex.getErrorCode());
+            }
+        }
+
         String query = "SELECT * FROM productLookup WHERE 1=1 ";
         if (!StringUtils.isNullOrEmpty(sku)) {
-            query += "`AND sku` = ? ";
-            paramsSet++;
-        }
-        if (!StringUtils.isNullOrEmpty(barcode)) {
-            query += "AND `barcode` = ? ";
+            query += "AND `sku` = ? ";
             paramsSet++;
         }
         if (!StringUtils.isNullOrEmpty(name)) {
@@ -93,17 +108,26 @@ public class ProductUtility {
             paramsSet++;
         }
         if (category != 0) {
-            query += "AND `category` = ? ";
+            query += "AND `categoryID` = ? ";
             paramsSet++;
         }
         if (supercat != 0 && category == 0) {
-            query += "AND `category` IN ? ";
+            query += "AND `categoryID` IN (";
 
-            int pos = 1;
-            for (Category c : DynamicHashMap.getSubCategories().values()) { if (c.getSupercatID() == supercat) { subcatFromSupercat += Integer.toString(pos) + ","; } }
-            subcatFromSupercat = subcatFromSupercat.substring(0, subcatFromSupercat.length() - 1);
-            subcatFromSupercat += ")";
-            paramsSet++;
+            String subcatString = "";
+            CategoryUtility cu = new CategoryUtility();
+
+            for (Category c : DynamicHashMap.getSubCategories().values()) {
+                if (c.getSupercatID() == supercat) {
+                    subcatString += Integer.toString(cu.getCategoryIDFromName(c.getName())) + ",";
+                }
+            }
+
+            if (!StringUtils.isNullOrEmpty(subcatString)) {
+                query += subcatString.substring(0, subcatString.length() - 1) + ")";
+            } else {
+                query += "0)";
+            }
         }
         if (ageRating != 0) {
             query += "AND `ageRating` = ? ";
@@ -127,13 +151,11 @@ public class ProductUtility {
                     preparedStatement.setString(currentParam, sku);
                     currentParam++;
                 }
-                if (!StringUtils.isNullOrEmpty(barcode)) {
-                    preparedStatement.setString(currentParam, barcode);
-                    currentParam++;
-                }
                 if (!StringUtils.isNullOrEmpty(name)) {
                     String nameLike = "%";
-                    for (String s : name.split(" ")) { nameLike += s + "%"; }
+                    for (String s : name.split(" ")) {
+                        nameLike += s + "%";
+                    }
                     preparedStatement.setString(currentParam, nameLike);
                     currentParam++;
                 }
@@ -141,10 +163,7 @@ public class ProductUtility {
                     preparedStatement.setInt(currentParam, category);
                     currentParam++;
                 }
-                if (supercat != 0 && category == 0) {
-                    preparedStatement.setString(currentParam, subcatFromSupercat);
-                    currentParam++;
-                }
+
                 if (ageRating != 0) {
                     preparedStatement.setInt(currentParam, ageRating);
                     currentParam++;
@@ -161,7 +180,19 @@ public class ProductUtility {
 
             try (ResultSet results = preparedStatement.executeQuery()) {
                 while (results.next()) {
-                    productList.add(createItem(results));
+                    boolean productInList = false;
+
+                    for (Product p : productList) {
+                        if (p.getSku().equalsIgnoreCase(results.getString("sku"))) {
+                            p.getBarcodes().add(results.getString("barcode"));
+                            productInList = true;
+                            break;
+                        }
+                    }
+
+                    if (!productInList) {
+                        productList.add(createItem(results));
+                    }
                 }
             }
         } catch (SQLException ex) {

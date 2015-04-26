@@ -21,7 +21,7 @@ public class OtherUtility {
         HashMap<Integer, String> supercats = new HashMap<Integer, String>();
         DatabaseConnector dbConnector = new DatabaseConnector();
 
-        String query =  "SELECT * FROM super_category";
+        String query = "SELECT * FROM super_category";
 
         try (Connection connection = dbConnector.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(query);) {
@@ -44,7 +44,7 @@ public class OtherUtility {
         HashMap<Integer, String> userLevels = new HashMap<Integer, String>();
         DatabaseConnector dbConnector = new DatabaseConnector();
 
-        String query =  "SELECT * FROM user_levels";
+        String query = "SELECT * FROM user_levels";
 
         try (Connection connection = dbConnector.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(query);) {
@@ -64,7 +64,7 @@ public class OtherUtility {
     }
 
     public int getSuperCategoryIDFromName(String name) {
-        int catID = 0;
+        int catID = 1;
 
         for (String s : DynamicHashMap.getSuperCategories().values()) {
             if (s.equalsIgnoreCase(name)) {

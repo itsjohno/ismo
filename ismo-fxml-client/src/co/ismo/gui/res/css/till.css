@@ -30,29 +30,43 @@
 
 .stdTillBtn {
     -fx-background-color: #d2d2d2;
-    -fx-background-insets: 0,1,2,3;
-    -fx-background-radius: 10,10,10,10;
+    -fx-background-insets: 0, 1, 2, 3;
+    -fx-background-radius: 10, 10, 10, 10;
     -fx-padding: 10 25 10 25;
 }
 
 .stdTillBtn:pressed {
     -fx-background-color: #e6e6e6;
-    -fx-background-insets: 0,1,2,3;
-    -fx-background-radius: 10,10,10,10;
+    -fx-background-insets: 0, 1, 2, 3;
+    -fx-background-radius: 10, 10, 10, 10;
+    -fx-padding: 10 25 10 25;
+}
+
+.notImplementedTillBtn {
+    -fx-background-color: #d25962;
+    -fx-background-insets: 0, 1, 2, 3;
+    -fx-background-radius: 10, 10, 10, 10;
+    -fx-padding: 10 25 10 25;
+}
+
+.notImplementedTillBtn:pressed {
+    -fx-background-color: #ff5e67;
+    -fx-background-insets: 0, 1, 2, 3;
+    -fx-background-radius: 10, 10, 10, 10;
     -fx-padding: 10 25 10 25;
 }
 
 .altTillBtn {
     -fx-background-color: #79d277;
-    -fx-background-insets: 0,1,2,3;
-    -fx-background-radius: 10,10,10,10;
+    -fx-background-insets: 0, 1, 2, 3;
+    -fx-background-radius: 10, 10, 10, 10;
     -fx-padding: 10 25 10 25;
 }
 
 .altTillBtn:pressed {
     -fx-background-color: #99e698;
-    -fx-background-insets: 0,1,2,3;
-    -fx-background-radius: 10,10,10,10;
+    -fx-background-insets: 0, 1, 2, 3;
+    -fx-background-radius: 10, 10, 10, 10;
     -fx-padding: 10 25 10 25;
 }
 
@@ -77,27 +91,25 @@
 }
 
 #goBackBtn {
-    -fx-background-color:
-    #000000,
+    -fx-background-color: #000000,
     linear-gradient(#ea4d49, #8f1212),
     linear-gradient(#b72823, #75150f),
     linear-gradient(#ab281c, #681c13);
-    -fx-background-insets: 0,1,2,3;
-    -fx-background-radius: 3,2,2,2;
+    -fx-background-insets: 0, 1, 2, 3;
+    -fx-background-radius: 3, 2, 2, 2;
     -fx-padding: 10 25 10 25;
     -fx-text-fill: white;
 }
 
 #goBackBtn:pressed {
-    -fx-background-color:
-    #000000,
+    -fx-background-color: #000000,
     linear-gradient(#ea4d49, #8f1212),
     linear-gradient(#b72823, #75150f),
     linear-gradient(#ea4d49, #AB281C);
 }
 
 #goBackBtn Text {
-    -fx-effect: dropshadow( one-pass-box , rgba(0,0,0,0.8) , 0, 0.0 , 0 , 1);
+    -fx-effect: dropshadow(one-pass-box, rgba(0, 0, 0, 0.8), 0, 0.0, 0, 1);
 }
 
 .tillContentBar {
@@ -123,13 +135,12 @@
 }
 
 .tenderBtn {
-    -fx-background-color:
-    #000000,
+    -fx-background-color: #000000,
     linear-gradient(#90ea5e, #518f39),
     linear-gradient(#72b74e, #527537),
     linear-gradient(#29ab13, #296813);
-    -fx-background-insets: 0,1,2,3;
-    -fx-background-radius: 3,2,2,2;
+    -fx-background-insets: 0, 1, 2, 3;
+    -fx-background-radius: 3, 2, 2, 2;
     -fx-padding: 10 25 10 25;
     -fx-text-fill: white;
     -fx-font-weight: bold;
@@ -137,14 +148,13 @@
 }
 
 .tenderBtn:pressed {
-    -fx-background-color:
-    #000000,
+    -fx-background-color: #000000,
     linear-gradient(#70ea24, #388f14),
     linear-gradient(#50b725, #287515),
     linear-gradient(#43ea28, #3cab1c);
 }
 
-.text-field, .text-field:focused  {
+.text-field, .text-field:focused {
     -fx-font-family: "Museo Sans", "Verdana", "Arial", Sans-Serif;
     -fx-font-size: 200%;
     -fx-prompt-text-fill: #A9A9A9;
@@ -152,22 +162,19 @@
 
 .text-field {
     -fx-background-insets: 0, 2;
-    -fx-background-color:
-    #B2B2B2,
+    -fx-background-color: #B2B2B2,
     #FFFFFF;
 
 }
 
 .text-field:focused {
-    -fx-background-color:
-    #B2B2B2,
+    -fx-background-color: #B2B2B2,
     #FFFFFF;
 }
 
 .error_textField, .error_textField:focused {
     -fx-prompt-text-fill: #b94a48;
-    -fx-background-color:
-    #b94a48,
+    -fx-background-color: #b94a48,
     #f2dede;
 }
 
@@ -184,15 +191,15 @@
 
 .loyaltyBtn {
     -fx-background-color: #d2d2d2;
-    -fx-background-insets: 0,1,2,3;
-    -fx-background-radius: 10,10,10,10;
+    -fx-background-insets: 0, 1, 2, 3;
+    -fx-background-radius: 10, 10, 10, 10;
     -fx-padding: 10 10 10 10;
 }
 
 .loyaltyBtn:pressed {
     -fx-background-color: #e6e6e6;
-    -fx-background-insets: 0,1,2,3;
-    -fx-background-radius: 10,10,10,10;
+    -fx-background-insets: 0, 1, 2, 3;
+    -fx-background-radius: 10, 10, 10, 10;
     -fx-padding: 10 10 10 10;
 }
 
@@ -242,7 +249,7 @@
     -fx-background-color: #f0ffff;
 }
 
-.lookupField, .lookupField:focused  {
+.lookupField, .lookupField:focused {
     -fx-font-family: "Museo Sans", "Verdana", "Arial", Sans-Serif;
     -fx-font-size: 14px;
     -fx-prompt-text-fill: #A9A9A9;
@@ -250,21 +257,18 @@
 
 .lookupField {
     -fx-background-insets: 0, 2;
-    -fx-background-color:
-    #B2B2B2,
+    -fx-background-color: #B2B2B2,
     #FFFFFF;
 }
 
 .lookupField:focused {
-    -fx-background-color:
-    #B2B2B2,
+    -fx-background-color: #B2B2B2,
     #FFFFFF;
 }
 
-
 .searchBtn {
     -fx-background-color: #bbbbbb;
-    -fx-background-insets: 0,1,2,3;
+    -fx-background-insets: 0, 1, 2, 3;
     -fx-background-radius: 10;
     -fx-padding: 15;
     -fx-font-size: 14px;
@@ -273,4 +277,19 @@
 
 .searchBtn:pressed {
     -fx-background-color: #CCCCCC;
+}
+
+.table-column {
+    -fx-alignment: CENTER-LEFT;
+    -fx-font-size: 14px;
+}
+
+.bold-txt {
+    -fx-font-weight: bold;
+}
+
+.table-view .column-header .label {
+    -fx-alignment: CENTER-LEFT;
+    -fx-padding: inherit inherit inherit 10px;
+    -fx-font-size: 14px;
 }

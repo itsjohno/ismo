@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import co.ismo.gui.view.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
-<GridPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
-          AnchorPane.topAnchor="0.0" fx:controller="co.ismo.gui.controller.ProductLookupController"
-          xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<GridPane xmlns:fx="http://javafx.com/fxml/1" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+          AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0"
+          fx:controller="co.ismo.gui.controller.ProductLookupController" xmlns="http://javafx.com/javafx/8">
     <columnConstraints>
         <ColumnConstraints percentWidth="25.0"/>
         <ColumnConstraints percentWidth="75.0"/>
@@ -75,7 +76,8 @@
                                 <Font name="System Bold" size="14.0"/>
                             </font>
                         </Label>
-                        <ComboBox fx:id="supercatField" maxWidth="1.7976931348623157E308" promptText="All Categories" styleClass="lookupField"
+                        <ComboBox fx:id="supercatField" maxWidth="1.7976931348623157E308" promptText="All Categories"
+                                  styleClass="lookupField"
                                   style="-fx-padding: 5;"/>
                     </children>
                     <VBox.margin>
@@ -92,7 +94,8 @@
                                 <Font name="System Bold" size="14.0"/>
                             </font>
                         </Label>
-                        <ComboBox fx:id="catField" maxWidth="1.7976931348623157E308" promptText="All Categories" styleClass="lookupField"
+                        <ComboBox fx:id="catField" maxWidth="1.7976931348623157E308" promptText="All Categories"
+                                  styleClass="lookupField"
                                   style="-fx-padding: 5;"/>
                     </children>
                     <VBox.margin>
@@ -128,9 +131,11 @@
                         </Label>
                         <HBox>
                             <children>
-                                <TextField fx:id="priceFromField" promptText="From" styleClass="lookupField" style="-fx-padding: 10;"/>
+                                <TextField fx:id="priceFromField" promptText="From" styleClass="lookupField"
+                                           style="-fx-padding: 10;"/>
                                 <Pane HBox.hgrow="ALWAYS"/>
-                                <TextField fx:id="priceToField" promptText="To" styleClass="lookupField" style="-fx-padding: 10;"/>
+                                <TextField fx:id="priceToField" promptText="To" styleClass="lookupField"
+                                           style="-fx-padding: 10;"/>
                             </children>
                         </HBox>
                     </children>
@@ -141,12 +146,14 @@
                 <Pane VBox.vgrow="ALWAYS"/>
                 <VBox>
                     <children>
-                        <Button maxWidth="1.7976931348623157E308" text="Search Products (Enter)" styleClass="searchBtn" onAction="#searchProducts" focusTraversable="false">
+                        <Button maxWidth="1.7976931348623157E308" text="Search Products (Enter)" styleClass="searchBtn"
+                                onAction="#searchProducts" focusTraversable="false">
                             <VBox.margin>
                                 <Insets bottom="15.0"/>
                             </VBox.margin>
                         </Button>
-                        <Button maxWidth="1.7976931348623157E308" text="Reset to Defaults (F12)" styleClass="searchBtn" focusTraversable="false"/>
+                        <Button maxWidth="1.7976931348623157E308" text="Reset to Defaults (F12)" styleClass="searchBtn"
+                                focusTraversable="false"/>
                     </children>
                 </VBox>
             </children>
@@ -154,17 +161,20 @@
                 <Insets bottom="15.0" left="15.0" right="15.0" top="15.0"/>
             </padding>
         </VBox>
-        <TableView fx:id="resultsTable" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" focusTraversable="false" editable="false">
-            <columnResizePolicy><TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/></columnResizePolicy>
+        <TableView fx:id="resultsTable" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1"
+                   focusTraversable="false" editable="false">
+            <columnResizePolicy>
+                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
+            </columnResizePolicy>
             <columns>
-                <TableColumn fx:id="skuColumn" text="SKU"/>
-                <TableColumn fx:id="barcodeColumn" text="Barcode"/>
-                <TableColumn fx:id="nameColumn" text="Name"/>
-                <TableColumn fx:id="stockColumn" text="Stock"/>
-                <TableColumn fx:id="priceColumn" text="Price"/>
-                <TableColumn fx:id="supercatColumn" text="Supercat"/>
-                <TableColumn fx:id="subcatColumn" text="Subcat"/>
-                <TableColumn fx:id="ageRatingColumn" text="Age Rating"/>
+                <PTableColumn fx:id="skuColumn" text="SKU" percentageWidth="0.09"/>
+                <PTableColumn fx:id="barcodeColumn" text="Barcode(s)" percentageWidth="0.10"/>
+                <PTableColumn fx:id="nameColumn" text="Name" percentageWidth="0.30" styleClass="bold-txt"/>
+                <PTableColumn fx:id="stockColumn" text="Stock" percentageWidth="0.05"/>
+                <PTableColumn fx:id="priceColumn" text="Price" percentageWidth="0.10"/>
+                <PTableColumn fx:id="supercatColumn" text="Supercat" percentageWidth="0.10" styleClass="bold-txt"/>
+                <PTableColumn fx:id="subcatColumn" text="Subcat" percentageWidth="0.15"/>
+                <PTableColumn fx:id="ageRatingColumn" text="Age Rating" percentageWidth="0.10" styleClass="bold-txt"/>
             </columns>
         </TableView>
     </children>

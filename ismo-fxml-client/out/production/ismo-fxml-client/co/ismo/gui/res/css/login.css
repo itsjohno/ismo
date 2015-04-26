@@ -9,7 +9,7 @@
     -fx-padding: 0 0 10px 0;
 }
 
-.password-field, .password-field:focused  {
+.password-field, .password-field:focused {
     -fx-font-family: "Museo Sans", "Verdana", "Arial", Sans-Serif;
     -fx-font-size: 32px;
     -fx-prompt-text-fill: #A9A9A9;
@@ -17,21 +17,23 @@
 
 .password-field {
     -fx-background-insets: 0, 2;
-    -fx-background-color:
-    #B2B2B2,
+    -fx-background-color: #B2B2B2,
     #FFFFFF;
 
 }
 
 .password-field:focused {
-    -fx-background-color:
-    #B2B2B2,
+    -fx-background-color: #B2B2B2,
     #FFFFFF;
 }
 
 .error_textField, .error_textField:focused {
     -fx-prompt-text-fill: #b94a48;
-    -fx-background-color:
-    #b94a48,
+    -fx-background-color: #b94a48,
     #f2dede;
+}
+
+.requiredLevelTxt {
+    -fx-font-style: italic;
+    -fx-font-size: 14px;
 }

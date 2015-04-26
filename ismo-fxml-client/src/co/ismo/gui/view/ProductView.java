@@ -62,8 +62,8 @@ public class ProductView extends VBox implements Initializable {
 
     public void setupItemDisplay(Product product, int quantity) {
         qty.setText(Integer.toString(quantity) + "x");
-        value.setText("£" + String.format("%.2f", (float) product.getPrice()/100));
-        qtyValue.setText("£" + String.format("%.2f", (float)(product.getPrice() * quantity)/100));
+        value.setText("£" + String.format("%.2f", (float) product.getPrice() / 100));
+        qtyValue.setText("£" + String.format("%.2f", (float) (product.getPrice() * quantity) / 100));
         sku.setText(product.getSku());
         productName.setText(product.getName());
         subcat.setText(DynamicHashMap.getSubCategories().get(product.getCategoryID()).getName());
@@ -73,7 +73,7 @@ public class ProductView extends VBox implements Initializable {
 
     public void updateQty(int newQty, int unitCost) {
         qty.setText(Integer.toString(newQty) + "x");
-        qtyValue.setText("£" + String.format("%.2f", (float)(unitCost * newQty)/100));
+        qtyValue.setText("£" + String.format("%.2f", (float) (unitCost * newQty) / 100));
     }
 
     public void toggleHighlight() {
@@ -86,6 +86,10 @@ public class ProductView extends VBox implements Initializable {
 
     public String getSku() {
         return sku.getText();
+    }
+
+    public String getName() {
+        return productName.getText();
     }
 
     @Override
