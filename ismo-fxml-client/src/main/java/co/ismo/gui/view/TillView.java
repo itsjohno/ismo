@@ -50,13 +50,13 @@ public class TillView {
 
     private void setScene(Stage tillStage, Operator currentOperator) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("../res/fxml/till.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("fxml/till.fxml"));
             Scene scene = new Scene(loader.load(), Color.TRANSPARENT);
 
             TillController tillController = loader.getController();
             tillController.setCurrentOperator(currentOperator);
 
-            scene.getStylesheets().add("/co/ismo/gui/res/css/till.css");
+            scene.getStylesheets().add("/css/till.css");
             tillStage.setScene(scene);
         } catch (IOException ioe) {
             System.out.println("An IO Exception occured. Printing Stack Trace!");

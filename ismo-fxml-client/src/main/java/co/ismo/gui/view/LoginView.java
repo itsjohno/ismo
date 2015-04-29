@@ -48,13 +48,13 @@ public class LoginView {
 
     private void setScene(Stage loginStage, int requiredUserLevel) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("../res/fxml/login.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("fxml/login.fxml"));
             Scene scene = new Scene(loader.load(), Color.TRANSPARENT);
 
             LoginController loginController = loader.getController();
             loginController.setRequiredUserLevel(requiredUserLevel);
 
-            scene.getStylesheets().add("/co/ismo/gui/res/css/login.css");
+            scene.getStylesheets().add("/css/login.css");
             loginStage.setScene(scene);
         } catch (IOException ioe) {
             System.out.println("An IO Exception occured. Printing Stack Trace!");

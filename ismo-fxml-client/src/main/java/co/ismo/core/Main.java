@@ -15,13 +15,13 @@ import javafx.fxml.FXMLLoader;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
 import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.stage.WindowEvent;
 
 import java.io.IOException;
+import java.net.URL;
 
 /**
  * Created by Johnathan
@@ -65,13 +65,14 @@ public class Main extends Application {
         primaryStage.setTitle("ismo EPOS");
         primaryStage.setResizable(false);
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../gui/res/fxml/main.fxml"));
+
+        FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("fxml/main.fxml"));
         Scene scene = new Scene(loader.load(), Color.TRANSPARENT);
 
         RootController rootController = loader.getController();
         rootController.setBackgroundSize(primaryStage.getWidth(), primaryStage.getHeight());
 
-        scene.getStylesheets().add("/co/ismo/gui/res/css/main.css");
+        scene.getStylesheets().add("/css/main.css");
         primaryStage.setScene(scene);
     }
 

@@ -23,7 +23,7 @@ public class BrowserView {
 
     public Parent getBrowserView(TillController tillController) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("../res/fxml/till_browser.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("fxml/till_browser.fxml"));
 
             Parent content = loader.load();
 

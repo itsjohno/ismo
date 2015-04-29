@@ -22,7 +22,7 @@ public class ProductLookupView {
 
     public Parent getProductLookupView(TillController tillController, BasketController basketController) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("../res/fxml/till_productLookup.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("fxml/till_productLookup.fxml"));
 
             Parent content = loader.load();
 

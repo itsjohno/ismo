@@ -48,7 +48,7 @@ public class ProductView extends VBox implements Initializable {
     private Text ageRating;
 
     public ProductView() {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../res/fxml/basket_productTemplate.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("fxml/basket_productTemplate.fxml"));
 
         fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);
