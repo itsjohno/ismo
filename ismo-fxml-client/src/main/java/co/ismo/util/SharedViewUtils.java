@@ -1,5 +1,6 @@
 package co.ismo.util;
 
+import co.ismo.core.Configuration;
 import javafx.animation.FadeTransition;
 import javafx.event.Event;
 import javafx.fxml.FXMLLoader;
@@ -18,7 +19,7 @@ import java.net.URL;
  */
 public class SharedViewUtils {
     public static void consumeEvent(Event e, String caller) {
-        if (!Constant.DEVELOPER_MODE) {
+        if (!Configuration.getBooleanField("developer-mode")) {
             e.consume();
         }
     }
