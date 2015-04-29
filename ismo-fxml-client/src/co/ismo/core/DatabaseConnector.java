@@ -12,7 +12,7 @@ import java.sql.SQLException;
  */
 public class DatabaseConnector {
 
-    private String dbURL = "jdbc:mysql://localhost/ismo_new";
+    private String dbURL = "jdbc:mysql://ec2-52-17-144-142.eu-west-1.compute.amazonaws.com/ismo_new";
     private String dbUser = "ismo";
     private String dbPassword = "QyIOw0Bq5OclCWzp";
 

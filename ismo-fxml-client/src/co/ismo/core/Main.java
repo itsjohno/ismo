@@ -32,10 +32,6 @@ import java.io.IOException;
 
 public class Main extends Application {
 
-    static {
-        Font.loadFont(Main.class.getResource("../gui/res/font/fontawesome-webfont.ttf").toExternalForm(), 10);
-    }
-
     public static void main(String[] args) {
         launch(args);
     }
