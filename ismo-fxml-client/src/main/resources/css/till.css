@@ -172,6 +172,24 @@
     #FFFFFF;
 }
 
+.tenderField, .tenderField:focused {
+    -fx-font-family: "Museo Sans", "Verdana", "Arial", Sans-Serif;
+    -fx-font-size: 300%;
+    -fx-prompt-text-fill: #A9A9A9;
+}
+
+.tenderField {
+    -fx-background-insets: 0, 2;
+    -fx-background-color: #B2B2B2,
+    #FFFFFF;
+
+}
+
+.tenderField:focused {
+    -fx-background-color: #B2B2B2,
+    #FFFFFF;
+}
+
 .error_textField, .error_textField:focused {
     -fx-prompt-text-fill: #b94a48;
     -fx-background-color: #b94a48,
@@ -292,4 +310,55 @@
     -fx-alignment: CENTER-LEFT;
     -fx-padding: inherit inherit inherit 10px;
     -fx-font-size: 14px;
+}
+
+.borderedPane {
+    -fx-background-color: white;
+    -fx-border-color: black;
+    -fx-border-width: 1px;
+}
+
+.stdTenderBtnLarge {
+    -fx-background-color: #d2d2d2;
+    -fx-background-insets: 0, 1, 2, 3;
+    -fx-background-radius: 10, 10, 10, 10;
+    -fx-padding: 10 25 10 25;
+    -fx-font-size: 32px;
+}
+
+.stdTenderBtnLarge:pressed {
+    -fx-background-color: #e6e6e6;
+    -fx-background-insets: 0, 1, 2, 3;
+    -fx-background-radius: 10, 10, 10, 10;
+    -fx-padding: 10 25 10 25;
+    -fx-font-size: 32px;
+}
+
+.typeTenderBtnLarge {
+    -fx-background-color: #79d277;
+    -fx-background-insets: 0, 1, 2, 3;
+    -fx-background-radius: 10, 10, 10, 10;
+    -fx-padding: 10 25 10 25;
+    -fx-font-size: 32px;
+}
+
+.typeTenderBtnLarge:pressed {
+    -fx-background-color: #99e698;
+    -fx-background-insets: 0, 1, 2, 3;
+    -fx-background-radius: 10, 10, 10, 10;
+    -fx-padding: 10 25 10 25;
+    -fx-font-size: 32px;
+}
+
+.largeBtnTxt {
+    -fx-font-family: "Museo Sans", "Verdana", "Arial", Sans-Serif;
+    -fx-text-fill: black;
+    -fx-font-size: 32px;
+}
+
+.largeBtnKey {
+    -fx-font-family: "Museo Sans", "Verdana", "Arial", Sans-Serif;
+    -fx-text-fill: black;
+    -fx-font-size: 18px;
+    -fx-font-style: italic;
 }

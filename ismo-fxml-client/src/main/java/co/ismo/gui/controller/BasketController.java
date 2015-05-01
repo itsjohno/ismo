@@ -91,7 +91,7 @@ public class BasketController implements Initializable {
     public void keyPressedListener(KeyEvent keyEvent) {
         switch (keyEvent.getCode()) {
             case ESCAPE:
-                tillController.logoutUser(keyEvent); // Logout
+                tillController.logoutUser(keyEvent);
                 break;
             case UP:
                 moveSelection(true);
@@ -136,7 +136,7 @@ public class BasketController implements Initializable {
                 System.out.println("Reserved for Loyalty Lookup");
                 break;
             case F12:
-                notImplemented();
+                tillController.loadTenderView();
                 break;
         }
     }
@@ -155,6 +155,11 @@ public class BasketController implements Initializable {
         alert.setContentText("This button is not currently implemented!");
 
         alert.showAndWait();
+    }
+
+    @FXML
+    private void tenderBasket() {
+        tillController.loadTenderView();
     }
 
     private void modifyQty() {

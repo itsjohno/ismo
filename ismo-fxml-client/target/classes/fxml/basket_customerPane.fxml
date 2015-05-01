@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 <GridPane xmlns:fx="http://javafx.com/fxml/1" hgap="20.0"
-          style="-fx-background-color: white; -fx-border-color: black; -fx-border-width: 1px;"
+          styleClass="borderedPane"
           vgap="20.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
           AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0"
           fx:controller="co.ismo.gui.controller.LoyaltyController" xmlns="http://javafx.com/javafx/8">

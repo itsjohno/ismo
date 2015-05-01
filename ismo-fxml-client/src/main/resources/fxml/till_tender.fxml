@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Text?>
+
+<GridPane fx:id="basketGrid" hgap="15.0" vgap="15.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.ismo.gui.controller.TenderController">
+    <columnConstraints>
+        <ColumnConstraints hgrow="SOMETIMES" percentWidth="50.0" />
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="200" percentWidth="50.0" />
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints percentHeight="100.0" vgrow="SOMETIMES" />
+    </rowConstraints>
+    <children>
+
+        <AnchorPane fx:id="tenderPane" focusTraversable="false" GridPane.columnIndex="1">
+            <children>
+                <GridPane hgap="15.0" vgap="15.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints percentHeight="45.0" vgrow="SOMETIMES" />
+                        <RowConstraints percentHeight="15.0" vgrow="SOMETIMES" />
+                        <RowConstraints percentHeight="15.0" vgrow="SOMETIMES" />
+                        <RowConstraints percentHeight="10.0" vgrow="SOMETIMES" />
+                        <RowConstraints percentHeight="15.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                    <children>
+
+                        <Button focusTraversable="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="stdTenderBtnLarge" GridPane.rowIndex="1">
+                            <graphic>
+                                <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                                    <children>
+                                        <Text styleClass="largeBtnTxt" text="50p" />
+                                        <Text styleClass="largeBtnKey" text="F1" />
+                                    </children>
+                                </VBox>
+                            </graphic>
+                        </Button>
+
+                        <Button focusTraversable="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="stdTenderBtnLarge" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                            <graphic>
+                                <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                                    <children>
+                                        <Text styleClass="largeBtnTxt" text="£1" />
+                                        <Text styleClass="largeBtnKey" text="F2" />
+                                    </children>
+                                </VBox>
+                            </graphic>
+                        </Button>
+
+                        <Button focusTraversable="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="stdTenderBtnLarge" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                            <graphic>
+                                <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                                    <children>
+                                        <Text styleClass="largeBtnTxt" text="£2" />
+                                        <Text styleClass="largeBtnKey" text="F3" />
+                                    </children>
+                                </VBox>
+                            </graphic>
+                        </Button>
+
+                        <Button focusTraversable="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="stdTenderBtnLarge" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                            <graphic>
+                                <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                                    <children>
+                                        <Text styleClass="largeBtnTxt" text="£5" />
+                                        <Text styleClass="largeBtnKey" text="F4" />
+                                    </children>
+                                </VBox>
+                            </graphic>
+                        </Button>
+
+
+                        <Button focusTraversable="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="stdTenderBtnLarge" GridPane.rowIndex="2">
+                            <graphic>
+                                <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                                    <children>
+                                        <Text styleClass="largeBtnTxt" text="£10" />
+                                        <Text styleClass="largeBtnKey" text="F5" />
+                                    </children>
+                                </VBox>
+                            </graphic>
+                        </Button>
+
+                        <Button focusTraversable="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="stdTenderBtnLarge" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                            <graphic>
+                                <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                                    <children>
+                                        <Text styleClass="largeBtnTxt" text="£20" />
+                                        <Text styleClass="largeBtnKey" text="F6" />
+                                    </children>
+                                </VBox>
+                            </graphic>
+                        </Button>
+
+                        <Button focusTraversable="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="stdTenderBtnLarge" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                            <graphic>
+                                <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                                    <children>
+                                        <Text styleClass="largeBtnTxt" text="£50" />
+                                        <Text styleClass="largeBtnKey" text="F7" />
+                                    </children>
+                                </VBox>
+                            </graphic>
+                        </Button>
+
+                        <Button focusTraversable="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="stdTenderBtnLarge" GridPane.columnIndex="3" GridPane.rowIndex="2">
+                            <graphic>
+                                <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                                    <children>
+                                        <Text styleClass="largeBtnTxt" text="EXACT" />
+                                        <Text styleClass="largeBtnKey" text="F8" />
+                                    </children>
+                                </VBox>
+                            </graphic>
+                        </Button>
+
+                        <AnchorPane focusTraversable="false" GridPane.columnSpan="4" GridPane.hgrow="ALWAYS" GridPane.rowIndex="3" GridPane.vgrow="ALWAYS">
+                            <children>
+                                <TextField fx:id="tenderField" promptText="Specify Amount" styleClass="tenderField" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                    <padding>
+                                        <Insets left="20.0" />
+                                    </padding>
+                                </TextField>
+                            </children>
+                        </AnchorPane>
+
+                        <Button fx:id="cashBtn" focusTraversable="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#cashTender" styleClass="typeTenderBtnLarge" GridPane.rowIndex="4">
+                            <graphic>
+                                <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                                    <children>
+                                        <Text styleClass="largeBtnTxt" text="CASH" />
+                                        <Text styleClass="largeBtnKey" text="F9" />
+                                    </children>
+                                </VBox>
+                            </graphic>
+                        </Button>
+
+                        <Button fx:id="cardBtn" focusTraversable="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#cardTender" styleClass="typeTenderBtnLarge" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                            <graphic>
+                                <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                                    <children>
+                                        <Text styleClass="largeBtnTxt" text="CARD" />
+                                        <Text styleClass="largeBtnKey" text="F10" />
+                                    </children>
+                                </VBox>
+                            </graphic>
+                        </Button>
+
+                        <Button fx:id="voucherBtn" focusTraversable="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#voucherTender" styleClass="typeTenderBtnLarge" GridPane.columnIndex="2" GridPane.rowIndex="4">
+                            <graphic>
+                                <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                                    <children>
+                                        <Text styleClass="largeBtnTxt" text="VOUCHER" />
+                                        <Text styleClass="largeBtnKey" text="F11" />
+                                    </children>
+                                </VBox>
+                            </graphic>
+                        </Button>
+
+                        <Button fx:id="loyaltyBtn" focusTraversable="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#loyaltyTender" styleClass="typeTenderBtnLarge" GridPane.columnIndex="3" GridPane.rowIndex="4">
+                            <graphic>
+                                <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                                    <children>
+                                        <Text styleClass="largeBtnTxt" text="LOYALTY" />
+                                        <Text styleClass="largeBtnKey" text="F12" />
+                                    </children>
+                                </VBox>
+                            </graphic>
+                        </Button>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0" styleClass="borderedPane" GridPane.columnSpan="4">
+                     <children>
+                        <VBox alignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Total to Pay">
+                                 <font>
+                                    <Font size="36.0" />
+                                 </font>
+                              </Text>
+                              <Text fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="£18.99">
+                                 <font>
+                                    <Font size="118.0" />
+                                 </font>
+                              </Text>
+                           </children>
+                           <padding>
+                              <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
+                           </padding>
+                        </VBox>
+                     </children>
+                  </AnchorPane>
+                    </children>
+                </GridPane>
+            </children>
+        </AnchorPane>
+        <ScrollPane fx:id="basketContainer" fitToHeight="true" fitToWidth="true" focusTraversable="false" hbarPolicy="NEVER" vbarPolicy="AS_NEEDED" vvalue="1.0">
+            <content>
+                <VBox fx:id="basketContents" focusTraversable="false" />
+            </content>
+        </ScrollPane>
+    </children>
+
+    <padding>
+        <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+    </padding>
+</GridPane>

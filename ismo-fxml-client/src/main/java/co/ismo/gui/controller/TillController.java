@@ -3,6 +3,7 @@ package co.ismo.gui.controller;
 import co.ismo.gui.view.BasketView;
 import co.ismo.gui.view.BrowserView;
 import co.ismo.gui.view.ProductLookupView;
+import co.ismo.gui.view.TenderView;
 import co.ismo.object.type.Operator;
 import co.ismo.object.type.Transaction;
 import co.ismo.object.util.TransactionUtility;
@@ -131,6 +132,16 @@ public class TillController implements Initializable {
                 browserView.getController().closeBrowserEngine();
                 goBack();
             });
+        }
+    }
+
+    public void loadTenderView() {
+        if (middlePane.getChildren().contains(basketView.getBasketView())) {
+            middlePane.getChildren().clear();
+            middlePane.getChildren().add(new TenderView().getTenderView(this));
+
+            goBackBtn.setText("Go Back (Esc)");
+            goBackBtn.setOnMouseClicked((event) -> goBack());
         }
     }
 
