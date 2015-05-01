@@ -141,7 +141,9 @@ public class BasketController implements Initializable {
                 System.out.println("Reserved for Loyalty Lookup");
                 break;
             case F12:
-                tillController.loadTenderView();
+                if (basketCountProperty.getValue() > 0) {
+                    tillController.loadTenderView();
+                }
                 break;
         }
     }
