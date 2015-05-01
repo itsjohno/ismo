@@ -11,6 +11,7 @@ import javafx.beans.Observable;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.collections.ObservableMap;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -18,6 +19,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
@@ -64,6 +66,9 @@ public class BasketController implements Initializable {
 
     @FXML
     private Text itemQty;
+
+    @FXML
+    private Button tenderBtn;
 
     // Hotswappable Button Controllers
     private Parent defaultBtn;
@@ -242,6 +247,12 @@ public class BasketController implements Initializable {
 
             basketCostProperty.set("£" + String.format("%.2f", (float) cost / 100));
             basketCountProperty.set(count);
+
+            if (count > 0 ) {
+                tenderBtn.setDisable(false);
+            } else {
+                tenderBtn.setDisable(true);
+            }
         });
     }
 
@@ -264,6 +275,18 @@ public class BasketController implements Initializable {
                 }
             }
         }
+    }
+
+    public ObservableList<Node> getBasketContents() {
+        return basketContents.getChildren();
+    }
+
+    public int getBasketCost() {
+        int cost = 0;
+        for (Product i : basket.keySet()) {
+            cost += i.getPrice() * basket.get(i);
+        }
+        return cost;
     }
 
     private void moveSelection(boolean moveUp) {
@@ -434,6 +457,7 @@ public class BasketController implements Initializable {
         assert basketContents != null : "fx:id=\"basketContents\" was not injected: check your FXML file 'till_basket.fxml'.";
         assert basketCount != null : "fx:id=\"basketCount\" was not injected: check your FXML file 'till_basket.fxml'.";
         assert basketCost != null : "fx:id=\"basketCost\" was not injected: check your FXML file 'till_basket.fxml'.";
+        assert tenderBtn != null : "fx:id=\"tenderBtn\" was not injected: check your FXML file 'till_basket.fxml'.";
 
         setupBasket();
         setupEventListeners();

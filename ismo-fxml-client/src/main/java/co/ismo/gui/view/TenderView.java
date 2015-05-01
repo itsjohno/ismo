@@ -1,5 +1,6 @@
 package co.ismo.gui.view;
 
+import co.ismo.gui.controller.BasketController;
 import co.ismo.gui.controller.TenderController;
 import co.ismo.gui.controller.TillController;
 import javafx.fxml.FXMLLoader;
@@ -21,7 +22,7 @@ public class TenderView {
         tenderController = null;
     }
 
-    public Parent getTenderView(TillController tillController) {
+    public Parent getTenderView(TillController tillController, BasketController basketController) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("fxml/till_tender.fxml"));
 
@@ -29,6 +30,7 @@ public class TenderView {
 
             tenderController = loader.getController();
             tenderController.setupTillController(tillController);
+            tenderController.setupTender(basketController.getBasketContents(), basketController.getBasketCost());
 
             return content;
 

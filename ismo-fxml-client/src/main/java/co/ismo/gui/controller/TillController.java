@@ -138,7 +138,7 @@ public class TillController implements Initializable {
     public void loadTenderView() {
         if (middlePane.getChildren().contains(basketView.getBasketView())) {
             middlePane.getChildren().clear();
-            middlePane.getChildren().add(new TenderView().getTenderView(this));
+            middlePane.getChildren().add(new TenderView().getTenderView(this, this.basketView.getBasketController()));
 
             goBackBtn.setText("Go Back (Esc)");
             goBackBtn.setOnMouseClicked((event) -> goBack());

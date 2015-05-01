@@ -1,10 +1,14 @@
 package co.ismo.gui.controller;
 
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -21,7 +25,13 @@ public class TenderController implements Initializable {
     private TextField tenderField;
 
     @FXML
+    private Text amountToPay;
+
+    @FXML
     private ScrollPane basketContainer;
+
+    @FXML
+    private VBox basketContents;
 
     private int tenderedAmount = 0;
 
@@ -30,6 +40,11 @@ public class TenderController implements Initializable {
 
     public void setupTillController(TillController tillController) {
         this.tillController = tillController;
+    }
+
+    public void setupTender(ObservableList<Node> products, int cost) {
+        basketContents.getChildren().addAll(products);
+        amountToPay.textProperty().set("£" + String.format("%.2f", (float) cost / 100));
     }
 
     @FXML
@@ -83,7 +98,9 @@ public class TenderController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         assert tenderField != null :  "fx:id=\"tenderField\" was not injected: check your FXML file 'till_tender.fxml'.";
-        assert basketContainer != null :  "fx:id=\"tenderField\" was not injected: check your FXML file 'till_tender.fxml'.";
+        assert amountToPay != null :  "fx:id=\"amountToPay\" was not injected: check your FXML file 'till_tender.fxml'.";
+        assert basketContainer != null :  "fx:id=\"basketContainer\" was not injected: check your FXML file 'till_tender.fxml'.";
+        assert basketContents != null :  "fx:id=\"basketContents\" was not injected: check your FXML file 'till_tender.fxml'.";
 
         setupEventListeners();
     }

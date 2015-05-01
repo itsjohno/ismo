@@ -187,7 +187,7 @@
                                     <Font size="36.0" />
                                  </font>
                               </Text>
-                              <Text fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="£18.99">
+                              <Text fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" fx:id="amountToPay" text="£0.00">
                                  <font>
                                     <Font size="118.0" />
                                  </font>
