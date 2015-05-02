@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Text?>
 
-<GridPane fx:id="basketGrid" hgap="15.0" vgap="15.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.ismo.gui.controller.TenderController">
+<GridPane fx:id="tenderGrid" hgap="15.0" vgap="15.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.ismo.gui.controller.TenderController">
     <columnConstraints>
         <ColumnConstraints hgrow="SOMETIMES" percentWidth="50.0" />
         <ColumnConstraints hgrow="SOMETIMES" minWidth="200" percentWidth="50.0" />
@@ -178,11 +178,11 @@
                                 </VBox>
                             </graphic>
                         </Button>
-                  <AnchorPane prefHeight="200.0" prefWidth="200.0" styleClass="borderedPane" GridPane.columnSpan="4">
+                  <AnchorPane fx:id="detailPane" prefHeight="200.0" prefWidth="200.0" styleClass="borderedPane" GridPane.columnSpan="4">
                      <children>
                         <VBox alignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Total to Pay">
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" fx:id="actionText" text="Total to Pay">
                                  <font>
                                     <Font size="36.0" />
                                  </font>

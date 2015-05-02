@@ -283,12 +283,8 @@ public class BasketController implements Initializable {
         return basketContents.getChildren();
     }
 
-    public int getBasketCost() {
-        int cost = 0;
-        for (Product i : basket.keySet()) {
-            cost += i.getPrice() * basket.get(i);
-        }
-        return cost;
+    public ObservableMap<Product, Integer> getBasket() {
+        return basket;
     }
 
     private void moveSelection(boolean moveUp) {

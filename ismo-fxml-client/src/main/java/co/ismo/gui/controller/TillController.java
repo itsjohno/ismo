@@ -18,6 +18,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
@@ -81,9 +82,33 @@ public class TillController implements Initializable {
         goBackBtn.setOnMouseClicked((event) -> logoutUser(event));
     }
 
+    public void setLogoutBtn() {
+        goBackBtn.setText("Log Out (Esc)");
+        goBackBtn.setOnMouseClicked((event) -> logoutUser(event));
+    }
+
+    public void disableGoBackBtn() {
+        goBackBtn.setDisable(true);
+    }
+
+    public void logoutBtnFocus() {
+        goBackBtn.setDisable(false);
+        goBackBtn.requestFocus();
+
+        goBackBtn.setOnKeyPressed((keyEvent) -> {
+            if (keyEvent.getCode() == KeyCode.ESCAPE) {
+                logoutUser(keyEvent);
+            }
+        });
+    }
+
     public void setCurrentOperator(Operator operator) {
         this.currentOperator = operator;
         userDetails.setText(currentOperator.getForename() + " " + currentOperator.getSurname() + " (" + DynamicHashMap.getUserLevels().get(currentOperator.getUserLevel()) + ")");
+    }
+
+    public Operator getCurrentOperator() {
+        return currentOperator;
     }
 
     private void bindDateTime() {
@@ -138,6 +163,7 @@ public class TillController implements Initializable {
     public void loadTenderView() {
         if (middlePane.getChildren().contains(basketView.getBasketView())) {
             middlePane.getChildren().clear();
+
             middlePane.getChildren().add(new TenderView().getTenderView(this, this.basketView.getBasketController()));
 
             goBackBtn.setText("Go Back (Esc)");
@@ -159,7 +185,7 @@ public class TillController implements Initializable {
         transactionNumber.textProperty().bind(transactionIDProperty);
     }
 
-    private Transaction getTransaction() {
+    public Transaction getTransaction() {
         return this.transaction;
     }
 

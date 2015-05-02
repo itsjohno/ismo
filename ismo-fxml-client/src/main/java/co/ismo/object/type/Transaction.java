@@ -1,8 +1,6 @@
 package co.ismo.object.type;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by Johnathan
@@ -21,16 +19,18 @@ public class Transaction {
     private Date datetime;
     private boolean suspended;
     private boolean cancelled;
-    private List<Product> products;
+    private Map<Product, Integer> products;
+    private List<Tender> tenders;
 
     public Transaction(String storeID, String tillID, String transactionID) {
         this.storeID = storeID;
         this.tillID = tillID;
         this.transactionID = transactionID;
-        this.products = new ArrayList<Product>();
+        this.products = new HashMap<Product, Integer>();
+        this.tenders = new ArrayList<Tender>();
     }
 
-    public Transaction(String storeID, String tillID, String transactionID, int operatorID, int customerID, int totalCost, Date datetime, boolean suspended, boolean cancelled, List<Product> products) {
+    public Transaction(String storeID, String tillID, String transactionID, int operatorID, int customerID, int totalCost, Date datetime, boolean suspended, boolean cancelled, Map<Product, Integer> products, List<Tender> tenders) {
         this.storeID = storeID;
         this.tillID = tillID;
         this.transactionID = transactionID;
@@ -41,6 +41,7 @@ public class Transaction {
         this.suspended = suspended;
         this.cancelled = cancelled;
         this.products = products;
+        this.tenders = tenders;
     }
 
     public String getStoreID() {
@@ -115,11 +116,19 @@ public class Transaction {
         this.cancelled = cancelled;
     }
 
-    public List<Product> getProducts() {
+    public Map<Product, Integer> getProducts() {
         return products;
     }
 
-    public void setProducts(List<Product> products) {
+    public void setProducts(Map<Product, Integer> products) {
         this.products = products;
+    }
+
+    public List<Tender> getTenders() {
+        return tenders;
+    }
+
+    public void setTenders(List<Tender> tenders) {
+        this.tenders = tenders;
     }
 }

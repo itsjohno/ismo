@@ -1,12 +1,22 @@
 package co.ismo.gui.controller;
 
+import co.ismo.object.type.Product;
+import co.ismo.object.type.Tender;
+import co.ismo.object.type.Transaction;
+import co.ismo.object.util.TransactionUtility;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.collections.ObservableList;
+import javafx.collections.ObservableMap;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
@@ -22,7 +32,16 @@ import java.util.ResourceBundle;
 public class TenderController implements Initializable {
 
     @FXML
+    private GridPane tenderGrid;
+
+    @FXML
+    private AnchorPane detailPane;
+
+    @FXML
     private TextField tenderField;
+
+    @FXML
+    private Text actionText;
 
     @FXML
     private Text amountToPay;
@@ -34,8 +53,12 @@ public class TenderController implements Initializable {
     private VBox basketContents;
 
     private int amountToTender = 0;
-    private int basketTotal = 0;
-    private int basketNow = 0;
+    private SimpleIntegerProperty basketNow = new SimpleIntegerProperty();
+
+    private Transaction transaction;
+    private ObservableMap<Product, Integer> productMap;
+
+    private boolean tenderComplete = false;
 
     // Parent Controllers
     private TillController tillController;
@@ -44,12 +67,20 @@ public class TenderController implements Initializable {
         this.tillController = tillController;
     }
 
-    public void setupTender(ObservableList<Node> products, int cost) {
-        basketTotal = cost;
-        basketNow = cost;
+    public void setupTender(ObservableList<Node> productViews, ObservableMap<Product, Integer> products) {
+        int cost = 0;
+        for (Product i : products.keySet()) {
+            cost += i.getPrice() * products.get(i);
+        }
 
-        basketContents.getChildren().addAll(products);
-        amountToPay.textProperty().set("£" + String.format("%.2f", (float) basketNow / 100));
+        transaction = tillController.getTransaction();
+        productMap = products;
+
+        transaction.setTotalCost(cost);
+        transaction.setProducts(products);
+        basketNow.set(cost);
+
+        basketContents.getChildren().addAll(productViews);
     }
 
     @FXML
@@ -63,12 +94,55 @@ public class TenderController implements Initializable {
 
     @FXML
     private void cashTender() {
-        System.out.println("CASH TENDERED - " + amountToTender);
+
+        Tender tender = null;
+
+        for (Tender t : transaction.getTenders()) {
+            if (t.getType().equalsIgnoreCase("Cash")) {
+                tender = t;
+            }
+        }
+
+        if (tender == null) {
+            tender = new Tender("Cash", amountToTender);
+        } else {
+            tender.setAmount(tender.getAmount() + amountToTender);
+        }
+
+        transaction.getTenders().add(tender);
+
+        basketNow.set(basketNow.getValue() - amountToTender);
+        tenderField.textProperty().set("");
     }
 
     @FXML
     private void cardTender() {
-        System.out.println("CARD TENDERED - " + amountToTender);
+
+        if (amountToTender > transaction.getTotalCost()) {
+            tenderField.setText("");
+            tenderField.setPromptText("Cannot Over Tender");
+            tenderField.getStyleClass().add("error_textField");
+        }
+        else {
+            Tender tender = null;
+
+            for (Tender t : transaction.getTenders()) {
+                if (t.getType().equalsIgnoreCase("Card")) {
+                    tender = t;
+                }
+            }
+
+            if (tender == null) {
+                tender = new Tender("Card", amountToTender);
+            } else {
+                tender.setAmount(tender.getAmount() + amountToTender);
+            }
+
+            transaction.getTenders().add(tender);
+
+            basketNow.set(transaction.getTotalCost() - amountToTender);
+            tenderField.textProperty().set("");
+        }
     }
 
     @FXML
@@ -86,16 +160,22 @@ public class TenderController implements Initializable {
     private void setupEventListeners() {
         tenderField.setOnKeyPressed((KeyEvent keyEvent) -> {
             switch (keyEvent.getCode()) {
-                case ESCAPE: tillController.goBack(); break;
+                case ESCAPE:
+                    if (tenderComplete) {
+                        tillController.logoutUser(keyEvent);
+                    } else {
+                        tillController.goBack();
+                    }
+                    break;
 
-                case F1: addAmount(50); ;break;
+                case F1: addAmount(50); break;
                 case F2: addAmount(100); break;
                 case F3: addAmount(200); break;
                 case F4: if (!keyEvent.isAltDown()) { addAmount(500); } break;
-                case F5: addAmount(1000); ;break;
+                case F5: addAmount(1000); break;
                 case F6: addAmount(2000); break;
                 case F7: addAmount(5000); break;
-                case F8: addAmount(basketNow); break;
+                case F8: addAmount(basketNow.getValue()); break;
                 case F9: this.cashTender(); ;break;
                 case F10: this.cardTender(); break;
                 //case F11: this.voucherTender(); break;
@@ -113,6 +193,11 @@ public class TenderController implements Initializable {
                 }
                 amountToTender = i;
             }
+
+            if (!valid) {
+                tenderField.setPromptText("Invalid Tender");
+                tenderField.getStyleClass().add("error_textField");
+            }
         });
 
         tenderField.textProperty().addListener((observable, oldvalue, newvalue) -> {
@@ -127,11 +212,49 @@ public class TenderController implements Initializable {
             // Hack-y way of preventing the scrollPane from getting focus.
             tenderField.requestFocus();
         });
+
+        basketNow.addListener((change) -> {
+            if (basketNow.getValue() <= 0) {
+                completeTransaction();
+            } else {
+                amountToPay.textProperty().set("£" + String.format("%.2f", (float) basketNow.getValue() / 100));
+            }
+
+            if (transaction.getTenders().size() > 0 && basketNow.getValue() > 0) {
+                tillController.disableGoBackBtn();
+            }
+        });
+    }
+
+    private void completeTransaction() {
+        actionText.setText("Change Due");
+
+        int change = basketNow.getValue();
+        if (basketNow.getValue() < 0) {
+            change = -basketNow.getValue();
+        }
+
+        amountToPay.textProperty().set("£" + String.format("%.2f", (float) change / 100));
+        tenderComplete = true;
+        new TransactionUtility().saveTransaction(transaction, tillController.getCurrentOperator());
+
+        disableAll();
+        tillController.setLogoutBtn();
+        tillController.logoutBtnFocus();
+    }
+
+    private void disableAll() {
+        for (Node n : tenderGrid.getChildren()) {
+            n.setDisable(true);
+        }
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        assert tenderGrid != null :  "fx:id=\"tenderGrid\" was not injected: check your FXML file 'till_tender.fxml'.";
+        assert detailPane != null :  "fx:id=\"detailPane\" was not injected: check your FXML file 'till_tender.fxml'.";
         assert tenderField != null :  "fx:id=\"tenderField\" was not injected: check your FXML file 'till_tender.fxml'.";
+        assert actionText != null :  "fx:id=\"actionText\" was not injected: check your FXML file 'till_tender.fxml'.";
         assert amountToPay != null :  "fx:id=\"amountToPay\" was not injected: check your FXML file 'till_tender.fxml'.";
         assert basketContainer != null :  "fx:id=\"basketContainer\" was not injected: check your FXML file 'till_tender.fxml'.";
         assert basketContents != null :  "fx:id=\"basketContents\" was not injected: check your FXML file 'till_tender.fxml'.";
