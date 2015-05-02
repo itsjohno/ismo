@@ -94,54 +94,65 @@ public class TenderController implements Initializable {
 
     @FXML
     private void cashTender() {
-
-        Tender tender = null;
-
-        for (Tender t : transaction.getTenders()) {
-            if (t.getType().equalsIgnoreCase("Cash")) {
-                tender = t;
-            }
-        }
-
-        if (tender == null) {
-            tender = new Tender("Cash", amountToTender);
-        } else {
-            tender.setAmount(tender.getAmount() + amountToTender);
-        }
-
-        transaction.getTenders().add(tender);
-
-        basketNow.set(basketNow.getValue() - amountToTender);
-        tenderField.textProperty().set("");
-    }
-
-    @FXML
-    private void cardTender() {
-
-        if (amountToTender > transaction.getTotalCost()) {
-            tenderField.setText("");
-            tenderField.setPromptText("Cannot Over Tender");
-            tenderField.getStyleClass().add("error_textField");
-        }
-        else {
+        if (!tenderField.getText().isEmpty() && amountToTender > 0) {
             Tender tender = null;
 
             for (Tender t : transaction.getTenders()) {
-                if (t.getType().equalsIgnoreCase("Card")) {
+                if (t.getType().equalsIgnoreCase("Cash")) {
                     tender = t;
                 }
             }
 
             if (tender == null) {
-                tender = new Tender("Card", amountToTender);
+                tender = new Tender("Cash", amountToTender);
             } else {
                 tender.setAmount(tender.getAmount() + amountToTender);
             }
 
             transaction.getTenders().add(tender);
 
-            basketNow.set(transaction.getTotalCost() - amountToTender);
+            basketNow.set(basketNow.getValue() - amountToTender);
             tenderField.textProperty().set("");
+        }
+        else {
+            tenderField.setText("");
+            tenderField.setPromptText("Cannot Zero Tender");
+            tenderField.getStyleClass().add("error_textField");
+        }
+    }
+
+    @FXML
+    private void cardTender() {
+        if (!tenderField.getText().isEmpty() && amountToTender > 0) {
+            if (amountToTender > transaction.getTotalCost()) {
+                tenderField.setText("");
+                tenderField.setPromptText("Cannot Over Tender");
+                tenderField.getStyleClass().add("error_textField");
+            } else {
+                Tender tender = null;
+
+                for (Tender t : transaction.getTenders()) {
+                    if (t.getType().equalsIgnoreCase("Card")) {
+                        tender = t;
+                    }
+                }
+
+                if (tender == null) {
+                    tender = new Tender("Card", amountToTender);
+                } else {
+                    tender.setAmount(tender.getAmount() + amountToTender);
+                }
+
+                transaction.getTenders().add(tender);
+
+                basketNow.set(transaction.getTotalCost() - amountToTender);
+                tenderField.textProperty().set("");
+            }
+        }
+        else {
+            tenderField.setText("");
+            tenderField.setPromptText("Cannot Zero Tender");
+            tenderField.getStyleClass().add("error_textField");
         }
     }
 
