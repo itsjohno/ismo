@@ -33,7 +33,9 @@ public class TenderController implements Initializable {
     @FXML
     private VBox basketContents;
 
-    private int tenderedAmount = 0;
+    private int amountToTender = 0;
+    private int basketTotal = 0;
+    private int basketNow = 0;
 
     // Parent Controllers
     private TillController tillController;
@@ -43,18 +45,30 @@ public class TenderController implements Initializable {
     }
 
     public void setupTender(ObservableList<Node> products, int cost) {
+        basketTotal = cost;
+        basketNow = cost;
+
         basketContents.getChildren().addAll(products);
-        amountToPay.textProperty().set("£" + String.format("%.2f", (float) cost / 100));
+        amountToPay.textProperty().set("£" + String.format("%.2f", (float) basketNow / 100));
+    }
+
+    @FXML
+    private void addAmount(int amount) {
+        int oldAmount = 0, newAmount = 0;
+        if (!tenderField.getText().isEmpty()) { oldAmount = Integer.parseInt(tenderField.getText()); }
+        newAmount =  oldAmount + amount;
+        tenderField.textProperty().set(Integer.toString(newAmount));
+        tenderField.positionCaret(tenderField.getLength());
     }
 
     @FXML
     private void cashTender() {
-        System.out.println("CASH TENDERED");
+        System.out.println("CASH TENDERED - " + amountToTender);
     }
 
     @FXML
     private void cardTender() {
-        System.out.println("CARD TENDERED");
+        System.out.println("CARD TENDERED - " + amountToTender);
     }
 
     @FXML
@@ -74,18 +88,38 @@ public class TenderController implements Initializable {
             switch (keyEvent.getCode()) {
                 case ESCAPE: tillController.goBack(); break;
 
-                case F1: tenderedAmount += 50; ;break;
-                case F2: tenderedAmount += 100; break;
-                case F3: tenderedAmount += 200; break;
-                case F4: if (!keyEvent.isAltDown()) { tenderedAmount += 500; } break;
-                case F5: tenderedAmount += 1000; ;break;
-                case F6: tenderedAmount += 2000; break;
-                case F7: tenderedAmount += 5000; break;
-                case F8: tenderedAmount += 0; break;
+                case F1: addAmount(50); ;break;
+                case F2: addAmount(100); break;
+                case F3: addAmount(200); break;
+                case F4: if (!keyEvent.isAltDown()) { addAmount(500); } break;
+                case F5: addAmount(1000); ;break;
+                case F6: addAmount(2000); break;
+                case F7: addAmount(5000); break;
+                case F8: addAmount(basketNow); break;
                 case F9: this.cashTender(); ;break;
                 case F10: this.cardTender(); break;
-                case F11: this.voucherTender(); break;
-                case F12: this.loyaltyTender(); break;
+                //case F11: this.voucherTender(); break;
+                //case F12: this.loyaltyTender(); break;
+            }
+        });
+
+        tenderField.textProperty().addListener((observable, oldval, newval) -> {
+            boolean valid = false;
+
+            if (!tenderField.getText().isEmpty() && tenderField.getText().matches("[0-9]*")) {
+                int i = Integer.parseInt(tenderField.getText());
+                if (i > 0) {
+                    valid = true;
+                }
+                amountToTender = i;
+            }
+        });
+
+        tenderField.textProperty().addListener((observable, oldvalue, newvalue) -> {
+            int lastElement = tenderField.getStyleClass().size() - 1;
+            if (tenderField.getStyleClass().get(lastElement).equalsIgnoreCase("error_TextField")) {
+                tenderField.setPromptText("Specify Amount");
+                tenderField.getStyleClass().remove(lastElement);
             }
         });
 

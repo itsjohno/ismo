@@ -157,7 +157,7 @@
                             </graphic>
                         </Button>
 
-                        <Button fx:id="voucherBtn" focusTraversable="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#voucherTender" styleClass="typeTenderBtnLarge" GridPane.columnIndex="2" GridPane.rowIndex="4">
+                        <Button fx:id="voucherBtn" focusTraversable="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#voucherTender" styleClass="typeTenderBtnLarge" GridPane.columnIndex="2" GridPane.rowIndex="4" disable="true">
                             <graphic>
                                 <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                                     <children>
@@ -168,7 +168,7 @@
                             </graphic>
                         </Button>
 
-                        <Button fx:id="loyaltyBtn" focusTraversable="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#loyaltyTender" styleClass="typeTenderBtnLarge" GridPane.columnIndex="3" GridPane.rowIndex="4">
+                        <Button fx:id="loyaltyBtn" focusTraversable="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#loyaltyTender" styleClass="typeTenderBtnLarge" GridPane.columnIndex="3" GridPane.rowIndex="4" disable="true">
                             <graphic>
                                 <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                                     <children>
