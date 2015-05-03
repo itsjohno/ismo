@@ -12,7 +12,7 @@ public class Transaction {
 
     private String storeID;
     private String tillID;
-    private String transactionID;
+    private int transactionID;
     private int operatorID;
     private int customerID;
     private int totalCost;
@@ -22,7 +22,7 @@ public class Transaction {
     private Map<Product, Integer> products;
     private List<Tender> tenders;
 
-    public Transaction(String storeID, String tillID, String transactionID) {
+    public Transaction(String storeID, String tillID, int transactionID) {
         this.storeID = storeID;
         this.tillID = tillID;
         this.transactionID = transactionID;
@@ -30,7 +30,7 @@ public class Transaction {
         this.tenders = new ArrayList<Tender>();
     }
 
-    public Transaction(String storeID, String tillID, String transactionID, int operatorID, int customerID, int totalCost, Date datetime, boolean suspended, boolean cancelled, Map<Product, Integer> products, List<Tender> tenders) {
+    public Transaction(String storeID, String tillID, int transactionID, int operatorID, int customerID, int totalCost, Date datetime, boolean suspended, boolean cancelled, Map<Product, Integer> products, List<Tender> tenders) {
         this.storeID = storeID;
         this.tillID = tillID;
         this.transactionID = transactionID;
@@ -60,11 +60,11 @@ public class Transaction {
         this.tillID = tillID;
     }
 
-    public String getTransactionID() {
+    public int getTransactionID() {
         return transactionID;
     }
 
-    public void setTransactionID(String transactionID) {
+    public void setTransactionID(int transactionID) {
         this.transactionID = transactionID;
     }
 

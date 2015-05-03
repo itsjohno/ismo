@@ -30,7 +30,7 @@ public class TenderView {
 
             tenderController = loader.getController();
             tenderController.setupTillController(tillController);
-            tenderController.setupTender(basketController.getBasketContents(), basketController.getBasket());
+            tenderController.setupTender(basketController.getBasket());
 
             return content;
 

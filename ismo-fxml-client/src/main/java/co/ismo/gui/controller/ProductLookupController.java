@@ -115,14 +115,14 @@ public class ProductLookupController implements Initializable {
         ObservableList<String> categoryList = FXCollections.observableArrayList();
 
         for (Category ar : DynamicHashMap.getSubCategories().values()) {
-            if (supercatID < 0 || supercatID == ar.getSupercatID()) {
+            if (supercatID == 0 || supercatID == ar.getSupercatID()) {
                 categoryList.add(ar.getName());
             }
         }
 
         //categoryList.add(0, "All Categories");
 
-        if (supercatID != -1) {
+        if (supercatID > 0) {
             categoryList.add(0, "All " + DynamicHashMap.getSuperCategories().get(supercatID) + " Categories");
         } else {
             categoryList.add(0, "All Categories");

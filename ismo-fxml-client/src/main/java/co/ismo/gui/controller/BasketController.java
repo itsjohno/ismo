@@ -279,8 +279,8 @@ public class BasketController implements Initializable {
         }
     }
 
-    public ObservableList<Node> getBasketContents() {
-        return basketContents.getChildren();
+    public ObservableList<Node> getBasketViews() {
+        return basketContents.getChildrenUnmodifiable();
     }
 
     public ObservableMap<Product, Integer> getBasket() {

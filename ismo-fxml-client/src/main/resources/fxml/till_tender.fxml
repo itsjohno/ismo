@@ -36,7 +36,7 @@
                     </rowConstraints>
                     <children>
 
-                        <Button focusTraversable="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="stdTenderBtnLarge" GridPane.rowIndex="1">
+                        <Button focusTraversable="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="stdTenderBtnLarge" GridPane.rowIndex="1" onAction="#addF1">
                             <graphic>
                                 <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                                     <children>
@@ -47,7 +47,7 @@
                             </graphic>
                         </Button>
 
-                        <Button focusTraversable="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="stdTenderBtnLarge" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                        <Button focusTraversable="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="stdTenderBtnLarge" GridPane.columnIndex="1" GridPane.rowIndex="1" onAction="#addF2">
                             <graphic>
                                 <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                                     <children>
@@ -58,7 +58,7 @@
                             </graphic>
                         </Button>
 
-                        <Button focusTraversable="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="stdTenderBtnLarge" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                        <Button focusTraversable="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="stdTenderBtnLarge" GridPane.columnIndex="2" GridPane.rowIndex="1" onAction="#addF3">
                             <graphic>
                                 <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                                     <children>
@@ -69,7 +69,7 @@
                             </graphic>
                         </Button>
 
-                        <Button focusTraversable="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="stdTenderBtnLarge" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                        <Button focusTraversable="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="stdTenderBtnLarge" GridPane.columnIndex="3" GridPane.rowIndex="1" onAction="#addF4">
                             <graphic>
                                 <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                                     <children>
@@ -81,7 +81,7 @@
                         </Button>
 
 
-                        <Button focusTraversable="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="stdTenderBtnLarge" GridPane.rowIndex="2">
+                        <Button focusTraversable="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="stdTenderBtnLarge" GridPane.rowIndex="2" onAction="#addF5">
                             <graphic>
                                 <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                                     <children>
@@ -92,7 +92,7 @@
                             </graphic>
                         </Button>
 
-                        <Button focusTraversable="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="stdTenderBtnLarge" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                        <Button focusTraversable="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="stdTenderBtnLarge" GridPane.columnIndex="1" GridPane.rowIndex="2" onAction="#addF6">
                             <graphic>
                                 <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                                     <children>
@@ -103,7 +103,7 @@
                             </graphic>
                         </Button>
 
-                        <Button focusTraversable="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="stdTenderBtnLarge" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                        <Button focusTraversable="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="stdTenderBtnLarge" GridPane.columnIndex="2" GridPane.rowIndex="2" onAction="#addF7">
                             <graphic>
                                 <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                                     <children>
@@ -114,7 +114,7 @@
                             </graphic>
                         </Button>
 
-                        <Button focusTraversable="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="stdTenderBtnLarge" GridPane.columnIndex="3" GridPane.rowIndex="2">
+                        <Button focusTraversable="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="stdTenderBtnLarge" GridPane.columnIndex="3" GridPane.rowIndex="2" onAction="#addF8">
                             <graphic>
                                 <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                                     <children>
@@ -203,9 +203,9 @@
                 </GridPane>
             </children>
         </AnchorPane>
-        <ScrollPane fx:id="basketContainer" fitToHeight="true" fitToWidth="true" focusTraversable="false" hbarPolicy="NEVER" vbarPolicy="AS_NEEDED" vvalue="1.0">
+        <ScrollPane fx:id="tenderBasketContainer" fitToHeight="true" fitToWidth="true" focusTraversable="false" hbarPolicy="NEVER" vbarPolicy="AS_NEEDED" vvalue="1.0">
             <content>
-                <VBox fx:id="basketContents" focusTraversable="false" />
+                <VBox fx:id="tenderBasketContents" focusTraversable="false" />
             </content>
         </ScrollPane>
     </children>

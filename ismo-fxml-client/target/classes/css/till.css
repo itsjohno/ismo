@@ -353,7 +353,7 @@
 .largeBtnTxt {
     -fx-font-family: "Museo Sans", "Verdana", "Arial", Sans-Serif;
     -fx-text-fill: black;
-    -fx-font-size: 32px;
+    -fx-font-size: 28px;
 }
 
 .largeBtnKey {

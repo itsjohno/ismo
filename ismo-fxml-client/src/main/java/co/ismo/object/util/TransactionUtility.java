@@ -18,7 +18,7 @@ import java.util.Calendar;
 public class TransactionUtility {
 
     private Transaction createEmptyTransaction(ResultSet rs) throws SQLException {
-        Transaction t = new Transaction(rs.getString("storeID"), rs.getString("tillID"), Integer.toString((Integer.parseInt(rs.getString("transactionID")) + 1)));
+        Transaction t = new Transaction(rs.getString("storeID"), rs.getString("tillID"), rs.getInt("transactionID") + 1);
         return t;
     }
 
@@ -37,7 +37,7 @@ public class TransactionUtility {
                 if (results.next()) {
                     transaction = createEmptyTransaction(results);
                 } else {
-                    transaction = new Transaction("DD", "1", "1");
+                    transaction = new Transaction("DD", "1", 1);
                 }
             }
         } catch (SQLException ex) {
@@ -65,7 +65,7 @@ public class TransactionUtility {
 
             transactionStatement.setString(1, transaction.getStoreID());
             transactionStatement.setString(2, transaction.getTillID());
-            transactionStatement.setString(3, transaction.getTransactionID());
+            transactionStatement.setInt(3, transaction.getTransactionID());
             transactionStatement.setInt(4, Integer.parseInt(operator.getOperatorID()));
             transactionStatement.setNull(5, Types.NULL);
             transactionStatement.setInt(6, transaction.getTotalCost());
@@ -78,7 +78,7 @@ public class TransactionUtility {
             for (Product p : transaction.getProducts().keySet()) {
                 productStatement.setString(1, transaction.getStoreID());
                 productStatement.setString(2, transaction.getTillID());
-                productStatement.setString(3, transaction.getTransactionID());
+                productStatement.setInt(3, transaction.getTransactionID());
                 productStatement.setString(4, p.getSku());
                 productStatement.setInt(5, transaction.getProducts().get(p));
                 productStatement.setInt(6, p.getPrice());
@@ -90,7 +90,7 @@ public class TransactionUtility {
             for (Tender t : transaction.getTenders()) {
                 tenderStatement.setString(1, transaction.getStoreID());
                 tenderStatement.setString(2, transaction.getTillID());
-                tenderStatement.setString(3, transaction.getTransactionID());
+                tenderStatement.setInt(3, transaction.getTransactionID());
                 tenderStatement.setString(4, t.getType());
                 tenderStatement.setInt(5, t.getAmount());
                 tenderStatement.addBatch();

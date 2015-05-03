@@ -176,7 +176,7 @@ public class TillController implements Initializable {
 
         String storeID = transaction.getStoreID();
         String tillID = transaction.getTillID();
-        String transactionID = transaction.getTransactionID();
+        String transactionID = Integer.toString(transaction.getTransactionID());
 
         if (transactionID.length() < 5) {
             transactionID = String.format("%5s", transactionID).replace(' ', '0');
