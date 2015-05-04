@@ -133,17 +133,29 @@ public class TenderController implements Initializable {
 
     private void addAmount(int amount) {
         int oldAmount = 0, newAmount = 0;
+        boolean valid = true;
 
         if (amount == basketNow.getValue()) {
             newAmount = amount;
         } else {
-            if (!tenderField.getText().isEmpty()) {
-                oldAmount = Integer.parseInt(tenderField.getText());
+            try {
+                if (!tenderField.getText().isEmpty()) {
+                    oldAmount = Integer.parseInt(tenderField.getText());
+                }
+                newAmount = oldAmount + amount;
+            } catch (NumberFormatException nfe) {
+                valid = false;
             }
-            newAmount = oldAmount + amount;
         }
-        tenderField.textProperty().set(Integer.toString(newAmount));
-        tenderField.positionCaret(tenderField.getLength());
+
+        if (valid) {
+            tenderField.textProperty().set(Integer.toString(newAmount));
+            tenderField.positionCaret(tenderField.getLength());
+        } else {
+            tenderField.textProperty().set("");
+            tenderField.setPromptText("Invalid Tender / Tender Too Great");
+            tenderField.getStyleClass().add("error_textField");
+        }
     }
 
     @FXML
@@ -240,8 +252,7 @@ public class TenderController implements Initializable {
                 case F5: addF5(); break;
                 case F6: addF6(); break;
                 case F7: addF7(); break;
-                case F8:
-                    addF8(); break;
+                case F8: addF8(); break;
                 case F9: this.cashTender(); ;break;
                 case F10: this.cardTender(); break;
                 //case F11: this.voucherTender(); break;
@@ -250,27 +261,32 @@ public class TenderController implements Initializable {
         });
 
         tenderField.textProperty().addListener((observable, oldval, newval) -> {
-            boolean valid = false;
-
-            if (!tenderField.getText().isEmpty() && tenderField.getText().matches("[0-9]*")) {
-                int i = Integer.parseInt(tenderField.getText());
-                if (i > 0) {
-                    valid = true;
-                }
-                amountToTender = i;
-            }
-
-            if (!valid) {
-                tenderField.setPromptText("Invalid Tender");
-                tenderField.getStyleClass().add("error_textField");
-            }
-        });
-
-        tenderField.textProperty().addListener((observable, oldvalue, newvalue) -> {
             int lastElement = tenderField.getStyleClass().size() - 1;
             if (tenderField.getStyleClass().get(lastElement).equalsIgnoreCase("error_TextField")) {
                 tenderField.setPromptText("Specify Amount");
                 tenderField.getStyleClass().remove(lastElement);
+            }
+
+            if (!tenderField.getText().isEmpty() && tenderField.getText().matches("[0-9]*") ) {
+                try {
+                    int i = Integer.parseInt(tenderField.getText());
+                    if (i < 0) {
+                        tenderField.setPromptText("Invalid Tender");
+                        tenderField.getStyleClass().add("error_textField");
+                    }
+
+                    amountToTender = i;
+                }
+                catch (NumberFormatException nfe) {
+                    tenderField.setPromptText("Invalid Tender / Tender Too Great");
+                    tenderField.getStyleClass().add("error_textField");
+                }
+            }
+        });
+
+        tenderField.setOnKeyTyped((KeyEvent keyEvent) -> {
+            if (!keyEvent.getCharacter().matches("[0-9]")) {
+                keyEvent.consume();
             }
         });
 
