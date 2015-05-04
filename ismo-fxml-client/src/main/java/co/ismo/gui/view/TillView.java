@@ -1,7 +1,9 @@
 package co.ismo.gui.view;
 
+import co.ismo.core.Configuration;
 import co.ismo.gui.controller.TillController;
 import co.ismo.object.type.Operator;
+import co.ismo.util.SharedViewUtils;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.paint.Color;
@@ -25,8 +27,7 @@ public class TillView {
         Stage tillStage = new Stage();
         tillStage.initOwner(parentStage);
         tillStage.setOnCloseRequest((WindowEvent event) -> {
-            tillStage.close();
-            new LoginView(parentStage, 1, false);
+            SharedViewUtils.consumeEvent(event, "TillView");
         });
 
         setStyling(tillStage, parentStage.getHeight(), parentStage.getWidth());
@@ -55,6 +56,7 @@ public class TillView {
 
             TillController tillController = loader.getController();
             tillController.setCurrentOperator(currentOperator);
+            tillController.provideStage(tillStage);
 
             scene.getStylesheets().add("/css/till.css");
             tillStage.setScene(scene);

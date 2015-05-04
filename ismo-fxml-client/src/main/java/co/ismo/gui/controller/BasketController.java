@@ -71,14 +71,10 @@ public class BasketController implements Initializable {
     private Button tenderBtn;
 
     // Hotswappable Button Controllers
-    private Parent defaultBtn;
-    private Parent alternateBtn;
+    private ButtonView btnView;
 
     // Parent Controller
     private TillController tillController;
-
-    // Item Template
-    private Parent itemTemplate;
 
     private SimpleIntegerProperty basketCountProperty;
     private SimpleStringProperty basketCostProperty;
@@ -96,7 +92,7 @@ public class BasketController implements Initializable {
     public void keyPressedListener(KeyEvent keyEvent) {
         switch (keyEvent.getCode()) {
             case ESCAPE:
-                tillController.logoutUser(keyEvent);
+                tillController.logoutUser(false);
                 break;
             case UP:
                 moveSelection(true);
@@ -120,10 +116,14 @@ public class BasketController implements Initializable {
                 }
                 break;
             case F5:
-                System.out.println("F5 Pressed");
+                if (basketCountProperty.getValue() > 0) {
+                    tillController.suspendTransaction();
+                }
                 break;
             case F6:
-                System.out.println("F6 Pressed");
+                if (basketCountProperty.getValue() <= 0) {
+                    tillController.resumeTransaction();
+                }
                 break;
             case F7:
                 voidItem();
@@ -250,10 +250,17 @@ public class BasketController implements Initializable {
             basketCostProperty.set("£" + String.format("%.2f", (float) cost / 100));
             basketCountProperty.set(count);
 
-            if (count > 0 ) {
+            if (count > 0) {
                 tenderBtn.setDisable(false);
+                tillController.disableGoBackBtn();
+                btnView.getBtnController().toggleResumeButton(true);
+                btnView.getBtnController().toggleSuspendButton(false);
+
             } else {
                 tenderBtn.setDisable(true);
+                tillController.disableGoBackBtn();
+                btnView.getBtnController().toggleResumeButton(false);
+                btnView.getBtnController().toggleSuspendButton(true);
             }
         });
     }
@@ -359,6 +366,7 @@ public class BasketController implements Initializable {
 
         basket.put(product, qty);
         basketContents.getChildren().add(productView);
+
         return true;
     }
 
@@ -428,8 +436,9 @@ public class BasketController implements Initializable {
     }
 
     private void setupButtons() {
-        defaultBtn = new ButtonView().loadButtonView(tillController, this);
-        btnPane.getChildren().add(defaultBtn);
+        btnView = new ButtonView();
+        btnPane.getChildren().add(btnView.loadButtonView(tillController, this));
+        btnView.getBtnController().toggleSuspendButton(true);
     }
 
     private void setupBasket() {

@@ -6,6 +6,7 @@ import co.ismo.gui.controller.TillController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 
+import java.awt.*;
 import java.io.IOException;
 
 /**
@@ -15,6 +16,8 @@ import java.io.IOException;
  * Project: ismo-fxml-client
  */
 public class ButtonView {
+
+    private ButtonController btnController;
 
     public ButtonView() {
 
@@ -26,8 +29,8 @@ public class ButtonView {
 
             Parent content = loader.load();
 
-            ButtonController buttonController = loader.getController();
-            buttonController.setupParentControllers(tillController, basketController);
+            btnController = loader.getController();
+            btnController.setupParentControllers(tillController, basketController);
 
             return content;
 
@@ -39,4 +42,7 @@ public class ButtonView {
         return null;
     }
 
+    public ButtonController getBtnController() {
+        return btnController;
+    }
 }

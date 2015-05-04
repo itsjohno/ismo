@@ -171,11 +171,10 @@ public class TenderController implements Initializable {
 
             if (tender == null) {
                 tender = new Tender("Cash", amountToTender);
+                transaction.getTenders().add(tender);
             } else {
                 tender.setAmount(tender.getAmount() + amountToTender);
             }
-
-            transaction.getTenders().add(tender);
 
             basketNow.set(basketNow.getValue() - amountToTender);
             tenderField.textProperty().set("");
@@ -205,13 +204,12 @@ public class TenderController implements Initializable {
 
                 if (tender == null) {
                     tender = new Tender("Card", amountToTender);
+                    transaction.getTenders().add(tender);
                 } else {
                     tender.setAmount(tender.getAmount() + amountToTender);
                 }
 
-                transaction.getTenders().add(tender);
-
-                basketNow.set(transaction.getTotalCost() - amountToTender);
+                basketNow.set(basketNow.getValue() - amountToTender);
                 tenderField.textProperty().set("");
             }
         }
@@ -239,7 +237,7 @@ public class TenderController implements Initializable {
             switch (keyEvent.getCode()) {
                 case ESCAPE:
                     if (tenderComplete) {
-                        tillController.logoutUser(keyEvent);
+                        tillController.logoutUser(true);
                     } else {
                         tillController.goBack();
                     }
@@ -318,10 +316,11 @@ public class TenderController implements Initializable {
 
         amountToPay.textProperty().set("£" + String.format("%.2f", (float) change / 100));
         tenderComplete = true;
-        new TransactionUtility().saveTransaction(transaction, tillController.getCurrentOperator());
+        new TransactionUtility().saveTransaction(transaction, tillController.getCurrentOperator(), false);
 
         disableAll();
         tillController.setLogoutBtn();
+        tillController.enableGoBackBtn();
         tillController.logoutBtnFocus();
     }
 

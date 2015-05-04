@@ -1,9 +1,6 @@
 package co.ismo.gui.controller;
 
-import co.ismo.gui.view.BasketView;
-import co.ismo.gui.view.BrowserView;
-import co.ismo.gui.view.ProductLookupView;
-import co.ismo.gui.view.TenderView;
+import co.ismo.gui.view.*;
 import co.ismo.object.type.Operator;
 import co.ismo.object.type.Transaction;
 import co.ismo.object.util.TransactionUtility;
@@ -63,15 +60,25 @@ public class TillController implements Initializable {
     private Button goBackBtn;
 
     private SimpleStringProperty transactionIDProperty;
+    private boolean logoutDisabled = false;
 
+    private Stage tillStage;
     private Transaction transaction;
     private BasketView basketView;
 
+//    @FXML
+//    public void logoutUser(Event e) {
+//        Node s = (Node) e.getSource();
+//        Stage currentStage = (Stage) s.getScene().getWindow();
+//        currentStage.fireEvent(new WindowEvent(currentStage, WindowEvent.WINDOW_CLOSE_REQUEST));
+//    }
+
     @FXML
-    public void logoutUser(Event e) {
-        Node s = (Node) e.getSource();
-        Stage currentStage = (Stage) s.getScene().getWindow();
-        currentStage.fireEvent(new WindowEvent(currentStage, WindowEvent.WINDOW_CLOSE_REQUEST));
+    public void logoutUser(boolean force) {
+        if (!logoutDisabled || force) {
+            tillStage.close();
+            new LoginView((Stage) tillStage.getOwner(), 1, false);
+        }
     }
 
     public void goBack() {
@@ -79,16 +86,22 @@ public class TillController implements Initializable {
         middlePane.getChildren().add(basketView.getBasketView());
 
         goBackBtn.setText("Log Out (Esc)");
-        goBackBtn.setOnMouseClicked((event) -> logoutUser(event));
+        goBackBtn.setOnMouseClicked((event) -> logoutUser(false));
     }
 
     public void setLogoutBtn() {
         goBackBtn.setText("Log Out (Esc)");
-        goBackBtn.setOnMouseClicked((event) -> logoutUser(event));
+        goBackBtn.setOnMouseClicked((event) -> logoutUser(false));
     }
 
     public void disableGoBackBtn() {
+        logoutDisabled = true;
         goBackBtn.setDisable(true);
+    }
+
+    public void enableGoBackBtn() {
+        logoutDisabled = false;
+        goBackBtn.setDisable(false);
     }
 
     public void logoutBtnFocus() {
@@ -97,7 +110,7 @@ public class TillController implements Initializable {
 
         goBackBtn.setOnKeyPressed((keyEvent) -> {
             if (keyEvent.getCode() == KeyCode.ESCAPE) {
-                logoutUser(keyEvent);
+                logoutUser(false);
             }
         });
     }
@@ -105,6 +118,10 @@ public class TillController implements Initializable {
     public void setCurrentOperator(Operator operator) {
         this.currentOperator = operator;
         userDetails.setText(currentOperator.getForename() + " " + currentOperator.getSurname() + " (" + DynamicHashMap.getUserLevels().get(currentOperator.getUserLevel()) + ")");
+    }
+
+    public void provideStage(Stage s) {
+        this.tillStage = s;
     }
 
     public Operator getCurrentOperator() {
@@ -189,6 +206,16 @@ public class TillController implements Initializable {
         return this.transaction;
     }
 
+    public void suspendTransaction() {
+        transaction.setSuspended(true);
+        new TransactionUtility().saveTransaction(transaction, getCurrentOperator(), true);
+        logoutUser(true);
+    }
+
+    public void resumeTransaction() {
+
+    }
+
     @Override
     public void initialize(URL fxmlFileLocation, ResourceBundle resources) {
         assert tillGrid != null : "fx:id=\"tillGrid\" was not injected: check your FXML file 'till.fxml'.";
@@ -202,6 +229,6 @@ public class TillController implements Initializable {
         loadBasketView();
         bindDateTime();
         setTransaction();
-        goBackBtn.setOnMouseClicked((event) -> logoutUser(event));
+        goBackBtn.setOnMouseClicked((event) -> logoutUser(false));
     }
 }

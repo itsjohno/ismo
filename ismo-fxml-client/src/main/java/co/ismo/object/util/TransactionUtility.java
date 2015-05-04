@@ -7,7 +7,7 @@ import co.ismo.object.type.Tender;
 import co.ismo.object.type.Transaction;
 
 import java.sql.*;
-import java.util.Calendar;
+import java.util.Date;
 
 /**
  * Created by Johnathan
@@ -49,10 +49,10 @@ public class TransactionUtility {
         return transaction;
     }
 
-    public boolean saveTransaction(Transaction transaction, Operator operator) {
+    public boolean saveTransaction(Transaction transaction, Operator operator, boolean suspend) {
         DatabaseConnector dbConnector = new DatabaseConnector();
 
-        String transactionQuery = "INSERT INTO transaction (storeID, tillID, transactionID, operatorID, customerID, totalCost, datetime, suspended, cancelled) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String transactionQuery = "INSERT INTO transaction (storeID, tillID, transactionID, operatorID, customerID, totalCost, datetime, suspended, cancelled) VALUES (?, ?, ?, ?, ?, ?, NOW(), ?, ?)";
         String productQuery = "INSERT INTO transaction_product (storeID, tillID, transactionID, sku, quantity, unitPrice) VALUES (?, ?, ?, ?, ?, ?)";
         String tenderQuery = "INSERT INTO transaction_tender (storeID, tillID, transactionID, type, amount) VALUES (?, ?, ?, ?, ?)";
 
@@ -69,9 +69,8 @@ public class TransactionUtility {
             transactionStatement.setInt(4, Integer.parseInt(operator.getOperatorID()));
             transactionStatement.setNull(5, Types.NULL);
             transactionStatement.setInt(6, transaction.getTotalCost());
-            transactionStatement.setDate(7, new Date(Calendar.getInstance().getTimeInMillis()));
-            transactionStatement.setBoolean(8, transaction.isSuspended());
-            transactionStatement.setBoolean(9, transaction.isCancelled());
+            transactionStatement.setBoolean(7, transaction.isSuspended());
+            transactionStatement.setBoolean(8, transaction.isCancelled());
 
             transactionStatement.executeUpdate();
 
@@ -87,16 +86,18 @@ public class TransactionUtility {
 
             productStatement.executeBatch();
 
-            for (Tender t : transaction.getTenders()) {
-                tenderStatement.setString(1, transaction.getStoreID());
-                tenderStatement.setString(2, transaction.getTillID());
-                tenderStatement.setInt(3, transaction.getTransactionID());
-                tenderStatement.setString(4, t.getType());
-                tenderStatement.setInt(5, t.getAmount());
-                tenderStatement.addBatch();
-            }
+            if (!suspend) {
+                for (Tender t : transaction.getTenders()) {
+                    tenderStatement.setString(1, transaction.getStoreID());
+                    tenderStatement.setString(2, transaction.getTillID());
+                    tenderStatement.setInt(3, transaction.getTransactionID());
+                    tenderStatement.setString(4, t.getType());
+                    tenderStatement.setInt(5, t.getAmount());
+                    tenderStatement.addBatch();
+                }
 
-            tenderStatement.executeBatch();
+                tenderStatement.executeBatch();
+            }
 
             connection.commit();
 
