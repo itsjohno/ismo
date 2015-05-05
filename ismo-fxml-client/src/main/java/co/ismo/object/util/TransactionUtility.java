@@ -1,5 +1,6 @@
 package co.ismo.object.util;
 
+import co.ismo.core.Configuration;
 import co.ismo.core.DatabaseConnector;
 import co.ismo.object.type.Operator;
 import co.ismo.object.type.Product;
@@ -30,14 +31,14 @@ public class TransactionUtility {
 
         try (Connection connection = dbConnector.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(query);) {
-            preparedStatement.setString(1, "DD");
-            preparedStatement.setString(2, "1");
+            preparedStatement.setString(1, Configuration.getStringField("till.storeID"));
+            preparedStatement.setString(2, Configuration.getStringField("till.tillID"));
 
             try (ResultSet results = preparedStatement.executeQuery()) {
                 if (results.next()) {
                     transaction = createEmptyTransaction(results);
                 } else {
-                    transaction = new Transaction("DD", "1", 1);
+                    transaction = new Transaction(Configuration.getStringField("till.storeID"), Configuration.getStringField("till.tillID"), 1);
                 }
             }
         } catch (SQLException ex) {

@@ -41,7 +41,7 @@
                 <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="customerTxt" text="1000 points (£2.50)"/>
             </children>
         </TextFlow>
-        <TextField fx:id="cardNumber" promptText="Loyalty Card Number" GridPane.columnSpan="2" GridPane.rowIndex="3"/>
+        <TextField fx:id="cardNumber" promptText="Loyalty Card Number" GridPane.columnSpan="2" GridPane.rowIndex="3" focusTraversable="false"/>
         <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Transaction History"
                 GridPane.rowIndex="4" styleClass="loyaltyBtn" focusTraversable="false"/>
         <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Edit Details"

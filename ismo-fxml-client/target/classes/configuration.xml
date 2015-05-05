@@ -1,4 +1,14 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 <configuration>
     <developer-mode>false</developer-mode>
+    <database>
+        <username>ismo</username>
+        <password>QyIOw0Bq5OclCWzp</password>
+        <host>ec2-52-17-144-142.eu-west-1.compute.amazonaws.com</host>
+        <schema>ismo_new</schema>
+    </database>
+    <till>
+        <storeID>DD</storeID>
+        <tillID>3</tillID>
+    </till>
 </configuration>

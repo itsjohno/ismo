@@ -12,10 +12,6 @@ import java.sql.SQLException;
  */
 public class DatabaseConnector {
 
-    private String dbURL = "jdbc:mysql://ec2-52-17-144-142.eu-west-1.compute.amazonaws.com/ismo_new";
-    private String dbUser = "ismo";
-    private String dbPassword = "QyIOw0Bq5OclCWzp";
-
     public DatabaseConnector() {
         loadDriver();
     }
@@ -31,8 +27,10 @@ public class DatabaseConnector {
     public Connection getConnection() {
         Connection connection = null;
 
+        String dbURL = "jdbc:mysql://" + Configuration.getStringField("database.host") + "/" + Configuration.getStringField("database.schema");
+
         try {
-            connection = DriverManager.getConnection(dbURL, dbUser, dbPassword);
+            connection = DriverManager.getConnection(dbURL, Configuration.getStringField("database.username"), Configuration.getStringField("database.password"));
         } catch (SQLException ex) {
             System.out.println("SQLException: " + ex.getMessage());
             System.out.println("SQLState: " + ex.getSQLState());
