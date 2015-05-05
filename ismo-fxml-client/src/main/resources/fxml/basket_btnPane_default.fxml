@@ -109,7 +109,7 @@
             </graphic>
         </Button>
         <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="stdTillBtn"
-                GridPane.columnIndex="0" GridPane.rowIndex="4" focusTraversable="false" onAction="#webBrowser">
+                GridPane.columnIndex="0" GridPane.rowIndex="4" focusTraversable="false" onAction="#webBrowser" fx:id="browserButton">
             <graphic>
                 <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                     <children>

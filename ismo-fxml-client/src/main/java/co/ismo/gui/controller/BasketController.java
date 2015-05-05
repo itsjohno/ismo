@@ -80,6 +80,7 @@ public class BasketController implements Initializable {
     private SimpleStringProperty basketCostProperty;
     private SimpleStringProperty currentQtyProperty;
 
+    private boolean browserDisabled = false;
     private ObservableMap<Product, Integer> basket;
     private int selectedItem;
     private int integerQty;
@@ -132,7 +133,9 @@ public class BasketController implements Initializable {
                 notImplemented();
                 break;
             case F9:
-                tillController.loadWebBrowserView();
+                if (!browserDisabled) {
+                    tillController.loadWebBrowserView();
+                }
                 break;
             case F10:
                 notImplemented();
@@ -149,8 +152,12 @@ public class BasketController implements Initializable {
     }
 
     public void keyTypedListener(KeyEvent keyEvent) {
-        if (keyEvent.getCharacter().equalsIgnoreCase("*")) {
+        String c = keyEvent.getCharacter();
+
+        if (c.equalsIgnoreCase("*")) {
             modifyQty();
+            keyEvent.consume();
+        } else if (!c.matches("[a-zA-Z0-9]")) {
             keyEvent.consume();
         }
     }
@@ -193,14 +200,16 @@ public class BasketController implements Initializable {
         skuField.setOnKeyTyped((KeyEvent keyEvent) -> keyTypedListener(keyEvent));
 
         skuField.setOnAction((ActionEvent ae) -> {
-            if (addItem(skuField.getText(), integerQty)) {
-                skuField.setText("");
-                integerQty = 1;
-                currentQtyProperty.set(integerQty + "x");
-            } else {
-                skuField.setText("");
-                skuField.setPromptText("Unrecognised SKU/Barcode");
-                skuField.getStyleClass().add("error_textField");
+            if (!skuField.getText().isEmpty()) {
+                if (addItem(skuField.getText(), integerQty)) {
+                    skuField.setText("");
+                    integerQty = 1;
+                    currentQtyProperty.set(integerQty + "x");
+                } else {
+                    skuField.setText("");
+                    skuField.setPromptText("Unrecognised SKU/Barcode");
+                    skuField.getStyleClass().add("error_textField");
+                }
             }
 
             skuField.requestFocus();
@@ -258,7 +267,7 @@ public class BasketController implements Initializable {
 
             } else {
                 tenderBtn.setDisable(true);
-                tillController.disableGoBackBtn();
+                tillController.enableGoBackBtn();
                 btnView.getBtnController().toggleResumeButton(false);
                 btnView.getBtnController().toggleSuspendButton(true);
             }
@@ -323,6 +332,7 @@ public class BasketController implements Initializable {
 
     private void loadCustomerPane() {
         customerPane.getChildren().add(new LoyaltyView().loadLoyaltyView(this));
+        skuField.requestFocus();
     }
 
     private boolean addItem(String skuFieldText, int qty) {
@@ -439,6 +449,11 @@ public class BasketController implements Initializable {
         btnView = new ButtonView();
         btnPane.getChildren().add(btnView.loadButtonView(tillController, this));
         btnView.getBtnController().toggleSuspendButton(true);
+
+        if (System.getProperty("os.arch").equalsIgnoreCase("arm")) {
+            btnView.getBtnController().disableWebBrowser();
+            browserDisabled = true;
+        }
     }
 
     private void setupBasket() {

@@ -22,6 +22,9 @@ public class ButtonController implements Initializable {
     @FXML
     private Button resumeButton;
 
+    @FXML
+    private Button browserButton;
+
     // Parent Controllers
     private TillController tillController;
     private BasketController basketController;
@@ -76,9 +79,12 @@ public class ButtonController implements Initializable {
         resumeButton.setDisable(disable);
     }
 
+    public void disableWebBrowser() { browserButton.setDisable(true); }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         assert suspendButton != null : "fx:id=\"suspendButton\" was not injected: check your FXML file 'basket_btnPane_default.fxml'.";
         assert resumeButton != null : "fx:id=\"resumeButton\" was not injected: check your FXML file 'basket_btnPane_default.fxml'.";
+        assert browserButton != null : "fx:id=\"browserButton\" was not injected: check your FXML file 'basket_btnPane_default.fxml'.";
     }
 }
