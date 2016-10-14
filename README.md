@@ -1,4 +1,7 @@
 # ismo
+*ismo* was a project developed as part of my Honours degree at the University of Dundee. It remains here in a public repository to show the work that was undertaken during the project.
+
+## Background
 ismo is an EPOS system being developed by Johnathan Law ([Twitter](http://www.twitter.com/itsjohno)/[GitHub](http://www.github.com/itsjohno)) as part of the Individual/Honours Project module at the University of Dundee. The project is being supervised by Dr. Keith Edwards.
 
 ## Why ismo?
